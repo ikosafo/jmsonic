@@ -19,6 +19,7 @@
     <link href="assets/signup/css/plugins.bundle.css" rel="stylesheet" type="text/css" />
     <link href="assets/signup/css/prismjs.bundle.css" rel="stylesheet" type="text/css" />
     <link href="assets/signup/css/style.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/countrySelect.css" rel="stylesheet" type="text/css" />
     <!--end::Global Theme Styles-->
     <!--begin::Layout Themes(used by all pages)-->
     <!--end::Layout Themes-->
@@ -118,8 +119,8 @@
 																</span>
                                                     </div>
                                                     <div class="wizard-label">
-                                                        <h3 class="wizard-title">Completed!</h3>
-                                                        <div class="wizard-desc">Review and Submit</div>
+                                                        <h3 class="wizard-title">Rules of Engagement!</h3>
+                                                        <div class="wizard-desc">Accept Rules of Engagement</div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -142,28 +143,13 @@
                                                             <div class="col-xl-6">
                                                                 <!--begin::Input-->
                                                                 <div class="form-group">
-                                                                    <label>First Name</label>
+                                                                    <label>Full Name</label>
                                                                     <input type="text" class="form-control form-control-solid form-control-lg"
-                                                                           name="fname" id="fname" placeholder="First Name" value="" />
-                                                                    <span class="form-text text-muted">Please enter your first name.</span>
+                                                                           name="fullname" id="fullname" placeholder="Full Name" value="" />
+                                                                    <span class="form-text text-muted">Please enter your full name.</span>
                                                                 </div>
                                                                 <!--end::Input-->
                                                             </div>
-                                                            <div class="col-xl-6">
-                                                                <!--begin::Input-->
-                                                                <div class="form-group">
-                                                                    <label>Last Name</label>
-                                                                    <input type="text" class="form-control form-control-solid form-control-lg"
-                                                                           name="lname" id="lname" placeholder="Last Name" value="" />
-                                                                    <span class="form-text text-muted">Please enter your last name.</span>
-                                                                </div>
-                                                                <!--end::Input-->
-                                                            </div>
-                                                        </div>
-
-
-                                                        <!--end::Input-->
-                                                        <div class="row">
                                                             <div class="col-xl-6">
                                                                 <!--begin::Input-->
                                                                 <div class="form-group">
@@ -174,6 +160,11 @@
                                                                 </div>
                                                                 <!--end::Input-->
                                                             </div>
+                                                        </div>
+
+
+                                                        <!--end::Input-->
+                                                        <div class="row">
                                                             <div class="col-xl-6">
                                                                 <!--begin::Input-->
                                                                 <div class="form-group">
@@ -184,11 +175,6 @@
                                                                 </div>
                                                                 <!--end::Input-->
                                                             </div>
-                                                        </div>
-
-
-                                                        <!--end::Input-->
-                                                        <div class="row">
                                                             <div class="col-xl-6">
                                                                 <!--begin::Input-->
                                                                 <div class="form-group">
@@ -199,6 +185,11 @@
                                                                 </div>
                                                                 <!--end::Input-->
                                                             </div>
+                                                        </div>
+
+
+                                                        <!--end::Input-->
+                                                        <div class="row">
                                                             <div class="col-xl-6">
                                                                 <!--begin::Input-->
                                                                 <div class="form-group">
@@ -206,6 +197,16 @@
                                                                     <input type="text" class="form-control form-control-solid form-control-lg"
                                                                            name="kintelephone" id="kintelephone" placeholder="Phone Number of next of kin" value="" />
                                                                     <span class="form-text text-muted">Please enter telephone of next of kin.</span>
+                                                                </div>
+                                                                <!--end::Input-->
+                                                            </div>
+                                                            <div class="col-xl-6">
+                                                                <!--begin::Input-->
+                                                                <div class="form-group">
+                                                                    <label>Location</label>
+                                                                    <input type="text" class="form-control form-control-solid form-control-lg"
+                                                                           name="location" id="location" placeholder="Location" value="" />
+                                                                    <span class="form-text text-muted">Please enter location.</span>
                                                                 </div>
                                                                 <!--end::Input-->
                                                             </div>
@@ -217,10 +218,10 @@
                                                             <div class="col-xl-6">
                                                                 <!--begin::Input-->
                                                                 <div class="form-group">
-                                                                    <label>Location</label>
+                                                                    <label>Country</label> <br/>
                                                                     <input type="text" class="form-control form-control-solid form-control-lg"
-                                                                           name="location" id="location" placeholder="Location" value="" />
-                                                                    <span class="form-text text-muted">Please enter location.</span>
+                                                                           name="country" id="country" placeholder="Country" value="" />
+                                                                    <span class="form-text text-muted">Please enter country.</span>
                                                                 </div>
                                                                 <!--end::Input-->
                                                             </div>
@@ -230,19 +231,12 @@
                                                                     <label>Username</label>
                                                                     <input type="text" class="form-control form-control-solid form-control-lg"
                                                                            name="username" id="username" placeholder="Username" value="" />
-                                                                    <span class="form-text text-muted">Please enter username.</span>
+                                                                    <span class="form-text text-muted">Please enter your username.</span>
                                                                 </div>
                                                                 <!--end::Input-->
                                                             </div>
                                                         </div>
 
-
-
-                                                    </div>
-                                                    <!--end: Wizard Step 1-->
-
-                                                    <!--begin: Wizard Step 6-->
-                                                    <div class="pb-5" data-wizard-type="step-content">
 
                                                         <!--end::Input-->
                                                         <div class="row">
@@ -269,48 +263,29 @@
                                                         </div>
 
 
-                                                        <div class="form-group">
-                                                            <label>First Name</label>
-                                                            <input type="text" class="form-control form-control-solid form-control-lg"
-                                                                   name="dasd" id="sdas" placeholder="First Name" value="" />
-                                                            <span class="form-text text-muted">Please enter your first name.</span>
-                                                        </div>
 
-                                                        <!--begin::Section-->
-                                                        <h4 class="mb-10 font-weight-bold text-dark">Review your Details and Submit</h4>
-                                                        <h6 class="font-weight-bolder mb-3">Current Address:</h6>
-                                                        <div class="text-dark-50 line-height-lg">
-                                                            <div>Address Line 1</div>
-                                                            <div>Address Line 2</div>
-                                                            <div>Melbourne 3000, VIC, Australia</div>
-                                                        </div>
-                                                        <div class="separator separator-dashed my-5"></div>
-                                                        <!--end::Section-->
-                                                        <!--begin::Section-->
-                                                        <h6 class="font-weight-bolder mb-3">Delivery Details:</h6>
-                                                        <div class="text-dark-50 line-height-lg">
-                                                            <div>Package: Complete Workstation (Monitor, Computer, Keyboard &amp; Mouse)</div>
-                                                            <div>Weight: 25kg</div>
-                                                            <div>Dimensions: 110cm (w) x 90cm (h) x 150cm (L)</div>
-                                                        </div>
-                                                        <div class="separator separator-dashed my-5"></div>
-                                                        <!--end::Section-->
-                                                        <!--begin::Section-->
-                                                        <h6 class="font-weight-bolder mb-3">Delivery Service Type:</h6>
-                                                        <div class="text-dark-50 line-height-lg">
-                                                            <div>Overnight Delivery with Regular Packaging</div>
-                                                            <div>Preferred Morning (8:00AM - 11:00AM) Delivery</div>
-                                                        </div>
-                                                        <div class="separator separator-dashed my-5"></div>
-                                                        <!--end::Section-->
-                                                        <!--begin::Section-->
-                                                        <h6 class="font-weight-bolder mb-3">Delivery Address:</h6>
-                                                        <div class="text-dark-50 line-height-lg">
-                                                            <div>Address Line 1</div>
-                                                            <div>Address Line 2</div>
-                                                            <div>Preston 3072, VIC, Australia</div>
-                                                        </div>
-                                                        <!--end::Section-->
+
+                                                    </div>
+                                                    <!--end: Wizard Step 1-->
+
+                                                    <!--begin: Wizard Step 6-->
+                                                    <div class="pb-5" data-wizard-type="step-content">
+                                                            <div class="form-group row">
+
+                                                                <div class="col-9 col-form-label">
+                                                                    <div class="checkbox-inline">
+                                                                        <label class="checkbox">
+                                                                            <input type="checkbox" name="Checkboxes5"/>
+                                                                            <span></span>
+                                                                            Accept Rules of Engagement
+                                                                        </label>
+
+                                                                    </div>
+                                                                    <span class="form-text text-muted">Click on the checkbox to accept</span>
+                                                                </div>
+                                                            </div>
+
+
                                                     </div>
                                                     <!--end: Wizard Step 6-->
                                                     <!--begin: Wizard Actions-->
@@ -377,14 +352,15 @@
 <!--begin::Page Scripts(used by this page)-->
 <script src="assets/signup/js/wizard-2.js"></script>
 <script src="assets/signup/js/select2.js"></script>
+<script src="assets/js/countrySelect.js"></script>
 <!--end::Page Scripts-->
 
-
 <script>
-   /* $(".clicktest").click(function() {
-        alert('hi');
-    })*/
+    $("#country").countrySelect({
+        defaultCountry: "gh"
+    });
 </script>
+
 
 </body>
 <!--end::Body-->

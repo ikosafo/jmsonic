@@ -93,17 +93,17 @@ var KTWizard2 = function () {
 			_formEl,
 			{
 				fields: {
-					fname: {
+					fullname: {
 						validators: {
 							notEmpty: {
-								message: 'First name is required'
+								message: 'Full Name is required'
 							}
 						}
 					},
-					lname: {
+					location: {
 						validators: {
 							notEmpty: {
-								message: 'Last Name is required'
+								message: 'Location is required'
 							}
 						}
 					},
@@ -126,6 +126,44 @@ var KTWizard2 = function () {
 						validators: {
 							notEmpty: {
 								message: 'Phone is required'
+							}
+						}
+					},
+                    username: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Username is required'
+                            }
+                        }
+                    },
+                    password: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Password is required'
+                            },
+                            stringLength: {
+                                min: 6,
+                                message: 'Password should not be less than 6 characters'
+                            }
+                        }
+                    },
+                    confirmpassword: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Confirm password'
+                            },
+                            identical: {
+                                compare: function() {
+                                    return _formEl.querySelector('[name="password"]').value;
+                                },
+                                message: 'The password and its confirm are not the same'
+                            }
+                        }
+                    },
+					country: {
+						validators: {
+							notEmpty: {
+								message: 'Country is required'
 							}
 						}
 					},
@@ -157,33 +195,9 @@ var KTWizard2 = function () {
 			{
 				fields: {
 					address1: {
-						validators: {
-							notEmpty: {
-								message: 'Address is required'
-							}
-						}
-					},
-                    password: {
                         validators: {
                             notEmpty: {
-                                message: 'Password is required'
-                            },
-                            stringLength: {
-                                min: 6,
-                                message: 'Password should not be less than 6 characters'
-                            }
-                        }
-                    },
-                    confirmpassword: {
-                        validators: {
-                            notEmpty: {
-                                message: 'Confirm password'
-                            },
-                            identical: {
-                                compare: function() {
-                                    return _formEl.querySelector('[name="password"]').value;
-                                },
-                                message: 'The password and its confirm are not the same'
+                                message: 'Address is required'
                             }
                         }
                     },
@@ -207,14 +221,8 @@ var KTWizard2 = function () {
 								message: 'State is required'
 							}
 						}
-					},
-					country: {
-						validators: {
-							notEmpty: {
-								message: 'Country is required'
-							}
-						}
 					}
+
 				},
 				plugins: {
 					trigger: new FormValidation.plugins.Trigger(),

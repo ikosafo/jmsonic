@@ -7,10 +7,6 @@ var KTSelect2 = function() {
             placeholder: 'Select a state'
         });
 
-        $('#country').select2({
-            placeholder: 'Select a country'
-        });
-
         // nested
         $('#kt_select2_2, #kt_select2_2_validate').select2({
             placeholder: 'Select a state'
