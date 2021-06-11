@@ -115,12 +115,13 @@ var KTWizard2 = function () {
 						}
 					},
 					kintelephone: {
-						validators: {
-							notEmpty: {
-								message: 'Telephone of next of kin is required'
-							}
-						}
-					},
+                        validators: {
+                            notEmpty: {
+                                message: 'Telephone of next of kin is required'
+                            }
+                        }
+                    },
+
 					phone: {
 						validators: {
 							notEmpty: {
@@ -162,6 +163,30 @@ var KTWizard2 = function () {
 							}
 						}
 					},
+                    password: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Password is required'
+                            },
+                            stringLength: {
+                                min: 6,
+                                message: 'Password should not be less than 6 characters'
+                            }
+                        }
+                    },
+                    confirmpassword: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Confirm password'
+                            },
+                            identical: {
+                                compare: function() {
+                                    return _formEl.querySelector('[name="password"]').value;
+                                },
+                                message: 'The password and its confirm are not the same'
+                            }
+                        }
+                    },
 					postcode: {
 						validators: {
 							notEmpty: {

@@ -84,7 +84,7 @@
     						</ul>
     					</nav>
                         <div class="header-right">
-                            <div class="device-btn"><a href="boards">Get Started</a></div>
+                            <div class="device-btn"><a href="board">Get Started</a></div>
                         </div>
     				</div>
         		</div>
