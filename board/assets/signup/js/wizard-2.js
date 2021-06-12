@@ -57,32 +57,68 @@ var KTWizard2 = function () {
 
 		// Submit event
 		_wizardObj.on('submit', function (wizard) {
-			Swal.fire({
-				text: "All is good! Please confirm the form submission.",
-				icon: "success",
-				showCancelButton: true,
-				buttonsStyling: false,
-				confirmButtonText: "Yes, submit!",
-				cancelButtonText: "No, cancel",
-				customClass: {
-					confirmButton: "btn font-weight-bold btn-primary",
-					cancelButton: "btn font-weight-bold btn-default"
-				}
-			}).then(function (result) {
-				if (result.value) {
-					_formEl.submit(); // Submit form
-				} else if (result.dismiss === 'cancel') {
-					Swal.fire({
-						text: "Your form has not been submitted!.",
-						icon: "error",
-						buttonsStyling: false,
-						confirmButtonText: "Ok, got it!",
-						customClass: {
-							confirmButton: "btn font-weight-bold btn-primary",
+			//alert('hi');
+			var fullname = $("#fullname").val();
+			var phone = $("#phone").val();
+			var email = $("#email").val();
+			var nextofkin = $("#nextofkin").val();
+			var kintelephone = $("#kintelephone").val();
+			var location = $("#location").val();
+			var country = $("#country").val();
+			var username = $("#username").val();
+			var password = $("#password").val();
+			var checkedValue = $('#checkaccepted:checked').val();
+
+			var error = '';
+			if (checkedValue != "1") {
+				error += 'Please accept rules of engagement \n';
+				$("#checkaccepted").focus();
+			}
+
+			if (error == "") {
+				$.ajax({
+					type: "POST",
+					url: "ajax/loginscripts/signupaction.php",
+					beforeSend: function () {
+						$.blockUI({ overlayCSS: { backgroundColor: '#970908' } });
+					},
+					data: {
+						fullname: fullname,
+						phone: phone,
+						email: email,
+						nextofkin: nextofkin,
+						kintelephone: kintelephone,
+						location: location,
+						country: country,
+						username: username,
+						password: password,
+						checkedValue: checkedValue
+					},
+					success: function (text) {
+						//alert(text);
+						if (text == 1) {
+                            window.location.href = 'login'
 						}
-					});
-				}
-			});
+						else {
+							$.notify("Username or Email address or telephone already exists", {position: "top center"});
+						}
+
+					},
+					error: function (xhr, ajaxOptions, thrownError) {
+						alert(xhr.status + " " + thrownError);
+					},
+					complete: function () {
+						$.unblockUI();
+					},
+				});
+			}
+			else {
+				$.notify(error, {position: "top center"});
+			}
+			return false;
+
+
+
 		});
 	}
 

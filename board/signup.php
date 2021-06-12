@@ -275,7 +275,7 @@
                                                                 <div class="col-9 col-form-label">
                                                                     <div class="checkbox-inline">
                                                                         <label class="checkbox">
-                                                                            <input type="checkbox" name="Checkboxes5"/>
+                                                                            <input type="checkbox" name="accept" value="1" id="checkaccepted"/>
                                                                             <span></span>
                                                                             Accept Rules of Engagement
                                                                         </label>
@@ -294,7 +294,8 @@
                                                             <button type="button" class="btn btn-light-primary font-weight-bolder text-uppercase px-9 py-4" data-wizard-type="action-prev">Previous</button>
                                                         </div>
                                                         <div>
-                                                            <button type="button" class="btn btn-success font-weight-bolder text-uppercase px-9 py-4" data-wizard-type="action-submit">Submit</button>
+                                                            <button type="button" class="btn btn-success font-weight-bolder text-uppercase px-9 py-4" id="submit_button"
+                                                                    data-wizard-type="action-submit">Submit</button>
                                                             <button type="button" class="btn btn-primary font-weight-bolder text-uppercase px-9 py-4 clicktest"
                                                                     data-wizard-type="action-next">Next</button>
                                                         </div>
@@ -353,6 +354,7 @@
 <script src="assets/signup/js/wizard-2.js"></script>
 <script src="assets/signup/js/select2.js"></script>
 <script src="assets/js/countrySelect.js"></script>
+<script src="assets/js/notify.js"></script>
 <!--end::Page Scripts-->
 
 <script>
