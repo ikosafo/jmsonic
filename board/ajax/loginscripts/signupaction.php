@@ -59,9 +59,8 @@ VALUES (
     '$username',
     '$password')") or die(mysqli_error($mysqli));
 
-echo 1;
-}
-else {
-echo 2;
+    echo 1;
+} else {
+    echo 2;
 }
 

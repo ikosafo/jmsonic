@@ -49,7 +49,7 @@ kt-subheader--enabled kt-subheader--transparent kt-page--loading">
                  style="background-image: url(assets/images/bg.jpg);">
                 <div class="kt-login__section">
                     <div class="kt-login__block">
-                        <h3 class="kt-login__title">JM Boards</h3>
+                        <h3 class="kt-login__title">JMSonic Boards</h3>
 
                         <div class="kt-login__desc">
                                 Access your Board and Portal
@@ -177,7 +177,7 @@ kt-subheader--enabled kt-subheader--transparent kt-page--loading">
                                     password: password
                                 },
                                 success: function (text) {
-                                    alert(text)
+                                    //alert(text)
                                     if (text == 1) {
                                         window.location.href = "/board";
                                     }
