@@ -177,9 +177,9 @@ kt-subheader--enabled kt-subheader--transparent kt-page--loading">
                                     password: password
                                 },
                                 success: function (text) {
-                                    //alert(text)
+                                    alert(text)
                                     if (text == 1) {
-                                        window.location.href = "/";
+                                        window.location.href = "/board";
                                     }
                                     else {
                                         setTimeout(function () {

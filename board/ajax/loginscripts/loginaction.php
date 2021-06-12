@@ -4,11 +4,9 @@ include("../../../config.php");
 $username = $_POST['username'];
 $pass = $_POST['password'];
 $password = md5($pass);
-
 $res = $mysqli->query("SELECT * FROM users WHERE `username` = '$username' AND `password` = '$password'");
 $getdetails = $res->fetch_assoc();
 $rowcount = mysqli_num_rows($res);
-
 $today = date("Y-m-d H:i:s");
 
 ob_start();
@@ -36,62 +34,61 @@ function getRealIpAddr()
     return $ip_address;
 
 }
-
 $ip_add = getRealIpAddr();
-
-$full_name = $getdetails['full_name'];
-$password = $getdetails['password'];
-$user_id = $getdetails['user_id'];
-$user_type = $getdetails['approval'];
-
-
-
+$userid = $getdetails['userid'];
 
 if ($rowcount == "0") {
 
-
-    $mysqli->query("INSERT INTO `logs_mis`
-            (`message`,
-             `logdate`,
-             `username`,
-             `mac_address`,
-             `ip_address`,
-             `action`)
-VALUES ('Log In Error (Wrong Username or Password)',
-        '$today',
-        '$username',
-        '$mac_address',
-        '$ip_add',
-        'Failed')") or die(mysqli_error($mysqli));
-
+    $mysqli->query("INSERT INTO `logs`
+    (
+     `userid`,
+     `activity`,
+     `periodofactivity`,
+     `ipaddress`,
+     `macaddress`,
+     `entrydate`,
+     `status`)
+VALUES (
+    '$userid',
+    'Attempted Login',
+    '$today',
+    '$ip_add',
+    '$mac_address',
+    '$today',
+    'Not successful')") or die(mysqli_error($mysqli));
     echo 2;
 
 } else {
 
-    $mysqli->query("INSERT INTO `logs_mis`
-            (`message`,
-             `logdate`,
-             `username`,
-             `mac_address`,
-             `ip_address`,
-             `action`)
-VALUES ('Logged in Successfully',
-        '$today',
-        '$username',
-        '$mac_address',
-        '$ip_add',
-        'Successful')") or die(mysqli_error($mysqli));
+    $mysqli->query("INSERT INTO `logs`
+    (
+     `userid`,
+     `activity`,
+     `periodofactivity`,
+     `ipaddress`,
+     `macaddress`,
+     `entrydate`,
+     `status`)
+VALUES (
+    '$userid',
+    'Attempted Login',
+    '$today',
+    '$ip_add',
+    '$mac_address',
+    '$today',
+    'Successful')") or die(mysqli_error($mysqli));
 
-    $_SESSION['full_name'] = $full_name;
+    $fullname = $getdetails['fullname'];
+    $password = $getdetails['password'];
+    $roleid = $getdetails['roleid'];
+
+    $_SESSION['fullname'] = $fullname;
     $_SESSION['password'] = $password;
-    $_SESSION['user_id'] = $user_id;
-    $_SESSION['user_type'] = $user_type;
+    $_SESSION['userid'] = $userid;
+    $_SESSION['roleid'] = $roleid;
     $_SESSION['username'] = $username;
 
     echo 1;
 
 
 }
-
-
-?>
