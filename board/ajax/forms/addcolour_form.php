@@ -21,9 +21,17 @@ $random = rand(1,10000).date("Y");
 
         <div class="form-group row">
             <div class="col-lg-12 col-md-12">
-                <label for="colourname">Select Board</label>
-                <input type="text" class="form-control" id="colourname"
-                       placeholder="Enter Colour Name">
+                <label for="selectboard">Select Board</label>
+                <select id="selectboard" style="width: 100%">
+                    <option value="">Select Board</option>
+                    <?php
+                    $selectboard = $mysqli->query("select * from boards where status = 'Active' ORDER BY boardname");
+                    while ($resboard = $selectboard->fetch_assoc()) { ?>
+                        <option value="<?php echo $resboard['boardid'] ?>"><?php echo $resboard['boardname'] ?></option>
+                   <?php }
+                    ?>
+
+                </select>
             </div>
         </div>
         <div class="form-group row">
@@ -35,8 +43,8 @@ $random = rand(1,10000).date("Y");
         </div>
         <div class="form-group row">
             <div class="col-lg-12 col-md-12">
-                <label for="colourname">Select Colour</label>
-                <input type="color" class="form-control" id="colourname"
+                <label for="selectcolour">Select Colour</label>
+                <input type="color" class="form-control" id="selectcolour"
                        placeholder="Select Colour">
             </div>
         </div>
@@ -61,18 +69,29 @@ $random = rand(1,10000).date("Y");
 
 
 <script>
-
+    $("#selectboard").select2({placeholder: "Select Board"});
     $("#savecolour").click(function () {
+        var selectboard = $("#selectboard").val();
         var colourname = $("#colourname").val();
+        var selectcolour = $("#selectcolour").val();
         var colournumber = $("#colournumber").val();
+        //alert(selectcolour);
 
         var error = '';
+        if (selectboard == "") {
+            error += 'Please select board \n';
+            $("#selectboard").focus();
+        }
         if (colourname == "") {
-            error += 'Please enter colour name\n';
+            error += 'Please enter colour name \n';
             $("#colourname").focus();
         }
+        if (selectcolour == "") {
+            error += 'Please select colour \n';
+            $("#selectcolour").focus();
+        }
         if (colournumber == "") {
-            error += 'Please enter colour number\n';
+            error += 'Please enter colour number \n';
             $("#colournumber").focus();
         }
 
@@ -89,10 +108,13 @@ $random = rand(1,10000).date("Y");
                     })
                 },
                 data: {
+                    selectboard: selectboard,
                     colourname: colourname,
+                    selectcolour: selectcolour,
                     colournumber: colournumber
                 },
                 success: function (text) {
+                    //alert(text)
                     if (text == 1) {
                         $.ajax({
                             url: "ajax/forms/addcolour_form.php",
@@ -136,8 +158,11 @@ $random = rand(1,10000).date("Y");
                             },
                         });
                     }
-                    else {
+                    else  if (text == 2){
                         $("#errorloc").notify("Colour name already exists","error");
+                    }
+                    else {
+                        $("#errorloc").notify("Number has exceeded required number for board","error");
                     }
 
                 },

@@ -4,6 +4,8 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);*/
 include('../../../config.php');
 
+
+
 $boardname = mysqli_real_escape_string($mysqli, $_POST['boardname']);
 $boardnumber = mysqli_real_escape_string($mysqli, $_POST['boardnumber']);
 $boardid = mysqli_real_escape_string($mysqli, $_POST['boardid']);

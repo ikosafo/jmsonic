@@ -18,7 +18,7 @@
                             <div class="kt-portlet__head-label">
                                 <h3 class="kt-portlet__head-title">
                                     Configurations
-                                    <small>Add Colur</small>
+                                    <small>Add Colour</small>
                                 </h3>
                             </div>
                         </div>
