@@ -62,6 +62,18 @@ $resdetails = $getdetails->fetch_assoc();
                        placeholder="Enter Number" value="<?php echo $resdetails['numberassign'] ?>">
             </div>
         </div>
+        <div class="form-group row">
+            <div class="col-lg-12 col-md-12">
+                <label for="colourpriority">Select Colour Priority</label>
+                <select id="colourpriority" style="width: 100%">
+                    <option value="">Select Board</option>
+                    <option <?php if (@$resdetails['colourpriority'] == "Highest") echo "Selected" ?>>Highest</option>
+                    <option <?php if (@$resdetails['colourpriority'] == "High") echo "Selected" ?>>High</option>
+                    <option <?php if (@$resdetails['colourpriority'] == "Low") echo "Selected" ?>>Low</option>
+                    <option <?php if (@$resdetails['colourpriority'] == "Lowest") echo "Selected" ?>>Lowest</option>
+                </select>
+            </div>
+        </div>
 
     </div>
     <div class="kt-portlet__foot">
@@ -77,12 +89,14 @@ $resdetails = $getdetails->fetch_assoc();
 
 <script>
     $("#selectboard").select2({placeholder: "Select Board"});
+    $("#colourpriority").select2({placeholder: "Select Priority"});
     $("#editcolour").click(function () {
         var selectboard = $("#selectboard").val();
         var colourname = $("#colourname").val();
         var selectcolour = $("#selectcolour").val();
         var colournumber = $("#colournumber").val();
         var colourid = '<?php echo $colourid ?>';
+        var colourpriority = $("#colourpriority").val();
         //alert(selectboard);
 
         var error = '';
@@ -102,6 +116,10 @@ $resdetails = $getdetails->fetch_assoc();
             error += 'Please enter colour number \n';
             $("#colournumber").focus();
         }
+        if (colourpriority == "") {
+            error += 'Please select priority \n';
+            $("#colourpriority").focus();
+        }
 
         if (error == "") {
             $.ajax({
@@ -120,7 +138,8 @@ $resdetails = $getdetails->fetch_assoc();
                     colourname: colourname,
                     selectcolour: selectcolour,
                     colournumber: colournumber,
-                    colourid:colourid
+                    colourid:colourid,
+                    colourpriority:colourpriority
                 },
                 success: function (text) {
                     //alert(text)

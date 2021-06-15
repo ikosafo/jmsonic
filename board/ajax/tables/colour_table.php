@@ -47,6 +47,7 @@ $query = $mysqli->query("select DISTINCT(boardid) as boardids from colourconfig"
                                     <tr>
                                         <th>Colour Name</th>
                                         <th>Colour Code</th>
+                                        <th>Priority</th>
                                         <th>Number Assigned</th>
                                         <th>Action</th>
                                     </tr>
@@ -59,6 +60,7 @@ $query = $mysqli->query("select DISTINCT(boardid) as boardids from colourconfig"
                                       <tr>
                                           <td><?php echo $rescolourdetails['colourname'] ?></td>
                                           <td><?php echo $rescolourdetails['colourcode'] ?></td>
+                                          <td><?php echo $rescolourdetails['colourpriority'] ?></td>
                                           <td><?php echo $rescolourdetails['numberassign'] ?></td>
                                           <td>
                                               <button type="button"
@@ -80,9 +82,10 @@ $query = $mysqli->query("select DISTINCT(boardid) as boardids from colourconfig"
                                  <?php }
                                   ?>
                                     <tr style="font-weight: 500">
-                                        <td colspan="2">TOTAL</td>
+                                        <td colspan="3">TOTAL</td>
                                         <td>
-                                            <?php $gettotal = $mysqli->query("select sum(numberassign) as colortotal from colourconfig where boardid = '$boardid'");
+                                            <?php $gettotal = $mysqli->query("select sum(numberassign) as colortotal from colourconfig where boardid = '$boardid' 
+                                            and status = 'Active'");
                                                    $restotal = $gettotal->fetch_assoc();
                                                     echo $restotal['colortotal'];
                                             ?>

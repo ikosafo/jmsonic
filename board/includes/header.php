@@ -93,7 +93,7 @@ background-size: 100% 350px;"
                     <div class="kt-header__brand   kt-grid__item" id="kt_header_brand">
                         <a class="kt-header__brand-logo" href="/">
                             <img alt="Logo" src="assets/images/logo_tr.png" class="kt-header__brand-logo-default"/>
-                            <img alt="Logo" src="../newassets/img/ahpc_logo.png" style="width:50%"
+                            <img alt="Logo" src="assets/images/logo_tr.png" style="width:90%"
                                  class="kt-header__brand-logo-sticky"/>
                         </a>
                     </div>
@@ -106,7 +106,7 @@ background-size: 100% 350px;"
                             <ul class="kt-menu__nav ">
 
                                 <li class="kt-menu__item kt-menu__item--rel <?php echo(
-                                $_SERVER['PHP_SELF'] == "/index.php"
+                                $_SERVER['PHP_SELF'] == "/board/index.php"
                                     ? "kt-menu__item--here" : ""); ?>">
                                     <a href="/board" class="kt-menu__link"><span
                                             class="kt-menu__link-text">Dashboard</span>
@@ -115,10 +115,10 @@ background-size: 100% 350px;"
 
 
                                 <li class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel <?php echo(
-                                $_SERVER['PHP_SELF'] == "/boardconfig.php" ||
-                                $_SERVER['PHP_SELF'] == "/colourconfig.php" ||
-                                $_SERVER['PHP_SELF'] == "/paymentconfig.php" ||
-                                $_SERVER['PHP_SELF'] == "/splitconfig.php"
+                                $_SERVER['PHP_SELF'] == "/board/boardconfig.php" ||
+                                $_SERVER['PHP_SELF'] == "/board/colourconfig.php" ||
+                                $_SERVER['PHP_SELF'] == "/board/paymentconfig.php" ||
+                                $_SERVER['PHP_SELF'] == "/board/splitconfig.php"
                                     ? "kt-menu__item--here" : ""); ?>"
                                     data-ktmenu-submenu-toggle="click" aria-haspopup="true">
                                     <a href="javascript:;" class="kt-menu__link kt-menu__toggle">
@@ -132,7 +132,7 @@ background-size: 100% 350px;"
                                         <ul class="kt-menu__subnav">
 
                                             <li class="kt-menu__item  <?php echo(
-                                            $_SERVER['PHP_SELF'] == "/boardconfig.php"
+                                            $_SERVER['PHP_SELF'] == "/board/boardconfig.php"
                                                 ? "kt-menu__item--active" : ""); ?>" aria-haspopup="true"><a
                                                     href="boardconfig"
                                                     class="kt-menu__link "><i
@@ -142,7 +142,7 @@ background-size: 100% 350px;"
                                             </li>
 
                                             <li class="kt-menu__item  <?php echo(
-                                            $_SERVER['PHP_SELF'] == "/colourconfig.php"
+                                            $_SERVER['PHP_SELF'] == "/board/colourconfig.php"
                                                 ? "kt-menu__item--active" : ""); ?>" aria-haspopup="true"><a
                                                     href="colourconfig"
                                                     class="kt-menu__link "><i
@@ -152,7 +152,7 @@ background-size: 100% 350px;"
                                             </li>
 
                                             <li class="kt-menu__item   <?php echo(
-                                            $_SERVER['PHP_SELF'] == "/paymentconfig.php"
+                                            $_SERVER['PHP_SELF'] == "/board/paymentconfig.php"
                                                 ? "kt-menu__item--active" : ""); ?>" aria-haspopup="true"><a
                                                     href="paymentconfig"
                                                     class="kt-menu__link "><i
@@ -161,7 +161,7 @@ background-size: 100% 350px;"
                                             </li>
 
                                             <li class="kt-menu__item   <?php echo(
-                                            $_SERVER['PHP_SELF'] == "/splitconfig.php"
+                                            $_SERVER['PHP_SELF'] == "/board/splitconfig.php"
                                                 ? "kt-menu__item--active" : ""); ?>" aria-haspopup="true"><a
                                                     href="splitconfig"
                                                     class="kt-menu__link "><i
@@ -174,8 +174,8 @@ background-size: 100% 350px;"
                                 </li>
 
                                 <li class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel <?php echo(
-                                $_SERVER['PHP_SELF'] == "/adduser.php" ||
-                                $_SERVER['PHP_SELF'] == "/useraccounts.php"
+                                $_SERVER['PHP_SELF'] == "/board/adduser.php" ||
+                                $_SERVER['PHP_SELF'] == "/board/useraccounts.php"
                                     ? "kt-menu__item--here" : ""); ?>"
                                     data-ktmenu-submenu-toggle="click" aria-haspopup="true">
                                     <a href="javascript:;" class="kt-menu__link kt-menu__toggle">

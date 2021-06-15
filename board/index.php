@@ -65,6 +65,18 @@
 
                             <div class="kt-widget__item">
                                 <div class="kt-widget__details">
+                                    <span class="kt-widget__title">Completed Boards</span>
+                                                        <span class="kt-widget__value"><span><i class="la la-dashboard"></i> </span>
+                                                            <?php
+                                                            $getquery = $mysqli->query("select * from `previewboard` where status = 'Completed'");
+                                                            echo mysqli_num_rows($getquery);
+                                                            ?>
+                                                        </span>
+                                </div>
+                            </div>
+
+                            <div class="kt-widget__item">
+                                <div class="kt-widget__details">
                                     <span class="kt-widget__title">Users</span>
                                                         <span class="kt-widget__value"><span><i class="la la-users"></i> </span>
                                                             <?php
@@ -100,17 +112,6 @@
                                 </div>
                             </div>
 
-                            <div class="kt-widget__item">
-                                <div class="kt-widget__details">
-                                    <span class="kt-widget__title">All Payments (No.)</span>
-                                                        <span class="kt-widget__value"><span><i class="la la-money"></i> </span>
-                                                            <?php
-                                                            $getquery = $mysqli->query("select * from `payments`");
-                                                            echo mysqli_num_rows($getquery);
-                                                            ?>
-                                                        </span>
-                                </div>
-                            </div>
 
                         </div>
                     </div>

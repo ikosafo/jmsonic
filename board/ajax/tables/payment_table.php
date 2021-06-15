@@ -71,13 +71,6 @@ $query = $mysqli->query("select DISTINCT(boardid) as boardids from paymentconfig
                                           <td>
                                               <button type="button"
                                                       data-type="confirm"
-                                                      class="btn btn-primary js-sweetalert edit_payment btn-sm"
-                                                      i_index="<?php echo $respaymentdetails['payid']; ?>"
-                                                      title="Edit">
-                                                  <i class="flaticon2-edit ml-2" style="color:#fff !important;"></i>
-                                              </button>
-                                              <button type="button"
-                                                      data-type="confirm"
                                                       class="btn btn-danger btn-sm delete_payment"
                                                       i_index="<?php echo $respaymentdetails['payid']; ?>"
                                                       title="Delete">
@@ -113,35 +106,7 @@ $query = $mysqli->query("select DISTINCT(boardid) as boardids from paymentconfig
         oTable.search($(this).val()).draw();
     });
 
-    $(document).off('click', '.edit_payment').on('click', '.edit_payment', function () {
-        var theindex = $(this).attr('i_index');
-        //alert(theindex)
-        $.ajax({
-            type: "POST",
-            url: "ajax/forms/editpayment_form.php",
-            beforeSend: function () {
-                KTApp.blockPage({
-                    overlayColor: "#000000",
-                    type: "v2",
-                    state: "success",
-                    message: "Please wait..."
-                })
-            },
-            data: {
-                theindex: theindex
-            },
-            success: function (text) {
-                $('#paymentform_div').html(text);
-            },
-            error: function (xhr, ajaxOptions, thrownError) {
-                alert(xhr.status + " " + thrownError);
-            },
-            complete: function () {
-                KTApp.unblockPage();
-            },
-        });
-    });
-
+   
     $(document).off('click', '.delete_payment').on('click', '.delete_payment', function () {
         var theindex = $(this).attr('i_index');
         //alert(theindex)

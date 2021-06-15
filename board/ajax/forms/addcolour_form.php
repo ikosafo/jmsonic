@@ -30,7 +30,6 @@ $random = rand(1,10000).date("Y");
                         <option value="<?php echo $resboard['boardid'] ?>"><?php echo $resboard['boardname'] ?></option>
                    <?php }
                     ?>
-
                 </select>
             </div>
         </div>
@@ -55,6 +54,18 @@ $random = rand(1,10000).date("Y");
                        placeholder="Enter Number">
             </div>
         </div>
+        <div class="form-group row">
+            <div class="col-lg-12 col-md-12">
+                <label for="colourpriority">Select Colour Priority</label>
+                <select id="colourpriority" style="width: 100%">
+                    <option value="">Select Board</option>
+                    <option value="Highest">Highest</option>
+                    <option value="High">High</option>
+                    <option value="Low">Low</option>
+                    <option value="Lowest">Lowest</option>
+                </select>
+            </div>
+        </div>
 
     </div>
     <div class="kt-portlet__foot">
@@ -70,11 +81,13 @@ $random = rand(1,10000).date("Y");
 
 <script>
     $("#selectboard").select2({placeholder: "Select Board"});
+    $("#colourpriority").select2({placeholder: "Select Priority"});
     $("#savecolour").click(function () {
         var selectboard = $("#selectboard").val();
         var colourname = $("#colourname").val();
         var selectcolour = $("#selectcolour").val();
         var colournumber = $("#colournumber").val();
+        var colourpriority = $("#colourpriority").val();
         //alert(selectcolour);
 
         var error = '';
@@ -94,6 +107,10 @@ $random = rand(1,10000).date("Y");
             error += 'Please enter colour number \n';
             $("#colournumber").focus();
         }
+        if (colourpriority == "") {
+            error += 'Please select priority \n';
+            $("#colourpriority").focus();
+        }
 
         if (error == "") {
             $.ajax({
@@ -111,7 +128,8 @@ $random = rand(1,10000).date("Y");
                     selectboard: selectboard,
                     colourname: colourname,
                     selectcolour: selectcolour,
-                    colournumber: colournumber
+                    colournumber: colournumber,
+                    colourpriority: colourpriority
                 },
                 success: function (text) {
                     //alert(text)
@@ -164,7 +182,6 @@ $random = rand(1,10000).date("Y");
                     else {
                         $("#errorloc").notify("Number has exceeded required number for board","error");
                     }
-
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
                     alert(xhr.status + " " + thrownError);
