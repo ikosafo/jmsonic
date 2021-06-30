@@ -287,7 +287,7 @@
                                                                     <input type="text"
                                                                            class="form-control form-control-solid form-control-lg"
                                                                            name="username" id="username"
-                                                                           placeholder="Username" value=""/>
+                                                                           placeholder="Username" value="" disabled/>
                                                                     <span class="form-text text-muted">Please enter your username.</span>
                                                                 </div>
                                                                 <!--end::Input-->
@@ -330,7 +330,7 @@
                                                                     <label>Introducer ID</label>
                                                                     <input type="text"
                                                                            class="form-control form-control-solid form-control-lg"
-                                                                           name="introid" id="introid"
+                                                                           name="introid" id="introid" disabled
                                                                            placeholder="Introducer ID" value=""/>
                                                                     <span class="form-text text-muted">Please enter id of introducer.</span>
                                                                 </div>
@@ -1074,6 +1074,7 @@
                     //alert(resp);
                     $("#fullname").html(resp);
                     document.getElementById("fullname").value = resp;
+                    document.getElementById("username").value = boardname;
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
                     alert(xhr.status + " " + thrownError);
@@ -1162,26 +1163,77 @@
                     $.unblockUI();
                 },
             });
+            $.ajax({
+                url: "ajax/forms/getsignuplocation.php",
+                data: {boardname: boardname},
+                type: 'POST',
+                beforeSend: function () {
+                    $.blockUI({message: '<h3> Please Wait...</h3>'});
+                },
+                success: function (response) {
+                    var resp = $.trim(response);
+                    //alert(resp);
+                    $("#location").html(resp);
+                    document.getElementById("location").value = resp;
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    alert(xhr.status + " " + thrownError);
+                },
+                complete: function () {
+                    $.unblockUI();
+                },
+            });
+            $.ajax({
+                url: "ajax/forms/getsignupintroducer.php",
+                data: {boardname: boardname},
+                type: 'POST',
+                beforeSend: function () {
+                    $.blockUI({message: '<h3> Please Wait...</h3>'});
+                },
+                success: function (response) {
+                    var resp = $.trim(response);
+                    //alert(resp);
+                    $("#introducername").html(resp);
+                    document.getElementById("introducername").value = resp;
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    alert(xhr.status + " " + thrownError);
+                },
+                complete: function () {
+                    $.unblockUI();
+                },
+            });
+            $.ajax({
+                url: "ajax/forms/getsignupintroid.php",
+                data: {boardname: boardname},
+                type: 'POST',
+                beforeSend: function () {
+                    $.blockUI({message: '<h3> Please Wait...</h3>'});
+                },
+                success: function (response) {
+                    var resp = $.trim(response);
+                    //alert(resp);
+                    $("#introid").html(resp);
+                    document.getElementById("introid").value = resp;
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    alert(xhr.status + " " + thrownError);
+                },
+                complete: function () {
+                    $.unblockUI();
+                },
+            });
         } else {
             $("#fullname").html("<input type='text' value=''/>");
             $("#email").html("<input type='text' value=''/>");
             $("#phone").html("<input type='text' value=''/>");
             $("#nextofkin").html("<input type='text' value=''/>");
             $("#kintelephone").html("<input type='text' value=''/>");
+            $("#location").html("<input type='text' value=''/>");
+            $("#introducername").html("<input type='text' value=''/>");
+            $("#introid").html("<input type='text' value=''/>");
         }
     });
-
-/* 
-    $("#boardname").keyup(function () {
-        //alert('hi');
-        var boardname = $(this).val();
-        if (boardname != "") {
-            
-        } else {
-           
-        }
-    });
- */
 
 </script>
 
