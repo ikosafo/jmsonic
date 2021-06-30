@@ -67,12 +67,19 @@ var KTWizard2 = function () {
 			var country = $("#country").val();
 			var username = $("#username").val();
 			var password = $("#password").val();
+			var introid = $("#introid").val();
+			var introducername = $("#introducername").val();
 			var checkedValue = $('#checkaccepted:checked').val();
+			//alert(introducername);
 
 			var error = '';
 			if (checkedValue != "1") {
 				error += 'Please accept rules of engagement \n';
 				$("#checkaccepted").focus();
+			}
+			if (introducername == '') {
+				error += 'Introducer does not exist \n';
+				$("#introducername").focus();
 			}
 
 			if (error == "") {
@@ -92,12 +99,16 @@ var KTWizard2 = function () {
 						country: country,
 						username: username,
 						password: password,
-						checkedValue: checkedValue
+						checkedValue: checkedValue,
+						introid:introid
 					},
 					success: function (text) {
 						//alert(text);
 						if (text == 1) {
                             window.location.href = 'login'
+						}
+						else if (text == 3) {
+                            $.notify("User already exists on the board. \n Please go to 'Existing Members' to update details", {position: "top center"});
 						}
 						else {
 							$.notify("Username or Email address or telephone already exists", {position: "top center"});
@@ -140,6 +151,13 @@ var KTWizard2 = function () {
 						validators: {
 							notEmpty: {
 								message: 'Location is required'
+							}
+						}
+					},
+					introid: {
+						validators: {
+							notEmpty: {
+								message: 'Introducer ID is required'
 							}
 						}
 					},

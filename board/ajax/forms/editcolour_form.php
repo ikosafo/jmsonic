@@ -17,73 +17,64 @@ $resdetails = $getdetails->fetch_assoc();
     }
 </script>
 
-
-<form class="" autocomplete="off">
-    <div class="kt-portlet__body">
+<form autocomplete="off">
+    <div class="card-body">
         <div id="errorloc"></div>
-        <h5>Edit Colour Details</h5> <hr/>
-        <div class="form-group row">
-            <div class="col-lg-12 col-md-12">
-                <label for="selectboard">Select Board</label>
-                <select id="selectboard" style="width: 100%" disabled>
-                   
-                    <?php
-                    $boardid = $resdetails['boardid'];
-                    $getname = $mysqli->query("Select * from boards where boardid = '$boardid'");
-                    $resname = $getname->fetch_assoc();
-                    $boardname = $resname['boardname'];
-                    $selectboard = $mysqli->query("select * from boards where status = 'Active' ORDER BY boardname");
-                    while ($resboard = $selectboard->fetch_assoc()) { ?>
-                        <option <?php if (@$boardname == @$resboard['boardname']) echo "Selected" ?>><?php echo $resboard['boardname'] ?></option>
-                    <?php }
-                    ?>
+        <div class="form-group">
+            <label for="selectboard">Select Board</label>
+            <select id="selectboard" style="width: 100%" disabled>
 
-                </select>
-            </div>
+                <?php
+                $boardid = $resdetails['boardid'];
+                $getname = $mysqli->query("Select * from boards where boardid = '$boardid'");
+                $resname = $getname->fetch_assoc();
+                $boardname = $resname['boardname'];
+                $selectboard = $mysqli->query("select * from boards where status = 'Active' ORDER BY boardname");
+                while ($resboard = $selectboard->fetch_assoc()) { ?>
+                    <option <?php if (@$boardname == @$resboard['boardname']) echo "Selected" ?>><?php echo $resboard['boardname'] ?></option>
+                <?php }
+                ?>
+
+            </select>
+            <span class="form-text text-muted">Please select board</span>
         </div>
-        <div class="form-group row">
-            <div class="col-lg-12 col-md-12">
-                <label for="colourname">Colour Name</label>
-                <input type="text" class="form-control" id="colourname" value="<?php echo $resdetails['colourname'] ?>"
-                       placeholder="Enter Colour Name">
-            </div>
+        <div class="form-group">
+            <label for="colourname">Name of Colour</label>
+            <input type="text" class="form-control" id="colourname" value="<?php echo $resdetails['colourname'] ?>"
+                   placeholder="Enter Colour Name">
+            <span class="form-text text-muted">Please enter name of colour</span>
         </div>
-        <div class="form-group row">
-            <div class="col-lg-12 col-md-12">
-                <label for="selectcolour">Select Colour</label>
-                <input type="color" class="form-control" id="selectcolour"  value="<?php echo $resdetails['colourcode'] ?>"
-                       placeholder="Select Colour">
-            </div>
+        <div class="form-group">
+            <label for="selectcolour">Select Colour</label>
+            <input type="color" class="form-control" id="selectcolour"  value="<?php echo $resdetails['colourcode'] ?>"
+                   placeholder="Select Colour">
+            <span class="form-text text-muted">Please select colour code</span>
         </div>
-        <div class="form-group row">
-            <div class="col-lg-12 col-md-12">
-                <label for="colournumber">Total Number colour can take</label>
-                <input type="text" class="form-control" id="colournumber" onkeypress="return isNumber(event)"
-                       placeholder="Enter Number" value="<?php echo $resdetails['numberassign'] ?>">
-            </div>
+        <div class="form-group">
+            <label for="colournumber">Total Number colour can take</label>
+            <input type="text" class="form-control" id="colournumber" onkeypress="return isNumber(event)"
+                   placeholder="Enter Number" value="<?php echo $resdetails['numberassign'] ?>">
+            <span class="form-text text-muted">Specify maximum number assigned to colour</span>
         </div>
-        <div class="form-group row">
-            <div class="col-lg-12 col-md-12">
-                <label for="colourpriority">Select Colour Priority</label>
-                <select id="colourpriority" style="width: 100%">
-                    <option value="">Select Board</option>
-                    <option <?php if (@$resdetails['colourpriority'] == "Highest") echo "Selected" ?>>Highest</option>
-                    <option <?php if (@$resdetails['colourpriority'] == "High") echo "Selected" ?>>High</option>
-                    <option <?php if (@$resdetails['colourpriority'] == "Low") echo "Selected" ?>>Low</option>
-                    <option <?php if (@$resdetails['colourpriority'] == "Lowest") echo "Selected" ?>>Lowest</option>
-                </select>
-            </div>
+        <div class="form-group">
+            <label for="colourpriority">Select Colour Priority</label>
+            <select id="colourpriority" style="width: 100%">
+                <option value="">Select Board</option>
+                <option <?php if (@$resdetails['colourpriority'] == "Highest") echo "Selected" ?>>Highest</option>
+                <option <?php if (@$resdetails['colourpriority'] == "High") echo "Selected" ?>>High</option>
+                <option <?php if (@$resdetails['colourpriority'] == "Low") echo "Selected" ?>>Low</option>
+                <option <?php if (@$resdetails['colourpriority'] == "Lowest") echo "Selected" ?>>Lowest</option>
+            </select>
+            <span class="form-text text-muted">Please select colour order on board</span>
         </div>
+
 
     </div>
-    <div class="kt-portlet__foot">
-        <div class="kt-form__actions">
-            <button type="button" class="btn btn-primary" id="editcolour">Edit</button>
-            <button type="reset" class="btn btn-secondary" id="cancelbtn">Cancel</button>
-        </div>
+    <div class="card-footer">
+        <button type="button" class="btn btn-primary mr-2" id="editcolour">Edit</button>
+        <button type="reset" class="btn btn-secondary" id="cancelbtn">Cancel</button>
     </div>
 </form>
-<!--end::Form-->
 
 
 

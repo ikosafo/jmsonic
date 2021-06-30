@@ -18,6 +18,15 @@ $entrydate = date('Y-m-d H:i:s');
 $userstatus = 1;
 
 
+//Check whether user exists in excel sheet
+$getuser = $mysqli->query("SELECT * FROM `excel` WHERE 
+                                 `boardname` = '$username' OR 
+                                 `emailaddress` = '$email' OR
+                                 `telephone` = '$phone'
+                            ");
+$countgetuser = mysqli_num_rows($getuser);
+
+
 $chkdetails = $mysqli->query("SELECT * FROM users WHERE 
                                  `username` = '$username' OR 
                                  `emailaddress` = '$email' OR
@@ -27,40 +36,48 @@ $countchkdetails = mysqli_num_rows($chkdetails);
 
 //echo $countchkdetails;
 
-if ($countchkdetails == '0') {
-    $mysqli->query("INSERT INTO `users`
-    (`fullname`,
-     `telephone`,
-     `emailaddress`,
-     `roleid`,
-     `location`,
-     `nextofkin`,
-     `nextofkintelephone`,
-     `introducerid`,
-     `acceptrules`,
-     `entrydate`,
-     `userstatus`,
-     `country`,
-     `username`,
-     `password`)
-VALUES (
-    '$fullname',
-    '$phone',
-    '$email',
-    '$roleid',
-    '$location',
-    '$nextofkin',
-    '$kintelephone',
-    '$introducerid',
-    '$checkedValue',
-    '$entrydate',
-    '$userstatus',
-    '$country',
-    '$username',
-    '$password')") or die(mysqli_error($mysqli));
+if ($countgetuser == '0') {
 
-    echo 1;
-} else {
-    echo 2;
+    if ($countchkdetails == '0') {
+        $mysqli->query("INSERT INTO `users`
+        (`fullname`,
+         `telephone`,
+         `emailaddress`,
+         `roleid`,
+         `location`,
+         `nextofkin`,
+         `nextofkintelephone`,
+         `introducerid`,
+         `acceptrules`,
+         `entrydate`,
+         `userstatus`,
+         `country`,
+         `username`,
+         `password`)
+    VALUES (
+        '$fullname',
+        '$phone',
+        '$email',
+        '$roleid',
+        '$location',
+        '$nextofkin',
+        '$kintelephone',
+        '$introducerid',
+        '$checkedValue',
+        '$entrydate',
+        '$userstatus',
+        '$country',
+        '$username',
+        '$password')") or die(mysqli_error($mysqli));
+    
+        echo 1;
+    } else {
+        echo 2;
+    }
+    
+}
+
+else {
+    echo 3;
 }
 

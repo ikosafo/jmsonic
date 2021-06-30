@@ -17,21 +17,22 @@ session_destroy();
     <!--end::Fonts -->
 
     <!--begin::Page Custom Styles(used by this page) -->
-    <link href="assets/css/login.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/login/login.css" rel="stylesheet" type="text/css"/>
     <!--end::Page Custom Styles -->
 
     <!--begin::Global Theme Styles(used by all pages) -->
-    <link href="assets/css/plugins.bundle.css" rel="stylesheet" type="text/css"/>
-    <link href="assets/css/style.bundle.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/login/plugins.bundle.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/login/style.bundle.css" rel="stylesheet" type="text/css"/>
     <!--end::Global Theme Styles -->
 
-    <link rel="shortcut icon" href="assets/images/logo.png"/>
+    <!--<link rel="shortcut icon" href="assets/images/logo.png"/>-->
+    <link rel="shortcut icon" href="assets/images/logo3.png" sizes="16x16" type="image/png">
 
 </head>
 <!-- end::Head -->
 
 <!-- begin::Body -->
-<body style="background-image: url(newassets/media/demos/demo4/header.jpg); background-position: center top;
+<body style="background-image: url(assets/images/bg.jpg); background-position: center top;
 background-size: 100% 350px;" class="kt-page--loading-enabled kt-page--loading kt-quick-panel--right
 kt-demo-panel--right kt-offcanvas-panel--right kt-header--fixed kt-header--minimize-menu kt-header-mobile--fixed
 kt-subheader--enabled kt-subheader--transparent kt-page--loading">
@@ -64,7 +65,7 @@ kt-subheader--enabled kt-subheader--transparent kt-page--loading">
                         <div class="kt-login__body">
                             <div class="kt-login__logo">
                                 <a href="#">
-                                    <img src="assets/images/logo.png" style="width:20%;">
+                                    <img src="assets/images/logo3.png" style="width:20%;">
                                 </a>
                             </div>
 
@@ -101,7 +102,12 @@ kt-subheader--enabled kt-subheader--transparent kt-page--loading">
                         Not having an account
                     </span>&nbsp;&nbsp;
                         <a href="signup" class="kt-login__account-link">Sign up here!</a>
+                        <hr/>
+                        <p>
+                            <a href="../">Visit Website</a>
+                        </p>
                     </div>
+
                 </div>
             </div>
 
@@ -137,8 +143,8 @@ kt-subheader--enabled kt-subheader--transparent kt-page--loading">
 <!-- end::Global Config -->
 
 <!--begin::Global Theme Bundle(used by all pages) -->
-<script src="assets/js/plugins.bundle.js" type="text/javascript"></script>
-<script src="assets/js/scripts.bundle.js" type="text/javascript"></script>
+<script src="assets/login/plugins.bundle.js" type="text/javascript"></script>
+<script src="assets/login/scripts.bundle.js" type="text/javascript"></script>
 <!--end::Global Theme Bundle -->
 
 
@@ -179,6 +185,9 @@ kt-subheader--enabled kt-subheader--transparent kt-page--loading">
                                 success: function (text) {
                                     //alert(text)
                                     if (text == 1) {
+                                        window.location.href = "user";
+                                    }
+                                    if (text == 3) {
                                         window.location.href = "/board";
                                     }
                                     else {

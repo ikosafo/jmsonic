@@ -14,70 +14,59 @@ $random = rand(1,10000).date("Y");
     }
 </script>
 
-
-<form class="" autocomplete="off">
-    <div class="kt-portlet__body">
+<form autocomplete="off">
+    <div class="card-body">
         <div id="errorloc"></div>
+        <div class="form-group">
+            <label for="selectboard">Select Board</label>
+            <select id="selectboard" style="width: 100%">
+                <option value="">Select Board</option>
+                <?php
+                $selectboard = $mysqli->query("select * from boards where status = 'Active' ORDER BY boardname");
+                while ($resboard = $selectboard->fetch_assoc()) { ?>
+                    <option value="<?php echo $resboard['boardid'] ?>"><?php echo $resboard['boardname'] ?></option>
+                <?php }
+                ?>
+            </select>
+            <span class="form-text text-muted">Please select board</span>
+        </div>
+        <div class="form-group">
+            <label for="colourname">Name of Colour</label>
+            <input type="text" class="form-control" id="colourname"
+                   placeholder="Enter Colour Name">
+            <span class="form-text text-muted">Please enter name of colour</span>
+        </div>
+        <div class="form-group">
+            <label for="selectcolour">Select Colour</label>
+            <input type="color" class="form-control" id="selectcolour"
+                   placeholder="Select Colour">
+            <span class="form-text text-muted">Please select colour code</span>
+        </div>
+        <div class="form-group">
+            <label for="colournumber">Total Number colour can take</label>
+            <input type="text" class="form-control" id="colournumber" onkeypress="return isNumber(event)"
+                   placeholder="Enter Number">
+            <span class="form-text text-muted">Specify maximum number assigned to colour</span>
+        </div>
+        <div class="form-group">
+            <label for="colourpriority">Select Colour Priority</label>
+            <select id="colourpriority" style="width: 100%">
+                <option value="">Select Board</option>
+                <option value="Highest">Highest</option>
+                <option value="High">High</option>
+                <option value="Low">Low</option>
+                <option value="Lowest">Lowest</option>
+            </select>
+            <span class="form-text text-muted">Please select colour order on board</span>
+        </div>
 
-        <div class="form-group row">
-            <div class="col-lg-12 col-md-12">
-                <label for="selectboard">Select Board</label>
-                <select id="selectboard" style="width: 100%">
-                    <option value="">Select Board</option>
-                    <?php
-                    $selectboard = $mysqli->query("select * from boards where status = 'Active' ORDER BY boardname");
-                    while ($resboard = $selectboard->fetch_assoc()) { ?>
-                        <option value="<?php echo $resboard['boardid'] ?>"><?php echo $resboard['boardname'] ?></option>
-                   <?php }
-                    ?>
-                </select>
-            </div>
-        </div>
-        <div class="form-group row">
-            <div class="col-lg-12 col-md-12">
-                <label for="colourname">Colour Name</label>
-                <input type="text" class="form-control" id="colourname"
-                       placeholder="Enter Colour Name">
-            </div>
-        </div>
-        <div class="form-group row">
-            <div class="col-lg-12 col-md-12">
-                <label for="selectcolour">Select Colour</label>
-                <input type="color" class="form-control" id="selectcolour"
-                       placeholder="Select Colour">
-            </div>
-        </div>
-        <div class="form-group row">
-            <div class="col-lg-12 col-md-12">
-                <label for="colournumber">Total Number colour can take</label>
-                <input type="text" class="form-control" id="colournumber" onkeypress="return isNumber(event)"
-                       placeholder="Enter Number">
-            </div>
-        </div>
-        <div class="form-group row">
-            <div class="col-lg-12 col-md-12">
-                <label for="colourpriority">Select Colour Priority</label>
-                <select id="colourpriority" style="width: 100%">
-                    <option value="">Select Board</option>
-                    <option value="Highest">Highest</option>
-                    <option value="High">High</option>
-                    <option value="Low">Low</option>
-                    <option value="Lowest">Lowest</option>
-                </select>
-            </div>
-        </div>
 
     </div>
-    <div class="kt-portlet__foot">
-        <div class="kt-form__actions">
-            <button type="button" class="btn btn-primary" id="savecolour">Submit</button>
-            <button type="reset" class="btn btn-secondary">Cancel</button>
-        </div>
+    <div class="card-footer">
+        <button type="button" class="btn btn-primary mr-2" id="savecolour">Submit</button>
+        <button type="reset" class="btn btn-secondary">Cancel</button>
     </div>
 </form>
-<!--end::Form-->
-
-
 
 <script>
     $("#selectboard").select2({placeholder: "Select Board"});
@@ -105,6 +94,10 @@ $random = rand(1,10000).date("Y");
         }
         if (colournumber == "") {
             error += 'Please enter colour number \n';
+            $("#colournumber").focus();
+        }
+        if (colournumber != "" && (8 % colournumber) != 0) {
+            error += 'Number should be a factor of 8 \n';
             $("#colournumber").focus();
         }
         if (colourpriority == "") {

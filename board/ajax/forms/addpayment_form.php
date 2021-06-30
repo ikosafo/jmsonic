@@ -14,61 +14,54 @@ $random = rand(1,10000).date("Y");
     }
 </script>
 
-
-<form class="" autocomplete="off">
-    <div class="kt-portlet__body">
+<form autocomplete="off">
+    <div class="card-body">
         <div id="errorloc"></div>
+        <div class="form-group">
+            <label for="selectboard">Select Board</label>
+            <select id="selectboard" style="width: 100%">
+                <option value="">Select Board</option>
+                <?php
+                $selectboard = $mysqli->query("select * from boards where status = 'Active' ORDER BY boardname");
+                while ($resboard = $selectboard->fetch_assoc()) { ?>
+                    <option value="<?php echo $resboard['boardid'] ?>"><?php echo $resboard['boardname'] ?></option>
+                <?php }
+                ?>
 
-        <div class="form-group row">
-            <div class="col-lg-12 col-md-12">
-                <label for="selectboard">Select Board</label>
-                <select id="selectboard" style="width: 100%">
-                    <option value="">Select Board</option>
-                    <?php
-                    $selectboard = $mysqli->query("select * from boards where status = 'Active' ORDER BY boardname");
-                    while ($resboard = $selectboard->fetch_assoc()) { ?>
-                        <option value="<?php echo $resboard['boardid'] ?>"><?php echo $resboard['boardname'] ?></option>
-                   <?php }
-                    ?>
+            </select>
+            <span class="form-text text-muted">Please select board</span>
+        </div>
+        <div class="form-group">
+            <label for="selectcolour">Receipient Colour</label>
+            <select id="selectcolour" style="width: 100%" disabled>
+                <option value="">Select Colour</option>
+                <option></option>
+            </select>
+            <span class="form-text text-muted">Please enter name of colour</span>
+        </div>
+        <div class="form-group">
+            <label for="amounttoreceive">Amount to Receive</label>
+            <input type="text" class="form-control" id="amounttoreceive"
+                   placeholder="Enter Amount" onkeypress="return isNumber(event)">
+            <span class="form-text text-muted">Please select colour code</span>
+        </div>
+        <div class="form-group">
+            <label for="sendcolour">Sender's Colour</label>
+            <select id="sendcolour" style="width: 100%" disabled>
+                <option value="">Select Colour</option>
+                <option></option>
+            </select>
+            <span class="form-text text-muted">Specify maximum number assigned to colour</span>
+        </div>
 
-                </select>
-            </div>
-        </div>
-        <div class="form-group row">
-            <div class="col-lg-12 col-md-12">
-                <label for="selectcolour">Receipient Colour</label>
-                    <select id="selectcolour" style="width: 100%">
-                        <option value="">Select Colour</option>
-                        <option></option>
-                    </select>
-            </div>
-        </div>
-        <div class="form-group row">
-            <div class="col-lg-12 col-md-12">
-                <label for="amounttoreceive">Amount to Receive</label>
-                <input type="text" class="form-control" id="amounttoreceive"
-                       placeholder="Enter Amount" onkeypress="return isNumber(event)">
-            </div>
-        </div>
-        <div class="form-group row">
-            <div class="col-lg-12 col-md-12">
-                <label for="sendcolour">Sender's Colour</label>
-                    <select id="sendcolour" style="width: 100%">
-                        <option value="">Select Colour</option>
-                        <option></option>
-                    </select>
-            </div>
-        </div>
+
 
     </div>
-    <div class="kt-portlet__foot">
-        <div class="kt-form__actions">
-            <button type="button" class="btn btn-primary" id="savepayment">Submit</button>
-            <button type="reset" class="btn btn-secondary">Cancel</button>
-        </div>
+    <div class="card-footer">
+        <button type="button" class="btn btn-primary mr-2" id="savepayment">Submit</button>
+        <button type="reset" class="btn btn-secondary">Cancel</button>
     </div>
 </form>
-<!--end::Form-->
 
 
 
@@ -77,7 +70,7 @@ $random = rand(1,10000).date("Y");
             var getboard = $(this).val();
             if (getboard != "") {
                 $.ajax({
-                    url: "ajax/forms/getcolour.php",
+                    url: "ajax/forms/getsendcolour.php",
                     data: {getboard: getboard},
                     type: 'POST',
                     beforeSend: function () {
@@ -104,7 +97,7 @@ $random = rand(1,10000).date("Y");
             var getboard = $(this).val();
             if (getboard != "") {
                 $.ajax({
-                    url: "ajax/forms/getcolour.php",
+                    url: "ajax/forms/getreceivecolour.php",
                     data: {getboard: getboard},
                     type: 'POST',
                     beforeSend: function () {
@@ -179,7 +172,7 @@ $random = rand(1,10000).date("Y");
                     sendcolour: sendcolour
                 },
                 success: function (text) {
-                    alert(text)
+                    //alert(text)
                     if (text == 1) {
                         $.ajax({
                             url: "ajax/forms/addpayment_form.php",

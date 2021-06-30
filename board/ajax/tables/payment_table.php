@@ -8,97 +8,85 @@ $query = $mysqli->query("select DISTINCT(boardid) as boardids from paymentconfig
     }
 </style>
 
-<div class="kt-section">
-    <div class="kt-section__content responsive">
-        <div class="kt-searchbar">
-            <div class="input-group">
-                <div class="input-group-prepend"><span class="input-group-text" id="basic-addon1">
-                                <i class="la la-search"></i>
-                            </span></div>
-                <input type="text" id="payment_search" class="form-control"
-                       placeholder="Search Payment Config Details" aria-describedby="basic-addon1">
-            </div>
-        </div>
+<input type="text" id="payment_search" class="form-control"
+       placeholder="Search Payment Config Details">
 
-        <div class="table-responsive">
-            <table id="payment-table" class="table" style="margin-top: 3% !important">
-                <thead>
-                <tr>
-                    <th>Board Name</th>
-                    <th>Payment Details</th>
-                </tr>
-                </thead>
-                <tbody>
-
-                <?php
-                while ($result = $query->fetch_assoc()) {
-                    ?>
-                    <tr>
-                        <td>
-                            <?php $boardid = $result['boardids'];
-                                  $getname = $mysqli->query("select * from boards where boardid = '$boardid' ORDER BY boardname");
-                                  $resname = $getname->fetch_assoc();
-                                  echo $resname['boardname'];
-                            ?>
-                        </td>
-                        <td>
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>Colour to Receive</th>
-                                        <th>Amount</th>
-                                        <th>Colour to Pay</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                  <?php
-                                  $getpaymentdetails = $mysqli->query("select * from paymentconfig where boardid = '$boardid'");
-                                  while ($respaymentdetails = $getpaymentdetails->fetch_assoc()) { ?>
-
-                                      <tr>
-                                          <td><?php $reccolid = $respaymentdetails['reccolid'];
-                                                    $getcolour = $mysqli->query("select * from colourconfig where colourid = '$reccolid'");
-                                                    $rescolour = $getcolour->fetch_assoc();
-                                                    echo $rescolour['colourname'];
-                                           ?></td>
-                                          <td><?php echo $respaymentdetails['amounttopay'] ?></td>
-                                          <td><?php $paycolid = $respaymentdetails['paycolid'];
-                                                    $getcolour2 = $mysqli->query("select * from colourconfig where colourid = '$paycolid'");
-                                                    $rescolour2 = $getcolour2->fetch_assoc();
-                                                    echo $rescolour2['colourname'];
-                                           ?></td>
-                                          <td>
-                                              <button type="button"
-                                                      data-type="confirm"
-                                                      class="btn btn-danger btn-sm delete_payment"
-                                                      i_index="<?php echo $respaymentdetails['payid']; ?>"
-                                                      title="Delete">
-                                                  <i class="flaticon2-trash ml-2" style="color:#fff !important;"></i>
-                                              </button>
-                                          </td>
-                                      </tr>
-                                 <?php }
-                                  ?>
-                                  
-                                </tbody>
-
-                            </table>
-                        </td>
-                    </tr>
-                    <?php
-                }
+<!--begin: Datatable-->
+<table class="table table-separate table-head-custom table-checkable" id="paymenttable">
+    <thead>
+        <tr>
+            <th>Board Name</th>
+            <th>Payment Details</th>
+        </tr>
+    </thead>
+    <tbody>
+    <?php
+    while ($result = $query->fetch_assoc()) {
+        ?>
+        <tr>
+            <td>
+                <?php $boardid = $result['boardids'];
+                $getname = $mysqli->query("select * from boards where boardid = '$boardid' ORDER BY boardname");
+                $resname = $getname->fetch_assoc();
+                echo $resname['boardname'];
                 ?>
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
+            </td>
+            <td>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Colour to Receive</th>
+                        <th>Amount</th>
+                        <th>Colour to Pay</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+                    $getpaymentdetails = $mysqli->query("select * from paymentconfig where boardid = '$boardid'");
+                    while ($respaymentdetails = $getpaymentdetails->fetch_assoc()) { ?>
+
+                        <tr>
+                            <td><?php $reccolid = $respaymentdetails['reccolid'];
+                                $getcolour = $mysqli->query("select * from colourconfig where colourid = '$reccolid'");
+                                $rescolour = $getcolour->fetch_assoc();
+                                echo $rescolour['colourname'];
+                                ?></td>
+                            <td><?php echo $respaymentdetails['amounttopay'] ?></td>
+                            <td><?php $paycolid = $respaymentdetails['paycolid'];
+                                $getcolour2 = $mysqli->query("select * from colourconfig where colourid = '$paycolid'");
+                                $rescolour2 = $getcolour2->fetch_assoc();
+                                echo $rescolour2['colourname'];
+                                ?></td>
+                            <td>
+                                <button type="button"
+                                        data-type="confirm"
+                                        class="btn btn-danger btn-sm delete_payment"
+                                        i_index="<?php echo $respaymentdetails['payid']; ?>"
+                                        title="Delete">
+                                    <i class="flaticon2-trash ml-2" style="color:#fff !important;"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    <?php }
+                    ?>
+
+                    </tbody>
+
+                </table>
+            </td>
+        </tr>
+        <?php
+    }
+    ?>
+    </tbody>
+</table>
+<!--end: Datatable-->
 
 
 <script>
 
-    oTable = $('#payment-table').DataTable({
+    oTable = $('#paymenttable').DataTable({
         "bLengthChange": false
     });
 

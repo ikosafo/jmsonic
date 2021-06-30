@@ -15,35 +15,29 @@ $random = rand(1,10000).date("Y");
 </script>
 
 
-<form class="" autocomplete="off">
-    <div class="kt-portlet__body">
+<form autocomplete="off">
+    <div class="card-body">
         <div id="errorloc"></div>
+        <div class="form-group">
+            <label for="boardname">Board Name  <span class="text-danger">*</span></label>
+            <input type="text" class="form-control" id="boardname"
+                   placeholder="Enter Board Name">
+            <span class="form-text text-muted">Please enter board name</span>
+        </div>
+        <div class="form-group">
+            <label for="boardnumber">Total Number board can take</label>
+            <input type="text" class="form-control" id="boardnumber" onkeypress="return isNumber(event)"
+                   placeholder="Enter Number">
+            <span class="form-text text-muted">Specify maximum number board can take</span>
+        </div>
 
-        <div class="form-group row">
-            <div class="col-lg-12 col-md-12">
-                <label for="boardname">Board Name</label>
-                <input type="text" class="form-control" id="boardname"
-                       placeholder="Enter Board Name">
-            </div>
-        </div>
-        <div class="form-group row">
-            <div class="col-lg-12 col-md-12">
-                <label for="boardnumber">Total Number board can take</label>
-                <input type="text" class="form-control" id="boardnumber" onkeypress="return isNumber(event)"
-                       placeholder="Enter Number">
-            </div>
-        </div>
 
     </div>
-    <div class="kt-portlet__foot">
-        <div class="kt-form__actions">
-            <button type="button" class="btn btn-primary" id="saveboard">Submit</button>
-            <button type="reset" class="btn btn-secondary">Cancel</button>
-        </div>
+    <div class="card-footer">
+        <button type="button" class="btn btn-primary mr-2" id="saveboard">Submit</button>
+        <button type="reset" class="btn btn-secondary">Cancel</button>
     </div>
 </form>
-<!--end::Form-->
-
 
 
 <script>

@@ -2,7 +2,7 @@
 include('../../../config.php');
 
 $getboard = $_POST['getboard'];
-$sql = "select * from `colourconfig` where `boardid`= '$getboard'";
+$sql = "select * from `colourconfig` where `boardid`= '$getboard' AND status = 'Active'";
 
 $res = $mysqli->query($sql);
 if(mysqli_num_rows($res) > 0) {

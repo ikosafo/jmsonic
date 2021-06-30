@@ -8,107 +8,97 @@ $query = $mysqli->query("select DISTINCT(boardid) as boardids from colourconfig"
     }
 </style>
 
-<div class="kt-section">
-    <div class="kt-section__content responsive">
-        <div class="kt-searchbar">
-            <div class="input-group">
-                <div class="input-group-prepend"><span class="input-group-text" id="basic-addon1">
-                                <i class="la la-search"></i>
-                            </span></div>
-                <input type="text" id="colour_search" class="form-control"
-                       placeholder="Search Board or Colour" aria-describedby="basic-addon1">
-            </div>
-        </div>
+<input type="text" id="colour_search" class="form-control"
+       placeholder="Search Board or Colour">
 
-        <div class="table-responsive">
-            <table id="colour-table" class="table" style="margin-top: 3% !important">
-                <thead>
-                <tr>
-                    <th>Board Name</th>
-                    <th>Colour Details</th>
-                </tr>
-                </thead>
-                <tbody>
-
-                <?php
-                while ($result = $query->fetch_assoc()) {
-                    ?>
+<!--begin: Datatable-->
+<table class="table table-separate table-head-custom table-checkable" id="colourtable">
+    <thead>
+    <tr>
+    <tr>
+        <th>Board Name</th>
+        <th>Colour Details</th>
+    </tr>
+    </tr>
+    </thead>
+    <tbody>
+    <?php
+    while ($result = $query->fetch_assoc()) {
+        ?>
+        <tr>
+            <td>
+                <?php $boardid = $result['boardids'];
+                $getname = $mysqli->query("select * from boards where boardid = '$boardid' ORDER BY boardname");
+                $resname = $getname->fetch_assoc();
+                echo $resname['boardname'];
+                ?>
+            </td>
+            <td>
+                <table>
+                    <thead>
                     <tr>
+                        <th>Colour Name</th>
+                        <th>Colour Code</th>
+                        <th>Priority</th>
+                        <th>Number Assigned</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+                    $getcolourdetails = $mysqli->query("select * from colourconfig where boardid = '$boardid' and `status` = 'Active'");
+                    while ($rescolourdetails = $getcolourdetails->fetch_assoc()) { ?>
+
+                        <tr>
+                            <td><?php echo $rescolourdetails['colourname'] ?></td>
+                            <td><?php echo $rescolourdetails['colourcode'] ?></td>
+                            <td><?php echo $rescolourdetails['colourpriority'] ?></td>
+                            <td><?php echo $rescolourdetails['numberassign'] ?></td>
+                            <td>
+                                <button type="button"
+                                        data-type="confirm"
+                                        class="btn btn-primary js-sweetalert edit_colour btn-sm"
+                                        i_index="<?php echo $rescolourdetails['colourid']; ?>"
+                                        title="Edit">
+                                    <i class="flaticon2-edit ml-2" style="color:#fff !important;"></i>
+                                </button>
+                                <button type="button"
+                                        data-type="confirm"
+                                        class="btn btn-danger btn-sm delete_colour"
+                                        i_index="<?php echo $rescolourdetails['colourid']; ?>"
+                                        title="Delete">
+                                    <i class="flaticon2-trash ml-2" style="color:#fff !important;"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    <?php }
+                    ?>
+                    <tr style="font-weight: 500">
+                        <td colspan="3">TOTAL</td>
                         <td>
-                            <?php $boardid = $result['boardids'];
-                                  $getname = $mysqli->query("select * from boards where boardid = '$boardid' ORDER BY boardname");
-                                  $resname = $getname->fetch_assoc();
-                                  echo $resname['boardname'];
+                            <?php $gettotal = $mysqli->query("select sum(numberassign) as colortotal from colourconfig where boardid = '$boardid'
+                                            and status = 'Active'");
+                            $restotal = $gettotal->fetch_assoc();
+                            echo $restotal['colortotal'];
                             ?>
                         </td>
-                        <td>
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>Colour Name</th>
-                                        <th>Colour Code</th>
-                                        <th>Priority</th>
-                                        <th>Number Assigned</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                  <?php
-                                  $getcolourdetails = $mysqli->query("select * from colourconfig where boardid = '$boardid' and `status` = 'Active'");
-                                  while ($rescolourdetails = $getcolourdetails->fetch_assoc()) { ?>
-
-                                      <tr>
-                                          <td><?php echo $rescolourdetails['colourname'] ?></td>
-                                          <td><?php echo $rescolourdetails['colourcode'] ?></td>
-                                          <td><?php echo $rescolourdetails['colourpriority'] ?></td>
-                                          <td><?php echo $rescolourdetails['numberassign'] ?></td>
-                                          <td>
-                                              <button type="button"
-                                                      data-type="confirm"
-                                                      class="btn btn-primary js-sweetalert edit_colour btn-sm"
-                                                      i_index="<?php echo $rescolourdetails['colourid']; ?>"
-                                                      title="Edit">
-                                                  <i class="flaticon2-edit ml-2" style="color:#fff !important;"></i>
-                                              </button>
-                                              <button type="button"
-                                                      data-type="confirm"
-                                                      class="btn btn-danger btn-sm delete_colour"
-                                                      i_index="<?php echo $rescolourdetails['colourid']; ?>"
-                                                      title="Delete">
-                                                  <i class="flaticon2-trash ml-2" style="color:#fff !important;"></i>
-                                              </button>
-                                          </td>
-                                      </tr>
-                                 <?php }
-                                  ?>
-                                    <tr style="font-weight: 500">
-                                        <td colspan="3">TOTAL</td>
-                                        <td>
-                                            <?php $gettotal = $mysqli->query("select sum(numberassign) as colortotal from colourconfig where boardid = '$boardid' 
-                                            and status = 'Active'");
-                                                   $restotal = $gettotal->fetch_assoc();
-                                                    echo $restotal['colortotal'];
-                                            ?>
-                                        </td>
-                                    </tr>
-                                </tbody>
-
-                            </table>
-                        </td>
                     </tr>
-                    <?php
-                }
-                ?>
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
+                    </tbody>
+
+                </table>
+            </td>
+        </tr>
+        <?php
+    }
+    ?>
+    </tbody>
+</table>
+<!--end: Datatable-->
 
 
 <script>
 
-    oTable = $('#colour-table').DataTable({
+    oTable = $('#colourtable').DataTable({
         "bLengthChange": false
     });
 

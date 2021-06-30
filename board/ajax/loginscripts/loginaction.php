@@ -39,56 +39,63 @@ $userid = $getdetails['userid'];
 
 if ($rowcount == "0") {
 
-    $mysqli->query("INSERT INTO `logs`
-    (
-     `userid`,
-     `activity`,
-     `periodofactivity`,
-     `ipaddress`,
-     `macaddress`,
-     `entrydate`,
-     `status`)
-VALUES (
-    '$userid',
-    'Attempted Login',
-    '$today',
-    '$ip_add',
-    '$mac_address',
-    '$today',
-    'Not successful')") or die(mysqli_error($mysqli));
-    echo 2;
+        $mysqli->query("INSERT INTO `logs`
+        (
+         `userid`,
+         `activity`,
+         `periodofactivity`,
+         `ipaddress`,
+         `macaddress`,
+         `entrydate`,
+         `status`)
+    VALUES (
+        '$userid',
+        'Attempted Login',
+        '$today',
+        '$ip_add',
+        '$mac_address',
+        '$today',
+        'Not successful')") or die(mysqli_error($mysqli));
+        echo 2;
 
 } else {
 
-    $mysqli->query("INSERT INTO `logs`
-    (
-     `userid`,
-     `activity`,
-     `periodofactivity`,
-     `ipaddress`,
-     `macaddress`,
-     `entrydate`,
-     `status`)
-VALUES (
-    '$userid',
-    'Attempted Login',
-    '$today',
-    '$ip_add',
-    '$mac_address',
-    '$today',
-    'Successful')") or die(mysqli_error($mysqli));
+        $mysqli->query("INSERT INTO `logs`
+        (
+         `userid`,
+         `activity`,
+         `periodofactivity`,
+         `ipaddress`,
+         `macaddress`,
+         `entrydate`,
+         `status`)
+    VALUES (
+        '$userid',
+        'Attempted Login',
+        '$today',
+        '$ip_add',
+        '$mac_address',
+        '$today',
+        'Successful')") or die(mysqli_error($mysqli));
 
-    $fullname = $getdetails['fullname'];
-    $password = $getdetails['password'];
-    $roleid = $getdetails['roleid'];
+        $fullname = $getdetails['fullname'];
+        $password = $getdetails['password'];
+        $roleid = $getdetails['roleid'];
 
-    $_SESSION['fullname'] = $fullname;
-    $_SESSION['password'] = $password;
-    $_SESSION['userid'] = $userid;
-    $_SESSION['roleid'] = $roleid;
-    $_SESSION['username'] = $username;
+        $_SESSION['fullname'] = $fullname;
+        $_SESSION['password'] = $password;
+        $_SESSION['userid'] = $userid;
+        $_SESSION['roleid'] = $roleid;
+        $_SESSION['username'] = $username;
 
-    echo 1;
+        if ($roleid == '1' || $roleid == '2') {
+            echo 3;
+        }
+        else {
+            echo 1;
+        }
+
+
 
 
 }
