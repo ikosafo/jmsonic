@@ -310,12 +310,12 @@
                                                             <div class="col-xl-6">
                                                                 <!--begin::Input-->
                                                                 <div class="form-group">
-                                                                    <label>Introducer ID</label>
+                                                                    <label>Introducer User/Board Name</label>
                                                                     <input type="text"
                                                                            class="form-control form-control-solid form-control-lg"
                                                                            name="introid" id="introid"
-                                                                           placeholder="Introducer ID" value=""/>
-                                                                    <span class="form-text text-muted">Please enter id of introducer.</span>
+                                                                           placeholder="Introducer User/Board Name" value=""/>
+                                                                    <span class="form-text text-muted">Please enter board name of introducer.</span>
                                                                 </div>
                                                                 <!--end::Input-->
                                                             </div>

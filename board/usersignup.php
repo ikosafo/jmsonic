@@ -58,6 +58,8 @@
                         <div class="d-flex align-items-center">
                             <!--begin::Button-->
                             <a href="login" class="btn btn-transparent-white font-weight-bold py-3 px-6 mr-2">Log In</a>
+                            <a href="signup" class="btn btn-transparent-warning font-weight-bold py-3 px-6 mr-2">New Members</a>
+                           
                             <!--end::Button-->
 
                         </div>
@@ -327,12 +329,12 @@
                                                             <div class="col-xl-6">
                                                                 <!--begin::Input-->
                                                                 <div class="form-group">
-                                                                    <label>Introducer ID</label>
+                                                                    <label>Introducer User/Board Name</label>
                                                                     <input type="text"
                                                                            class="form-control form-control-solid form-control-lg"
-                                                                           name="introid" id="introid" disabled
-                                                                           placeholder="Introducer ID" value=""/>
-                                                                    <span class="form-text text-muted">Please enter id of introducer.</span>
+                                                                           name="introid" id="introid"
+                                                                           placeholder="Introducer User/Board Name" value=""/>
+                                                                    <span class="form-text text-muted">Please enter board name of introducer.</span>
                                                                 </div>
                                                                 <!--end::Input-->
                                                             </div>
@@ -1018,7 +1020,7 @@
 <script src="assets/signup/js/scripts.bundle.js"></script>
 <!--end::Global Theme Bundle-->
 <!--begin::Page Scripts(used by this page)-->
-<script src="assets/signup/js/wizard-2.js"></script>
+<script src="assets/signup/js/wizarduser.js"></script>
 <script src="assets/js/select2.js"></script>
 <script src="assets/js/countrySelect.js"></script>
 <script src="assets/js/notify.js"></script>
@@ -1033,7 +1035,7 @@
         var introducerid = $(this).val();
         if (introducerid != "") {
             $.ajax({
-                url: "ajax/forms/get_introducer.php",
+                url: "ajax/forms/get_userintroducer.php",
                 data: {introducerid: introducerid},
                 type: 'POST',
                 beforeSend: function () {

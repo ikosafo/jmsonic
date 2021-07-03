@@ -1,5 +1,5 @@
 <?php include('../../../config.php');
-$query = $mysqli->query("select * from boards where status = 'Active'");
+$query = $mysqli->query("select * from users ORDER BY id DESC");
 
 ?>
 <style>
@@ -11,61 +11,65 @@ $query = $mysqli->query("select * from boards where status = 'Active'");
        placeholder="Search Board">
 
 <!--begin: Datatable-->
-<table class="table table-separate table-head-custom table-checkable" id="boardtable">
+<table class="table table-separate table-head-custom table-checkable" id="accounttable">
     <thead>
-    <tr>
-        <th>Board Name</th>
-        <th>Maximum Number</th>
-        <th>Date Created</th>
-        <th>Action</th>
-    </tr>
-    </thead>
-    <tbody>
-    <?php
-    while ($result = $query->fetch_assoc()) {
-        ?>
         <tr>
-            <td><?php echo $result['boardname'] ?></td>
-            <td><?php echo $result['boardnumber'] ?></td>
-            <td>
-                <?php echo $result['entrydate'].'<br/>('.time_elapsed_string($result['entrydate']).')' ?>
-            </td>
-            <td>
-                <button type="button"
-                        data-type="confirm"
-                        class="btn btn-primary js-sweetalert edit_board btn-sm"
-                        i_index="<?php echo $result['boardid']; ?>"
-                        title="Edit">
-                    <i class="flaticon2-edit ml-2" style="color:#fff !important;"></i>
-                </button>
-
-                <button type="button"
-                        data-type="confirm"
-                        class="btn btn-danger btn-sm delete_board"
-                        i_index="<?php echo $result['boardid']; ?>"
-                        title="Delete">
-                    <i class="flaticon2-trash ml-2" style="color:#fff !important;"></i>
-                </button>
-            </td>
+            <th>Full Name</th>
+            <th>Telephone</th>
+            <th>Email Address</th>
+            <th>Location</th>
+            <th>Country</th>
+            <th>Next of Kin</th>
+            <th>Next of Kin Phone</th>
+            <th>Introducer</th>
+            <th>Status</th>
+            <th>Role</th>
+            <th>Existing</th>
+            <th>Action</th>
         </tr>
-        <?php
-    }
-    ?>
-    </tbody>
+    </thead>
+
 </table>
 <!--end: Datatable-->
 
 
 <script>
-    oTable = $('#boardtable').DataTable({
-        "bLengthChange": false
-    });
 
     $('#board_search').keyup(function () {
         oTable.search($(this).val()).draw();
     });
 
-    $(document).off('click', '.edit_board').on('click', '.edit_board', function () {
+    oTable = $('#accounttable').DataTable({
+        stateSave: true,
+        "bLengthChange": false,
+        dom: "rtiplf",
+        "sDom": '<"top"ip>rt<"bottom"fl><"clear">',
+        'processing': true,
+        'serverSide': true,
+        'serverMethod': 'post',
+        'ajax': {
+            'url': 'ajax/paginations/useraccounts.php'
+        },
+        'columns': [
+            {data: 'fullname'},
+            {data: 'telephone'},
+            {data: 'emailaddress'},
+            {data: 'location'},
+            {data: 'country'},
+            {data: 'nextofkin'},
+            {data: 'nextofkintelephone'},
+            {data: 'introducer'},
+            {data: 'userstatus'},
+            {data: 'role'},
+            {data: 'existing'},
+            {data: 'userid'}
+        ]
+    });
+    $('#account_search').keyup(function () {
+        oTable.search($(this).val()).draw();
+    })
+
+   /* $(document).off('click', '.edit_board').on('click', '.edit_board', function () {
         var theindex = $(this).attr('i_index');
         //alert(theindex)
         $.ajax({
@@ -133,7 +137,7 @@ $query = $mysqli->query("select * from boards where status = 'Active'");
                                         })
                                     },
                                     success: function (text) {
-                                        $('#boardtable_div').html(text);
+                                        $('#accounttable_div').html(text);
                                     },
                                     error: function (xhr, ajaxOptions, thrownError) {
                                         alert(xhr.status + " " + thrownError);
@@ -154,7 +158,7 @@ $query = $mysqli->query("select * from boards where status = 'Active'");
                 }
             }
         });
-    });
+    });*/
 
 
 

@@ -10,10 +10,10 @@ $location = $_POST['location'];
 $country = $_POST['country'];
 $username = $_POST['username'];
 $checkedValue = $_POST['checkedValue'];
+$introid = $_POST['introid'];
 $pass = $_POST['password'];
 $password = md5($pass);
 $roleid = 5;
-$introducerid = '';
 $entrydate = date('Y-m-d H:i:s');
 $userstatus = 1;
 
@@ -27,6 +27,7 @@ $getuser = $mysqli->query("SELECT * FROM `excel` WHERE
 $countgetuser = mysqli_num_rows($getuser);
 
 
+//Check whether user exists in user table
 $chkdetails = $mysqli->query("SELECT * FROM users WHERE 
                                  `username` = '$username' OR 
                                  `emailaddress` = '$email' OR
@@ -47,12 +48,12 @@ if ($countgetuser == '0') {
          `location`,
          `nextofkin`,
          `nextofkintelephone`,
-         `introducerid`,
          `acceptrules`,
          `entrydate`,
          `userstatus`,
          `country`,
          `username`,
+         `introusername`,
          `password`)
     VALUES (
         '$fullname',
@@ -62,12 +63,12 @@ if ($countgetuser == '0') {
         '$location',
         '$nextofkin',
         '$kintelephone',
-        '$introducerid',
         '$checkedValue',
         '$entrydate',
         '$userstatus',
         '$country',
         '$username',
+        '$introid',
         '$password')") or die(mysqli_error($mysqli));
     
         echo 1;

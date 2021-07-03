@@ -11,10 +11,10 @@ if(mysqli_num_rows($res) > 0) {
     }
 }*/
 
-$sql = $mysqli->query("select * from `users` where `username`= '$introducerid'");
+$sql = $mysqli->query("select * from `excel` where `boardname`= '$introducerid'");
 if(mysqli_num_rows($sql) > 0) {
     while ($row = $sql->fetch_assoc()) {
-       echo $fullname = $row['fullname'];
+        echo $fullname = $row['fullname'];
     }
 
 }
