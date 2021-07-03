@@ -9,11 +9,11 @@ $kintelephone = $_POST['kintelephone'];
 $location = $_POST['location'];
 $country = $_POST['country'];
 $username = $_POST['username'];
+$introid = $_POST['introid'];
 $checkedValue = $_POST['checkedValue'];
 $pass = $_POST['password'];
 $password = md5($pass);
 $roleid = 3;
-$introducerid = '';
 $entrydate = date('Y-m-d H:i:s');
 $userstatus = 5;
 
@@ -42,12 +42,12 @@ if ($countgetuser == '1') {
                 `location`,
                 `nextofkin`,
                 `nextofkintelephone`,
-                `introducerid`,
                 `acceptrules`,
                 `entrydate`,
                 `userstatus`,
                 `country`,
                 `username`,
+                `introusername`,
                 `password`,
                 `existing`
                 )
@@ -59,12 +59,12 @@ if ($countgetuser == '1') {
                 '$location',
                 '$nextofkin',
                 '$kintelephone',
-                '$introducerid',
                 '$checkedValue',
                 '$entrydate',
                 '$userstatus',
                 '$country',
                 '$username',
+                '$introid',
                 '$password',
                 '1'
                 )") or die(mysqli_error($mysqli));

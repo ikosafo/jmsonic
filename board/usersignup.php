@@ -1205,7 +1205,7 @@
                     $.unblockUI();
                 },
             });
-            $.ajax({
+           /* $.ajax({
                 url: "ajax/forms/getsignupintroid.php",
                 data: {boardname: boardname},
                 type: 'POST',
@@ -1224,7 +1224,7 @@
                 complete: function () {
                     $.unblockUI();
                 },
-            });
+            });*/
         } else {
             $("#fullname").html("<input type='text' value=''/>");
             $("#email").html("<input type='text' value=''/>");

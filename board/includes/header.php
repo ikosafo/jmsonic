@@ -27,7 +27,7 @@ if (!isset($_SESSION['username'])) {
     <!--end::Global Theme Styles-->
     <!--begin::Layout Themes(used by all pages)-->
     <!--end::Layout Themes-->
-    <link rel="icon" href="assets/img/logo3.png" sizes="16x16" type="image/png">
+    <link rel="icon" href="assets/images/logo3.png" sizes="16x16" type="image/png">
 
     <style>
         ::-webkit-scrollbar {

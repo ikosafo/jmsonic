@@ -16,18 +16,24 @@ $searchValue = $_POST['search']['value']; // Search value
 $searchQuery = " ";
 if($searchValue != ''){
     $searchQuery = " and
-(CONCAT(first_name, ' ',last_name) LIKE '%" . $searchValue . "%'
-OR CONCAT(last_name, ' ',first_name) LIKE '%" . $searchValue . "%'
-OR last_name LIKE '%" . $searchValue . "%'
-OR first_name LIKE '%" . $searchValue . "%'
-OR email_address LIKE '%" . $searchValue . "%' ) ";
+(fullname LIKE '%" . $searchValue . "%'
+OR telephone LIKE '%" . $searchValue . "%'
+OR emailaddress LIKE '%" . $searchValue . "%'
+OR location LIKE '%" . $searchValue . "%'
+OR nextofkin LIKE '%" . $searchValue . "%'
+OR nextofkintelephone LIKE '%" . $searchValue . "%'
+OR country LIKE '%" . $searchValue . "%'
+OR username LIKE '%" . $searchValue . "%'
+OR introusername LIKE '%" . $searchValue . "%'
+) ";
 }
 
-//$year = $_GET['year'];
+$status = $_GET['status'];
 //$email_address = $_GET['email'];
 
+if ($status == 'All') {
 
-## Total number of records without filtering
+    ## Total number of records without filtering
     $sel = mysqli_query($con,"select count(*) as allcount from users");
     $records = mysqli_fetch_assoc($sel);
     $totalRecords = $records['allcount'];
@@ -42,22 +48,64 @@ OR email_address LIKE '%" . $searchValue . "%' ) ";
     $empRecords = mysqli_query($con, $empQuery);
     $data = array();
 
+}
+else if ($status == 'Pending') {
+
+    ## Total number of records without filtering
+    $sel = mysqli_query($con,"select count(*) as allcount from users where userstatus = '1'");
+    $records = mysqli_fetch_assoc($sel);
+    $totalRecords = $records['allcount'];
+
+## Total number of record with filtering
+    $sel = mysqli_query($con,"select count(*) as allcount from users where  userstatus = '1' AND fullname IS NOT NULL AND 1 ".$searchQuery);
+    $records = mysqli_fetch_assoc($sel);
+    $totalRecordwithFilter = $records['allcount'];
+
+## Fetch records
+    $empQuery = "select * from users where userstatus = '1' AND fullname IS NOT NULL AND 1 ".$searchQuery." order by userid DESC,fullname limit ".$row.",".$rowperpage;
+    $empRecords = mysqli_query($con, $empQuery);
+    $data = array();
+
+}
+
+
+else {
+
+    ## Total number of records without filtering
+    $sel = mysqli_query($con,"select count(*) as allcount from users where userstatus = '5'");
+    $records = mysqli_fetch_assoc($sel);
+    $totalRecords = $records['allcount'];
+
+## Total number of record with filtering
+    $sel = mysqli_query($con,"select count(*) as allcount from users where  userstatus = '5' AND fullname IS NOT NULL AND 1 ".$searchQuery);
+    $records = mysqli_fetch_assoc($sel);
+    $totalRecordwithFilter = $records['allcount'];
+
+## Fetch records
+    $empQuery = "select * from users where userstatus = '5' AND fullname IS NOT NULL AND 1 ".$searchQuery." order by userid DESC,fullname limit ".$row.",".$rowperpage;
+    $empRecords = mysqli_query($con, $empQuery);
+    $data = array();
+
+}
+
 
 
 
 while ($row = mysqli_fetch_assoc($empRecords)) {
     $data[] = array(
+        "view"=>'',
         "fullname"=>$row['fullname'],
         "telephone"=>$row['telephone'],
         "emailaddress"=>$row['emailaddress'],
         "location"=>$row['location'],
         "country"=>$row['country'],
+        "userstatus"=>getuserstatus($row['userstatus']),
         "nextofkin"=>$row['nextofkin'],
         "nextofkintelephone"=>$row['nextofkintelephone'],
-        "introducer"=>getintroducer($row['nextofkintelephone']),
-        //"period"=>$row['period'].'<br/> ('.time_elapsed_string($row['period']).')',
-        //"email_verified"=>email_verified($row['email_verified']),
-       // "email_verified_period"=>email_verified_period($row['email_verified_period'])
+        "introducer"=>$row['introusername'],
+        "userrole"=>getuserrole($row['roleid']),
+        "existing"=>getexisting($row['existing']),
+        "userid"=>approvesignup($row['userid'],$row['userstatus'])
     );
 }
 

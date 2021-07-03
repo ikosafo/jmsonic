@@ -22,98 +22,130 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="loginacc_table.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/board/ajax/tables/loginacc_table.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-11.115385">
-              <caret line="56" column="28" selection-start-line="56" selection-start-column="20" selection-end-line="56" selection-end-column="28" />
-              <folding>
-                <marker date="1625289064980" expanded="true" signature="63:99" placeholder="select * fro..users..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="useraccounts.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/board/ajax/paginations/useraccounts.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-11.115385">
-              <caret line="56" column="35" selection-start-line="56" selection-start-column="22" selection-end-line="56" selection-end-column="35" />
+            <state vertical-scroll-proportion="-9.807693">
+              <caret line="98" column="45" selection-start-line="98" selection-start-column="45" selection-end-line="98" selection-end-column="45" />
               <folding>
-                <marker date="1625289654972" expanded="true" signature="948:981" placeholder="select count..account_login..." />
-                <marker date="1625289654972" expanded="true" signature="948:986" placeholder="select count..users..." />
-                <marker date="1625289654972" expanded="true" signature="1145:1217" placeholder="select count..users..." />
-                <marker date="1625289654972" expanded="true" signature="1361:1476" placeholder="select * fro..users..." />
-                <marker date="1625289654972" expanded="true" signature="1380:1476" placeholder="select * fro..account_login..." />
+                <marker date="1625323118411" expanded="true" signature="1108:1146" placeholder="select count..users..." />
+                <marker date="1625323118411" expanded="true" signature="1305:1377" placeholder="select count..users..." />
+                <marker date="1625323118411" expanded="true" signature="1521:1636" placeholder="select * fro..users..." />
+                <marker date="1625323118411" expanded="true" signature="2057:2151" placeholder="select count..users..." />
+                <marker date="1625323118411" expanded="true" signature="2828:2922" placeholder="select count..users..." />
+                <marker date="1625323118411" expanded="true" signature="3066:3202" placeholder="select * fro..users..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="signup.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/board/signup.php">
+      <file leaf-file-name="approve_signup.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/board/ajax/queries/approve_signup.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-11.615385">
-              <caret line="1012" column="7" selection-start-line="1012" selection-start-column="7" selection-end-line="1012" selection-end-column="7" />
+            <state vertical-scroll-proportion="-6.5384617">
+              <caret line="10" column="2" selection-start-line="10" selection-start-column="2" selection-end-line="10" selection-end-column="2" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="wizard-2.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/board/assets/signup/js/wizard-2.js">
+      <file leaf-file-name="memberadmins.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/board/memberadmins.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="102" column="31" selection-start-line="102" selection-start-column="24" selection-end-line="102" selection-end-column="31" />
+            <state vertical-scroll-proportion="20.807692">
+              <caret line="61" column="77" selection-start-line="61" selection-start-column="77" selection-end-line="61" selection-end-column="77" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="usersignup.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/board/usersignup.php">
+      <file leaf-file-name="memberadmin_table.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/board/ajax/tables/memberadmin_table.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-2.581818">
-              <caret line="1037" column="51" selection-start-line="1037" selection-start-column="33" selection-end-line="1037" selection-end-column="51" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="get_userintroducer.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/board/ajax/forms/get_userintroducer.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.39605734">
-              <caret line="13" column="61" selection-start-line="13" selection-start-column="61" selection-end-line="13" selection-end-column="61" />
+            <state vertical-scroll-proportion="-6.5384617">
+              <caret line="52" column="50" selection-start-line="52" selection-start-column="37" selection-end-line="52" selection-end-column="50" />
               <folding>
-                <marker date="1625295297459" expanded="true" signature="317:373" placeholder="select * fro..." />
+                <marker date="1625329272820" expanded="true" signature="63:99" placeholder="select * fro..users..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="get_introducer.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/board/ajax/forms/get_introducer.php">
+      <file leaf-file-name="adminaccounts.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/board/ajax/paginations/adminaccounts.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-15.038462">
-              <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.5483871">
+              <caret line="36" column="77" selection-start-line="36" selection-start-column="77" selection-end-line="36" selection-end-column="77" />
+              <folding>
+                <marker date="1625329272824" expanded="true" signature="1108:1167" placeholder="select count..users..." />
+                <marker date="1625329272824" expanded="true" signature="1326:1398" placeholder="select count..users..." />
+                <marker date="1625329272824" expanded="true" signature="1542:1657" placeholder="select * fro..users..." />
+                <marker date="1625329272824" expanded="true" signature="1858:1919" placeholder="select count..users..." />
+                <marker date="1625329272824" expanded="true" signature="2078:2172" placeholder="select count..users..." />
+                <marker date="1625329272824" expanded="true" signature="2316:2452" placeholder="select * fro..users..." />
+                <marker date="1625329272824" expanded="true" signature="2629:2690" placeholder="select count..users..." />
+                <marker date="1625329272824" expanded="true" signature="2849:2943" placeholder="select count..users..." />
+                <marker date="1625329272824" expanded="true" signature="3087:3223" placeholder="select * fro..users..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="addmemberadmin_form.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/board/ajax/forms/addmemberadmin_form.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-24.961538">
+              <caret line="70" column="55" selection-start-line="70" selection-start-column="55" selection-end-line="70" selection-end-column="55" />
+              <folding>
+                <element signature="n#style#0;n#select#0;n#div#1;n#div#0;n#form#0;n#!!top" expanded="true" />
+                <marker date="1625328864959" expanded="true" signature="453:513" placeholder="select * fro..users..." />
+                <marker date="1625328864959" expanded="true" signature="931:1000" placeholder="..." />
+                <marker date="1625328864959" expanded="true" signature="1213:1305" placeholder="..." />
+                <marker date="1625328864959" expanded="true" signature="1234:1305" placeholder="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="addcolour_form.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/board/ajax/forms/addcolour_form.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-2.6153846">
+              <caret line="19" column="32" selection-start-line="19" selection-start-column="32" selection-end-line="19" selection-end-column="32" />
+              <folding>
+                <marker date="1624757262073" expanded="true" signature="739:802" placeholder="select * fro..boards..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="boardconfig.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/board/boardconfig.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-9.153846">
+              <caret line="106" column="0" selection-start-line="106" selection-start-column="0" selection-end-line="106" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="useraccounts.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mis/ajax/paginations/useraccounts.php">
+      <file leaf-file-name="colourconfig.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/board/colourconfig.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-10.461538">
-              <caret line="16" column="23" selection-start-line="16" selection-start-column="23" selection-end-line="16" selection-end-column="23" />
+            <state vertical-scroll-proportion="-5.1153846">
+              <caret line="80" column="16" selection-start-line="80" selection-start-column="16" selection-end-line="80" selection-end-column="16" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="loginacc_table.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/board/ajax/tables/loginacc_table.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-13.730769">
+              <caret line="26" column="32" selection-start-line="26" selection-start-column="32" selection-end-line="26" selection-end-column="32" />
               <folding>
-                <marker date="1583288959247" expanded="true" signature="973:1019" placeholder="select count..account_login..." />
-                <marker date="1583288959247" expanded="true" signature="1178:1233" placeholder="select count..account_login..." />
-                <marker date="1583288959247" expanded="true" signature="1377:1497" placeholder="select * fro..account_login..." />
-                <marker date="1583288959247" expanded="true" signature="1668:1752" placeholder="select count..account_login..." />
-                <marker date="1583288959247" expanded="true" signature="1911:2002" placeholder="select count..account_login..." />
-                <marker date="1583288959247" expanded="true" signature="2146:2302" placeholder="select * fro..account_login..." />
+                <marker date="1625323174582" expanded="true" signature="63:99" placeholder="select * fro..users..." />
               </folding>
             </state>
           </provider>
@@ -124,12 +156,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/board/ajax/queries/saveform_colour.php" />
-        <option value="$PROJECT_DIR$/board/ajax/queries/editform_board.php" />
-        <option value="$PROJECT_DIR$/board/ajax/queries/editform_colour.php" />
-        <option value="$PROJECT_DIR$/board/assets/signup/js/wizard-2.js" />
-        <option value="$PROJECT_DIR$/board/ajax/queries/saveform_split.php" />
-        <option value="$PROJECT_DIR$/board/ajax/forms/editsplit_form.php" />
         <option value="$PROJECT_DIR$/board/ajax/tables/split_table.php" />
         <option value="$PROJECT_DIR$/board/ajax/queries/delete_split.php" />
         <option value="$PROJECT_DIR$/board/ajax/forms/addsplit_form.php" />
@@ -153,7 +179,6 @@
         <option value="$PROJECT_DIR$/board/ajax/forms/getsendcolour.php" />
         <option value="$PROJECT_DIR$/board/ajax/forms/addpayment_form.php" />
         <option value="$PROJECT_DIR$/board/ajax/tables/payment_table.php" />
-        <option value="$PROJECT_DIR$/board/loginaccounts.php" />
         <option value="$PROJECT_DIR$/board/loginold.php" />
         <option value="$PROJECT_DIR$/assets/css/style.css" />
         <option value="$PROJECT_DIR$/index_style1_color1.html" />
@@ -162,19 +187,26 @@
         <option value="$PROJECT_DIR$/board/ajax/loginscripts/loginaction.php" />
         <option value="$PROJECT_DIR$/board/includes/userheader.php" />
         <option value="$PROJECT_DIR$/board/user.php" />
-        <option value="$PROJECT_DIR$/board/includes/footer.php" />
-        <option value="$PROJECT_DIR$/board/includes/header.php" />
         <option value="$PROJECT_DIR$/board/login.php" />
-        <option value="$PROJECT_DIR$/board/ajax/loginscripts/signupuseraction.php" />
-        <option value="$PROJECT_DIR$/board/ajax/tables/loginacc_table.php" />
         <option value="$PROJECT_DIR$/board/includes/db.php" />
-        <option value="$PROJECT_DIR$/board/ajax/paginations/useraccounts.php" />
-        <option value="$PROJECT_DIR$/board/includes/phpfunctions.php" />
         <option value="$PROJECT_DIR$/board/signup.php" />
         <option value="$PROJECT_DIR$/board/ajax/forms/get_introducer.php" />
         <option value="$PROJECT_DIR$/board/ajax/loginscripts/signupaction.php" />
-        <option value="$PROJECT_DIR$/board/usersignup.php" />
         <option value="$PROJECT_DIR$/board/ajax/forms/get_userintroducer.php" />
+        <option value="$PROJECT_DIR$/board/ajax/loginscripts/signupuseraction.php" />
+        <option value="$PROJECT_DIR$/board/usersignup.php" />
+        <option value="$PROJECT_DIR$/board/includes/header.php" />
+        <option value="$PROJECT_DIR$/mis/includes/footer.php" />
+        <option value="$PROJECT_DIR$/board/includes/footer.php" />
+        <option value="$PROJECT_DIR$/board/ajax/paginations/useraccounts.php" />
+        <option value="$PROJECT_DIR$/board/ajax/tables/loginacc_table.php" />
+        <option value="$PROJECT_DIR$/board/includes/phpfunctions.php" />
+        <option value="$PROJECT_DIR$/board/loginaccounts.php" />
+        <option value="$PROJECT_DIR$/board/ajax/queries/approve_signup.php" />
+        <option value="$PROJECT_DIR$/board/ajax/forms/addmemberadmin_form.php" />
+        <option value="$PROJECT_DIR$/board/memberadmins.php" />
+        <option value="$PROJECT_DIR$/board/ajax/tables/memberadmin_table.php" />
+        <option value="$PROJECT_DIR$/board/ajax/paginations/adminaccounts.php" />
       </list>
     </option>
   </component>
@@ -218,7 +250,7 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -287,13 +319,13 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="forms" />
+              <option name="myItemId" value="paginations" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -351,9 +383,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19213313" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21255673" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32843137" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -391,69 +423,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/board/ajax/queries/editform_board.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.8461539">
-          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/board/ajax/queries/editform_colour.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7258065">
-          <caret line="127" column="0" selection-start-line="127" selection-start-column="0" selection-end-line="127" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/board/ajax/queries/saveform_colour.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.115385">
-          <caret line="17" column="44" selection-start-line="17" selection-start-column="44" selection-end-line="17" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/board/ajax/queries/saveform_split.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.769231">
-          <caret line="13" column="122" selection-start-line="13" selection-start-column="122" selection-end-line="13" selection-end-column="122" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/board/ajax/queries/delete_payment.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.5384617">
-          <caret line="10" column="2" selection-start-line="0" selection-start-column="0" selection-end-line="10" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/board/ajax/queries/delete_split.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="10" column="2" selection-start-line="10" selection-start-column="2" selection-end-line="10" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/board/assets/js/pages/crud/datatables/basic/basic1ff3.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.814815">
-          <caret line="373" column="46" selection-start-line="0" selection-start-column="0" selection-end-line="384" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/board/ajax/forms/editboard_form.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="11.884615">
-          <caret line="47" column="8" selection-start-line="47" selection-start-column="8" selection-end-line="47" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/board/ajax/forms/addboard_form.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.2692308">
-          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="39" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/board/ajax/forms/editcolour_form.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-10.346154">
@@ -461,24 +430,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/board/colourconfig.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-13.846154">
-          <caret line="97" column="10" selection-start-line="97" selection-start-column="10" selection-end-line="97" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/board/paymentconfig.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="5.1153846">
           <caret line="62" column="0" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/board/ajax/forms/addcolour_form.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.576923">
-          <caret line="16" column="25" selection-start-line="16" selection-start-column="25" selection-end-line="16" selection-end-column="25" />
         </state>
       </provider>
     </entry>
@@ -503,20 +458,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/board/ajax/tables/colour_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="95" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/board/ajax/tables/payment_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="84" column="0" selection-start-line="84" selection-start-column="0" selection-end-line="84" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/board/ajax/forms/addpayment_form.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -524,24 +465,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/board/boardconfig.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="93" column="14" selection-start-line="93" selection-start-column="14" selection-end-line="93" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mis/accounts.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/board/ajax/tables/board_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="44" column="67" selection-start-line="44" selection-start-column="67" selection-end-line="44" selection-end-column="67" />
         </state>
       </provider>
     </entry>
@@ -570,7 +497,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="610" column="22" selection-start-line="610" selection-start-column="22" selection-end-line="610" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -578,25 +504,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="912" column="30" selection-start-line="912" selection-start-column="30" selection-end-line="912" selection-end-column="30" />
-          <folding>
-            <marker date="1624987425408" expanded="true" signature="-1:-1" placeholder="select * fro..boards..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/board/user.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="518" column="91" selection-start-line="518" selection-start-column="91" selection-end-line="518" selection-end-column="91" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/board/includes/footer.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="67" column="34" selection-start-line="67" selection-start-column="34" selection-end-line="67" selection-end-column="34" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -604,7 +511,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="9" column="80" selection-start-line="9" selection-start-column="3" selection-end-line="9" selection-end-column="80" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -624,53 +530,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/board/assets/signup/js/wizarduser.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="18" column="47" selection-start-line="18" selection-start-column="47" selection-end-line="18" selection-end-column="47" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mis/useraccounts.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="63.53846">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mis/ajax/tables/accounts_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.53846157">
-          <caret line="57" column="0" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/board/loginaccounts.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-35.96154">
-          <caret line="55" column="34" selection-start-line="55" selection-start-column="34" selection-end-line="55" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/board/includes/header.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-29.461538">
-          <caret line="51" column="26" selection-start-line="51" selection-start-column="26" selection-end-line="51" selection-end-column="26" />
-          <folding>
-            <element signature="n#style#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mis/includes/db.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-11.769231">
           <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -678,112 +541,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-3.2692308">
           <caret line="5" column="18" selection-start-line="5" selection-start-column="18" selection-end-line="5" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/board/ajax/tables/loginacc_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.115385">
-          <caret line="56" column="28" selection-start-line="56" selection-start-column="20" selection-end-line="56" selection-end-column="28" />
-          <folding>
-            <marker date="1625289064980" expanded="true" signature="63:99" placeholder="select * fro..users..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mis/ajax/paginations/useraccounts.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.461538">
-          <caret line="16" column="23" selection-start-line="16" selection-start-column="23" selection-end-line="16" selection-end-column="23" />
-          <folding>
-            <marker date="1583288959247" expanded="true" signature="973:1019" placeholder="select count..account_login..." />
-            <marker date="1583288959247" expanded="true" signature="1178:1233" placeholder="select count..account_login..." />
-            <marker date="1583288959247" expanded="true" signature="1377:1497" placeholder="select * fro..account_login..." />
-            <marker date="1583288959247" expanded="true" signature="1668:1752" placeholder="select count..account_login..." />
-            <marker date="1583288959247" expanded="true" signature="1911:2002" placeholder="select count..account_login..." />
-            <marker date="1583288959247" expanded="true" signature="2146:2302" placeholder="select * fro..account_login..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/board/ajax/paginations/useraccounts.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.115385">
-          <caret line="56" column="35" selection-start-line="56" selection-start-column="22" selection-end-line="56" selection-end-column="35" />
-          <folding>
-            <marker date="1625289654972" expanded="true" signature="948:981" placeholder="select count..account_login..." />
-            <marker date="1625289654972" expanded="true" signature="948:986" placeholder="select count..users..." />
-            <marker date="1625289654972" expanded="true" signature="1145:1217" placeholder="select count..users..." />
-            <marker date="1625289654972" expanded="true" signature="1361:1476" placeholder="select * fro..users..." />
-            <marker date="1625289654972" expanded="true" signature="1380:1476" placeholder="select * fro..account_login..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/board/includes/phpfunctions.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.961538">
-          <caret line="45" column="61" selection-start-line="45" selection-start-column="61" selection-end-line="45" selection-end-column="61" />
-          <folding>
-            <marker date="1625289654969" expanded="true" signature="-1:-1" placeholder="select * fro..users..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mis/includes/phpfunctions.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.21326165">
-          <caret line="82" column="0" selection-start-line="82" selection-start-column="0" selection-end-line="82" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/board/assets/signup/js/wizard-2.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="102" column="31" selection-start-line="102" selection-start-column="24" selection-end-line="102" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/board/ajax/loginscripts/signupaction.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="28.23077">
-          <caret line="11" column="39" selection-start-line="11" selection-start-column="39" selection-end-line="11" selection-end-column="39" />
-          <folding>
-            <marker date="1625294539580" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..." />
-            <marker date="1625294539580" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..users..." />
-            <marker date="1625294539580" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/board/ajax/loginscripts/signupuseraction.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-47.076923">
-          <caret line="72" column="12" selection-start-line="72" selection-start-column="12" selection-end-line="72" selection-end-column="12" />
-          <folding>
-            <marker date="1625261280069" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..." />
-            <marker date="1625261280069" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..users..." />
-            <marker date="1625261280069" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/board/signup.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.615385">
-          <caret line="1012" column="7" selection-start-line="1012" selection-start-column="7" selection-end-line="1012" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/board/usersignup.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.581818">
-          <caret line="1037" column="51" selection-start-line="1037" selection-start-column="33" selection-end-line="1037" selection-end-column="51" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -791,16 +548,314 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-15.038462">
           <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/board/ajax/forms/get_userintroducer.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.39605734">
+        <state vertical-scroll-proportion="-8.5">
           <caret line="13" column="61" selection-start-line="13" selection-start-column="61" selection-end-line="13" selection-end-column="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/board/assets/signup/js/wizarduser.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="102" column="31" selection-start-line="102" selection-start-column="24" selection-end-line="102" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/board/ajax/loginscripts/signupaction.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.1923075">
+          <caret line="11" column="39" selection-start-line="11" selection-start-column="39" selection-end-line="11" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/board/ajax/loginscripts/signupuseraction.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-43.153847">
+          <caret line="66" column="25" selection-start-line="66" selection-start-column="25" selection-end-line="66" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/board/assets/signup/js/wizard-2.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="2.5325344">
+          <caret line="102" column="31" selection-start-line="102" selection-start-column="24" selection-end-line="102" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/board/ajax/tables/colour_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-18.307692">
+          <caret line="28" column="16" selection-start-line="28" selection-start-column="16" selection-end-line="28" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/board/ajax/tables/payment_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="2.1935484">
+          <caret line="84" column="0" selection-start-line="84" selection-start-column="0" selection-end-line="84" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/board/includes/header.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-12.423077">
+          <caret line="37" column="32" selection-start-line="37" selection-start-column="32" selection-end-line="37" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mis/includes/phpfunctions.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.576923">
+          <caret line="747" column="0" selection-start-line="747" selection-start-column="0" selection-end-line="747" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mis/includes/footer.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.20788531">
+          <caret line="56" column="6" selection-start-line="56" selection-start-column="6" selection-end-line="56" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/board/user.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-9.038462">
+          <caret line="1330" column="40" selection-start-line="1330" selection-start-column="40" selection-end-line="1330" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/board/signup.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="1016" column="33" selection-start-line="1016" selection-start-column="33" selection-end-line="1016" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/board/usersignup.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="1204" column="34" selection-start-line="1204" selection-start-column="34" selection-end-line="1204" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/board/includes/footer.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="225" column="0" selection-start-line="225" selection-start-column="0" selection-end-line="225" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mis/useraccounts.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="113" column="37" selection-start-line="113" selection-start-column="37" selection-end-line="113" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mis/ajax/tables/accounts_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="11" column="5" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mis/ajax/paginations/useraccounts.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="22" />
           <folding>
-            <marker date="1625295297459" expanded="true" signature="317:373" placeholder="select * fro..." />
+            <marker date="1583288959247" expanded="true" signature="-1:-1" placeholder="select count..account_login..." />
+            <marker date="1583288959247" expanded="true" signature="-1:-1" placeholder="select count..account_login..." />
+            <marker date="1583288959247" expanded="true" signature="-1:-1" placeholder="select * fro..account_login..." />
+            <marker date="1583288959247" expanded="true" signature="-1:-1" placeholder="select count..account_login..." />
+            <marker date="1583288959247" expanded="true" signature="-1:-1" placeholder="select * fro..account_login..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/board/includes/phpfunctions.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-17.0">
+          <caret line="100" column="0" selection-start-line="100" selection-start-column="0" selection-end-line="100" selection-end-column="0" />
+          <folding>
+            <marker date="1625326966976" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1625326966976" expanded="true" signature="-1:-1" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/board/ajax/tables/board_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-9.038462">
+          <caret line="93" column="11" selection-start-line="93" selection-start-column="11" selection-end-line="93" selection-end-column="11" />
+          <folding>
+            <element signature="e#3072#5535#0#HTML" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mis/mis_permanent.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.1538463">
+          <caret line="213" column="19" selection-start-line="213" selection-start-column="19" selection-end-line="213" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mis/approvalmis_permanent.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-14.269231">
+          <caret line="676" column="79" selection-start-line="676" selection-start-column="24" selection-end-line="676" selection-end-column="79" />
+          <folding>
+            <marker date="1606128458167" expanded="true" signature="-1:-1" placeholder="select * fro..provisional..." />
+            <marker date="1606128458167" expanded="true" signature="-1:-1" placeholder="select * fro..mis_users..." />
+            <marker date="1606128458167" expanded="true" signature="-1:-1" placeholder="select * fro..mis_users..." />
+            <marker date="1606128458167" expanded="true" signature="-1:-1" placeholder="select * fro..applicant_images..." />
+            <marker date="1606128458167" expanded="true" signature="-1:-1" placeholder="select * fro..professions..." />
+            <marker date="1606128458167" expanded="true" signature="-1:-1" placeholder="select * fro..applicant_identification_docs..." />
+            <marker date="1606128458167" expanded="true" signature="-1:-1" placeholder="select * fro..applicant_identification..." />
+            <marker date="1606128458167" expanded="true" signature="-1:-1" placeholder="select * fro..applicant_institutions..." />
+            <marker date="1606128458167" expanded="true" signature="-1:-1" placeholder="select * fro..applicant_certificates..." />
+            <marker date="1606128458167" expanded="true" signature="-1:-1" placeholder="select * fro..applicant_references..." />
+            <marker date="1606128458167" expanded="true" signature="-1:-1" placeholder="select * fro..applicant_experience..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/board/loginaccounts.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.1153846">
+          <caret line="167" column="40" selection-start-line="167" selection-start-column="32" selection-end-line="167" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/board/ajax/queries/delete_board.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.5384617">
+          <caret line="10" column="2" selection-start-line="10" selection-start-column="2" selection-end-line="10" selection-end-column="2" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/board/ajax/queries/approve_signup.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.5384617">
+          <caret line="10" column="2" selection-start-line="10" selection-start-column="2" selection-end-line="10" selection-end-column="2" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/board/boardconfig.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-9.153846">
+          <caret line="106" column="0" selection-start-line="106" selection-start-column="0" selection-end-line="106" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/board/colourconfig.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.1153846">
+          <caret line="80" column="16" selection-start-line="80" selection-start-column="16" selection-end-line="80" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/board/ajax/forms/addcolour_form.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.6153846">
+          <caret line="19" column="32" selection-start-line="19" selection-start-column="32" selection-end-line="19" selection-end-column="32" />
+          <folding>
+            <marker date="1624757262073" expanded="true" signature="739:802" placeholder="select * fro..boards..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/board/ajax/forms/addmemberadmin_form.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-24.961538">
+          <caret line="70" column="55" selection-start-line="70" selection-start-column="55" selection-end-line="70" selection-end-column="55" />
+          <folding>
+            <element signature="n#style#0;n#select#0;n#div#1;n#div#0;n#form#0;n#!!top" expanded="true" />
+            <marker date="1625328864959" expanded="true" signature="453:513" placeholder="select * fro..users..." />
+            <marker date="1625328864959" expanded="true" signature="931:1000" placeholder="..." />
+            <marker date="1625328864959" expanded="true" signature="1213:1305" placeholder="..." />
+            <marker date="1625328864959" expanded="true" signature="1234:1305" placeholder="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/board/memberadmins.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="20.807692">
+          <caret line="61" column="77" selection-start-line="61" selection-start-column="77" selection-end-line="61" selection-end-column="77" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/board/ajax/tables/loginacc_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-13.730769">
+          <caret line="26" column="32" selection-start-line="26" selection-start-column="32" selection-end-line="26" selection-end-column="32" />
+          <folding>
+            <marker date="1625323174582" expanded="true" signature="63:99" placeholder="select * fro..users..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/board/ajax/tables/memberadmin_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.5384617">
+          <caret line="52" column="50" selection-start-line="52" selection-start-column="37" selection-end-line="52" selection-end-column="50" />
+          <folding>
+            <marker date="1625329272820" expanded="true" signature="63:99" placeholder="select * fro..users..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/board/ajax/paginations/useraccounts.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-9.807693">
+          <caret line="98" column="45" selection-start-line="98" selection-start-column="45" selection-end-line="98" selection-end-column="45" />
+          <folding>
+            <marker date="1625323118411" expanded="true" signature="1108:1146" placeholder="select count..users..." />
+            <marker date="1625323118411" expanded="true" signature="1305:1377" placeholder="select count..users..." />
+            <marker date="1625323118411" expanded="true" signature="1521:1636" placeholder="select * fro..users..." />
+            <marker date="1625323118411" expanded="true" signature="2057:2151" placeholder="select count..users..." />
+            <marker date="1625323118411" expanded="true" signature="2828:2922" placeholder="select count..users..." />
+            <marker date="1625323118411" expanded="true" signature="3066:3202" placeholder="select * fro..users..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/board/ajax/paginations/adminaccounts.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5483871">
+          <caret line="36" column="77" selection-start-line="36" selection-start-column="77" selection-end-line="36" selection-end-column="77" />
+          <folding>
+            <marker date="1625329272824" expanded="true" signature="1108:1167" placeholder="select count..users..." />
+            <marker date="1625329272824" expanded="true" signature="1326:1398" placeholder="select count..users..." />
+            <marker date="1625329272824" expanded="true" signature="1542:1657" placeholder="select * fro..users..." />
+            <marker date="1625329272824" expanded="true" signature="1858:1919" placeholder="select count..users..." />
+            <marker date="1625329272824" expanded="true" signature="2078:2172" placeholder="select count..users..." />
+            <marker date="1625329272824" expanded="true" signature="2316:2452" placeholder="select * fro..users..." />
+            <marker date="1625329272824" expanded="true" signature="2629:2690" placeholder="select count..users..." />
+            <marker date="1625329272824" expanded="true" signature="2849:2943" placeholder="select count..users..." />
+            <marker date="1625329272824" expanded="true" signature="3087:3223" placeholder="select * fro..users..." />
           </folding>
         </state>
       </provider>

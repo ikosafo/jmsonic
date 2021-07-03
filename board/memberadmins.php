@@ -19,7 +19,7 @@
                             <!--begin::Heading-->
                             <div class="d-flex flex-column">
                                 <!--begin::Title-->
-                                <h2 class="text-white font-weight-bold my-2 mr-5">User / Login Accounts</h2>
+                                <h2 class="text-white font-weight-bold my-2 mr-5">Administrators</h2>
                                 <!--end::Title-->
 
                             </div>
@@ -35,36 +35,34 @@
                     <!--begin::Container-->
                     <div class="container">
                         <div class="row">
-
-                            <div class="col-md-12">
+                            <div class="col-md-5">
+                                <!--begin::Card-->
+                                <div class="card card-custom gutter-b example example-compact">
+                                    <div class="card-header">
+                                        <h3 class="card-title">Add Admin</h3>
+                                    </div>
+                                    <!--begin::Form-->
+                                    <div id="memberadminform_div"></div>
+                                    <!--end::Form-->
+                                </div>
+                                <!--end::Card-->
+                            </div>
+                            <div class="col-md-7">
 
                                 <!--begin::Card-->
                                 <div class="card card-custom gutter-b">
                                     <div class="card-header flex-wrap py-3">
                                         <div class="card-title">
-                                            <h3 class="card-label">User account details
-                                                <span class="d-block text-muted pt-2 font-size-sm">View, &amp; Approve Applications</span></h3>
+                                            <h3 class="card-label">Administrators
+                                                <span class="d-block text-muted pt-2 font-size-sm">View &amp; Remove Administrators</span></h3>
                                         </div>
 
                                     </div>
                                     <div class="card-body">
-                                        <div class="form-group row">
-                                            <label class="col-form-label text-right col-lg-3 col-sm-12">Select Status</label>
-                                            <div class=" col-lg-4 col-md-9 col-sm-12">
-                                                <select class="form-control kt-selectpicker" id="selectstatus" name="param">
-                                                    <option value="All">All</option>
-                                                    <option value="Pending">Pending</option>
-                                                    <option value="Approved">Approved</option>
-                                                </select>
-
-                                            </div>
-
-                                        </div>
-                                        <div id="membertable_div"></div>
+                                        <div id="memberadmintable_div"></div>
                                     </div>
                                 </div>
                                 <!--end::Card-->
-
 
                             </div>
                         </div>
@@ -85,12 +83,8 @@
 <?php require('includes/footer.php') ?>
 
 <script>
-
-    $("#selectstatus").selectpicker();
-
     $.ajax({
-        type: "POST",
-        url: "ajax/tables/loginacc_table.php",
+        url: "ajax/forms/addmemberadmin_form.php",
         beforeSend: function () {
             KTApp.blockPage({
                 overlayColor: "#000000",
@@ -99,9 +93,8 @@
                 message: "Please wait..."
             })
         },
-        data: {selectstatus: 'All'},
         success: function (text) {
-            $('#membertable_div').html(text);
+            $('#memberadminform_div').html(text);
         },
         error: function (xhr, ajaxOptions, thrownError) {
             alert(xhr.status + " " + thrownError);
@@ -112,40 +105,35 @@
 
     });
 
-    $("#selectstatus").change(function () {
-        var selectstatus = $("#selectstatus").val();
-        //alert(selectstatus);
-        $.ajax({
-            type: "POST",
-            url: "ajax/tables/loginacc_table.php",
-            beforeSend: function () {
-                KTApp.blockPage({
-                    overlayColor: "#000000",
-                    type: "v2",
-                    state: "success",
-                    message: "Please wait..."
-                })
-            },
-            data: {selectstatus: selectstatus},
-            success: function (text) {
-                $('#membertable_div').html(text);
-            },
-            error: function (xhr, ajaxOptions, thrownError) {
-                alert(xhr.status + " " + thrownError);
-            },
-            complete: function () {
-                KTApp.unblockPage();
-            },
+    $.ajax({
+        url: "ajax/tables/memberadmin_table.php",
+        beforeSend: function () {
+            KTApp.blockPage({
+                overlayColor: "#000000",
+                type: "v2",
+                state: "success",
+                message: "Please wait..."
+            })
+        },
+        success: function (text) {
+            $('#memberadmintable_div').html(text);
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            alert(xhr.status + " " + thrownError);
+        },
+        complete: function () {
+            KTApp.unblockPage();
+        },
 
-        });
     });
 
-    $(document).on('click', '.approvesignupbtn', function() {
+
+    $(document).on('click', '.removeadminbtn', function() {
         var id_index = $(this).attr('i_index');
         //alert(id_index);
 
         $.confirm({
-            title: 'Do you want to approve?',
+            title: 'Do you want to remove this administrator?',
             content: 'This action is not reversible',
             buttons: {
                 no: {
@@ -154,22 +142,22 @@
                     backdrop: 'static',
                     keyboard: false,
                     action: function () {
-                        $.alert('Member was not approved');
+                        $.alert('Admin was not removed');
                     }
                 },
                 yes: {
-                    text: 'Yes, Approve!',
+                    text: 'Yes, Remove!',
                     btnClass: 'btn-blue',
                     action: function () {
                         $.ajax({
                             type: "POST",
-                            url: "ajax/queries/approve_signup.php",
+                            url: "ajax/queries/remove_administrator.php",
                             data: {
                                 id_index: id_index
                             },
                             dataType: "html",
                             success: function (text) {
-                                $("#accounttable").DataTable().ajax.reload(null, false );
+                                $("#admintable").DataTable().ajax.reload(null, false );
                             },
                             complete: function () {
                             },
