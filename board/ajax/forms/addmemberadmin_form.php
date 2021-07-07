@@ -11,7 +11,8 @@ $random = rand(1,10000).date("Y");
             <select id="selectuser" style="width: 100%">
                 <option value="">Select User</option>
                 <?php
-                $selectuser = $mysqli->query("select * from users where userstatus = '5' ORDER BY fullname");
+                $selectuser = $mysqli->query("SELECT * FROM users WHERE userstatus = '5' 
+                AND (roleid = '3' OR roleid = '4' OR roleid = '5') ORDER BY fullname");
                 while ($resuser = $selectuser->fetch_assoc()) { ?>
                     <option value="<?php echo $resuser['userid'] ?>"><?php echo $resuser['fullname'].' - '.$resuser['username'] ?></option>
                 <?php }

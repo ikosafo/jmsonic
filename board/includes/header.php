@@ -96,8 +96,9 @@ class="quick-panel-right demo-panel-right offcanvas-right header-fixed subheader
                         <!--begin::Header Logo-->
                         <div class="header-logo">
                             <a href="/board">
-                                <img alt="Logo" src="assets/images/logo_tr.png" class="logo-default max-h-130px" />
-                                <img alt="Logo" src="assets/images/logo.png" class="logo-sticky max-h-40px" />
+                                <img alt="Logo" src="assets/images/jmsonic.png" 
+                                class="logo-default max-h-60px" style="border-radius:50%" />
+                                <img alt="Logo" src="assets/images/logo3.png" class="logo-sticky max-h-60px" />
                             </a>
                         </div>
                         <!--end::Header Logo-->
@@ -202,6 +203,7 @@ class="quick-panel-right demo-panel-right offcanvas-right header-fixed subheader
                                     <li class="menu-item menu-item-submenu menu-item-rel  <?php echo(
                                     $_SERVER['PHP_SELF'] == "/board/loginaccounts.php" ||
                                     $_SERVER['PHP_SELF'] == "/board/memberadmins.php" ||
+                                    $_SERVER['PHP_SELF'] == "/board/addmembers.php" ||
                                     $_SERVER['PHP_SELF'] == "/board/searchmember.php"
                                         ? "menu-item-here" : ""); ?>" data-menu-toggle="click" aria-haspopup="true">
                                         <a href="javascript:;" class="menu-link menu-toggle">
@@ -231,6 +233,16 @@ class="quick-panel-right demo-panel-right offcanvas-right header-fixed subheader
                                                             <span></span>
                                                         </i>
                                                         <span class="menu-text">Administrators</span>
+                                                    </a>
+                                                </li>
+                                                <li class="menu-item <?php echo(
+                                                $_SERVER['PHP_SELF'] == "/board/addmembers.php"
+                                                    ? "menu-item-active" : ""); ?>" aria-haspopup="true">
+                                                    <a href="addmembers" class="menu-link">
+                                                        <i class="menu-bullet menu-bullet-dot">
+                                                            <span></span>
+                                                        </i>
+                                                        <span class="menu-text">Add Members</span>
                                                     </a>
                                                 </li>
                                                 <li class="menu-item <?php echo(
