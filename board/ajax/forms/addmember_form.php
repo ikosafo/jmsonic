@@ -121,7 +121,8 @@ $random = rand(1,10000).date("Y");
         var selectboard = $("#selectboard").val();
         var selectmember = $("#selectmember").val();
         var selectcolour = $("#selectcolour").val();
-        //alert(selectmember);
+        var countmember = $("#selectmember :selected").length;
+        //alert(count);
 
         var error = '';
         if (selectboard == "") {
@@ -152,11 +153,12 @@ $random = rand(1,10000).date("Y");
                 data: {
                     selectboard: selectboard,
                     selectmember: selectmember,
-                    selectcolour: selectcolour
+                    selectcolour: selectcolour,
+                    countmember:countmember
                 },
                 success: function (text) {
                     alert(text)
-                    if (text == 1) {
+                    if (text == 1 || text == 3) {
                         $.ajax({
                             url: "ajax/forms/addmember_form.php",
                             beforeSend: function () {
