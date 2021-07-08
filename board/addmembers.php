@@ -121,7 +121,6 @@
         complete: function () {
             KTApp.unblockPage();
         },
-
     });
 </script>
 

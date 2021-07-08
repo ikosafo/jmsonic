@@ -157,7 +157,7 @@ $random = rand(1,10000).date("Y");
                     countmember:countmember
                 },
                 success: function (text) {
-                    alert(text)
+                    //alert(text)
                     if (text == 1 || text == 3) {
                         $.ajax({
                             url: "ajax/forms/addmember_form.php",
@@ -199,6 +199,7 @@ $random = rand(1,10000).date("Y");
                             complete: function () {
                                 KTApp.unblockPage();
                             },
+
                         });
                     }
                     else  if (text == 2){
