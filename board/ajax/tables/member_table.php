@@ -8,8 +8,8 @@ $query = $mysqli->query("select DISTINCT(boardid) as boardids from colourconfig"
     }
 </style>
 
-<input type="text" id="colour_search" class="form-control"
-       placeholder="Search Board or Colour">
+<input type="text" id="member_search" class="form-control"
+       placeholder="Search...">
 
 <!--begin: Datatable-->
 <table class="table table-separate table-head-custom table-checkable" id="colourtable">
@@ -58,7 +58,7 @@ $query = $mysqli->query("select DISTINCT(boardid) as boardids from colourconfig"
                                 $getmemberdetails = $mysqli->query("select * from previewboard where boardid = '$boardid' 
                                                                     and `status` != '2' and colourid = '$colourid'");
                                 if (mysqli_num_rows($getmemberdetails) == '0') {
-                                    echo "<small>No member found</small>";
+                                    echo "<i><small>No member found</small></i>";
                                 }  
                                 else {
                                     while ($resmemberdetails = $getmemberdetails->fetch_assoc()) { ?>
@@ -122,7 +122,8 @@ $query = $mysqli->query("select DISTINCT(boardid) as boardids from colourconfig"
 																</li>
 																<li class="navi-separator mb-3 opacity-70"></li>
                                                                 <li class="navi-item">
-																	<a href="#" class="navi-link">
+                                                                <a href="#" class="navi-link viewmemberdetails"
+                                                                    i_index="<?php echo $previewid; ?>">
 																		<span class="navi-icon">
 																			<i class="navi-icon flaticon-eye"></i>
 																		</span>
@@ -130,16 +131,7 @@ $query = $mysqli->query("select DISTINCT(boardid) as boardids from colourconfig"
 																		
 																	</a>
 																</li>
-                                                                <li class="navi-item">
-																	<a href="#" class="navi-link editmember" i_index="<?php echo $userid; ?>">
-																		<span class="navi-icon">
-																			<i class="navi-icon flaticon-edit"></i>
-																		</span>
-																		<span class="navi-text">Edit Details</span>
-																		
-																	</a>
-																</li>
-																
+                                                               
 																<li class="navi-item">
                                                                 <a href="#" class="navi-link suspendmember"
                                                                     i_index="<?php echo $previewid; ?>">
@@ -206,15 +198,10 @@ $query = $mysqli->query("select DISTINCT(boardid) as boardids from colourconfig"
         "bLengthChange": false
     });
 
-    $('#colour_search').keyup(function () {
+    $('#member_search').keyup(function () {
         oTable.search($(this).val()).draw();
     });
 
-    $(document).off('click', '.editmember').on('click', '.editmember', function () {
-        var theindex = $(this).attr('i_index');
-        alert(theindex)
-    
-    });
 
     $(document).off('click', '.deletemember').on('click', '.deletemember', function () {
         var theindex = $(this).attr('i_index');
@@ -340,5 +327,36 @@ $query = $mysqli->query("select DISTINCT(boardid) as boardids from colourconfig"
                 }
             }
         });
+    });
+
+    $(document).off('click', '.viewmemberdetails').on('click', '.viewmemberdetails', function () {
+        var theindex = $(this).attr('i_index');
+        //alert(theindex);
+
+        $.ajax({
+                type: "POST",
+                url: "ajax/forms/viewmemberdetails.php",
+                beforeSend: function () {
+                    KTApp.blockPage({
+                        overlayColor: "#000000",
+                        type: "v2",
+                        state: "success",
+                        message: "Please wait..."
+                    })
+                },
+                data: {
+                    theindex: theindex
+                },
+                success: function (text) {
+                    $('#viewmemberdiv').html(text);
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    alert(xhr.status + " " + thrownError);
+                },
+                complete: function () {
+                    KTApp.unblockPage();
+                },
+            });
+
     });
 </script>

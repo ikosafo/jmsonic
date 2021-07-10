@@ -1,9 +1,17 @@
 <?php require('../config.php');
 $user_id = $_SESSION['userid'];
+$roleid = $_SESSION['roleid'];
 
 if (!isset($_SESSION['username'])) {
     header("location:login");
 }
+if ($roleid == '2' || $roleid == '1') {
+    echo "";
+}
+else {
+    header("location:login");
+}
+
 
 ?>
 <!DOCTYPE html>
@@ -256,6 +264,44 @@ class="quick-panel-right demo-panel-right offcanvas-right header-fixed subheader
                                                     </a>
                                                 </li>
 
+                                            </ul>
+                                        </div>
+                                    </li>
+
+
+                                    <li class="menu-item menu-item-submenu menu-item-rel  <?php echo(
+                                    $_SERVER['PHP_SELF'] == "/board/announcements.php" ||
+                                    $_SERVER['PHP_SELF'] == "/board/chat.php"
+                                        ? "menu-item-here" : ""); ?>" data-menu-toggle="click" aria-haspopup="true">
+                                        <a href="javascript:;" class="menu-link menu-toggle">
+                                            <span class="menu-text">Messages</span>
+                                            <span class="menu-desc"></span>
+                                            <i class="menu-arrow"></i>
+                                        </a>
+                                        <div class="menu-submenu menu-submenu-classic menu-submenu-left">
+                                            <ul class="menu-subnav">
+                                                <li class="menu-item
+                                                <?php echo(
+                                                $_SERVER['PHP_SELF'] == "/board/announcements.php"
+                                                    ? "menu-item-active" : ""); ?>"
+                                                    aria-haspopup="true">
+                                                    <a href="announcements" class="menu-link">
+                                                        <i class="menu-bullet menu-bullet-dot">
+                                                            <span></span>
+                                                        </i>
+                                                        <span class="menu-text">Announcements</span>
+                                                    </a>
+                                                </li>
+                                                <li class="menu-item <?php echo(
+                                                $_SERVER['PHP_SELF'] == "/board/chat.php"
+                                                    ? "menu-item-active" : ""); ?>" aria-haspopup="true">
+                                                    <a href="chat" class="menu-link">
+                                                        <i class="menu-bullet menu-bullet-dot">
+                                                            <span></span>
+                                                        </i>
+                                                        <span class="menu-text">Chat</span>
+                                                    </a>
+                                                </li>
                                             </ul>
                                         </div>
                                     </li>

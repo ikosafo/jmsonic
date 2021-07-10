@@ -1,4 +1,7 @@
-<?php require('includes/header.php'); ?>
+<?php require('includes/header.php');
+
+?>
+
 
 <div class="d-flex flex-column flex-root">
     <!--begin::Page-->
@@ -16,7 +19,7 @@
                             <!--begin::Heading-->
                             <div class="d-flex flex-column">
                                 <!--begin::Title-->
-                                <h2 class="text-white font-weight-bold my-2 mr-5">Add Members</h2>
+                                <h2 class="text-white font-weight-bold my-2 mr-5">Announcements</h2>
                                 <!--end::Title-->
 
                             </div>
@@ -31,32 +34,32 @@
                 <div class="d-flex flex-column-fluid">
                     <!--begin::Container-->
                     <div class="container">
-                        <div class="row" id="viewmemberdiv">
-                            <div class="col-md-4">
+                        <div class="row">
+                            <div class="col-md-5">
                                 <!--begin::Card-->
                                 <div class="card card-custom gutter-b example example-compact">
                                     <div class="card-header">
-                                        <h3 class="card-title">Assign Members to Board</h3>
+                                        <h3 class="card-title">Add Message</h3>
                                     </div>
                                     <!--begin::Form-->
-                                    <div id="memberform_div"></div>
+                                    <div id="messageform_div"></div>
                                     <!--end::Form-->
                                 </div>
                                 <!--end::Card-->
                             </div>
-                            <div class="col-md-8">
+                            <div class="col-md-7">
 
                                 <!--begin::Card-->
                                 <div class="card card-custom gutter-b">
                                     <div class="card-header flex-wrap py-3">
                                         <div class="card-title">
-                                            <h3 class="card-label">Members
-                                                <span class="d-block text-muted pt-2 font-size-sm">View &amp; Delete members</span></h3>
+                                            <h3 class="card-label">Announcements
+                                                <span class="d-block text-muted pt-2 font-size-sm">View, Edit &amp; Delete messages</span></h3>
                                         </div>
 
                                     </div>
                                     <div class="card-body">
-                                        <div id="membertable_div"></div>
+                                       <div id="messagetable_div"></div>
                                     </div>
                                 </div>
                                 <!--end::Card-->
@@ -81,7 +84,7 @@
 
 <script>
     $.ajax({
-        url: "ajax/forms/addmember_form.php",
+        url: "ajax/forms/addmessage_form.php",
         beforeSend: function () {
             KTApp.blockPage({
                 overlayColor: "#000000",
@@ -91,7 +94,7 @@
             })
         },
         success: function (text) {
-            $('#memberform_div').html(text);
+            $('#messageform_div').html(text);
         },
         error: function (xhr, ajaxOptions, thrownError) {
             alert(xhr.status + " " + thrownError);
@@ -103,7 +106,7 @@
     });
 
     $.ajax({
-        url: "ajax/tables/member_table.php",
+        url: "ajax/tables/announcement_table.php",
         beforeSend: function () {
             KTApp.blockPage({
                 overlayColor: "#000000",
@@ -113,7 +116,7 @@
             })
         },
         success: function (text) {
-            $('#membertable_div').html(text);
+            $('#messagetable_div').html(text);
         },
         error: function (xhr, ajaxOptions, thrownError) {
             alert(xhr.status + " " + thrownError);
@@ -121,7 +124,6 @@
         complete: function () {
             KTApp.unblockPage();
         },
+
     });
 </script>
-
-

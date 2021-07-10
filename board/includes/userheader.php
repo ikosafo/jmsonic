@@ -1,9 +1,18 @@
 <?php require('../config.php');
 $user_id = $_SESSION['userid'];
+echo $roleid = $_SESSION['roleid'];
 
 if (!isset($_SESSION['username'])) {
     header("location:login");
 }
+if ($roleid == '3') {
+    echo "";
+}
+else {
+    header("location:login");
+}
+
+
 
 ?>
 <!DOCTYPE html>
