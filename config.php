@@ -1,5 +1,5 @@
 <?php
-$mysqli= new mysqli('localhost:3308','root','root','jmsonic');
+$mysqli= new mysqli('localhost:3308','root','','jmsonic');
 if($mysqli->connect_errno){
     echo"cannot connect MYSQLI error no{$mysqli->connect_errno}:{$mysqli->connect_errno}";
     exit();

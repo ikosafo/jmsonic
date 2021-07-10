@@ -2,7 +2,7 @@
 
 $host = "localhost:3308";
 $user = "root";
-$password = "root";
+$password = "";
 $dbname = "jmsonic";
 
 /*$host = "localhost:3306";

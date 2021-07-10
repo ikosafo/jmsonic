@@ -17,7 +17,6 @@ $query = $mysqli->query("select DISTINCT(boardid) as boardids from colourconfig"
     <tr>
         <th>Board Name</th>
         <th>Member Details</th>
-       
     </tr>
     </thead>
     <tbody>
@@ -41,10 +40,14 @@ $query = $mysqli->query("select DISTINCT(boardid) as boardids from colourconfig"
                     while ($rescolourdetails = $getcolourdetails->fetch_assoc()) { ?>
 
                         <tr>
-                            <td>
-                            <span style="text-transform:uppercase">
+                            <?php
+                            $colourid = $rescolourdetails['colourid'];
+                            $colourpriority = $rescolourdetails['colourpriority'];
+                            $colourcode = $rescolourdetails['colourcode'];
+                             ?>
+                            <td style="background:<?php echo $colourcode ?>">
+                            <span style="text-transform:uppercase;;text-align:center;margin-left:10px">
                             <?php 
-                                $colourid = $rescolourdetails['colourid'];
                                 echo $rescolourdetails['colourname'] ?></span>
                             </td>
                             <td>
@@ -52,8 +55,8 @@ $query = $mysqli->query("select DISTINCT(boardid) as boardids from colourconfig"
                                 
                                 <tbody>
                                 <?php
-                                $getmemberdetails = $mysqli->query("select * from previewboard where boardid = '$boardid' and 
-                                                                    `status` = '4' and colourid = '$colourid'");
+                                $getmemberdetails = $mysqli->query("select * from previewboard where boardid = '$boardid' 
+                                                                    and `status` != '2' and colourid = '$colourid'");
                                 if (mysqli_num_rows($getmemberdetails) == '0') {
                                     echo "<small>No member found</small>";
                                 }  
@@ -64,12 +67,46 @@ $query = $mysqli->query("select DISTINCT(boardid) as boardids from colourconfig"
                                             <td>
                                                 <?php
                                                 $userid = $resmemberdetails['userid'];
+                                                $previewid = $resmemberdetails['previd'];
+                                                $payment = $resmemberdetails['payment'];
+                                                $status = $resmemberdetails['status'];
                                                 $getmem = $mysqli->query("select * from users where userid = '$userid'");
                                                 $resmem = $getmem->fetch_assoc();
                                                 echo $resmem['fullname']
                                                 ?>
                                             </td>
                                             <td> <b><?php echo $resmem['username'] ?></b></td>
+                                            <td>
+                                                <?php
+                                                if ($colourpriority == 'Lowest' && $payment == '1') {
+                                                    echo "<span class='label label-lg label-light-success label-inline'>Paid</span><br/>";
+                                                } else if ($colourpriority == 'Lowest' && $payment == '0') {
+                                                    echo "<span class='label label-lg label-light-danger label-inline'>Not paid</span><br/>";
+                                                }
+                                                else {
+                                                    echo "<span class='label label-lg label-light-primary label-inline'>N/A</span><br/>";
+                                                }
+                                                ?>
+
+                                                 <?php
+                                                if ($status == '1') {
+                                                    echo "<span class='label label-sm label-default label-inline'>Pending Approval</span>";
+                                                }
+                                                else if ($status == '2') {
+                                                    echo "<span class='label label-sm label-danger label-inline'>Removed</span>";
+                                                }
+                                                else if ($status == '3') {
+                                                    echo "<span class='label label-sm label-warning label-inline'>Suspended</span>";
+                                                } 
+                                                else if ($status == '4') {
+                                                    echo "<span class='label label-sm label-success label-inline'>Active</span>";
+                                                }
+                                                ?> 
+                                                
+                                                
+                                                
+                                            </td>
+                                           
                                             <td>
                                             <div class="card-toolbar">
 													<div class="dropdown dropdown-inline">
@@ -85,15 +122,6 @@ $query = $mysqli->query("select DISTINCT(boardid) as boardids from colourconfig"
 																</li>
 																<li class="navi-separator mb-3 opacity-70"></li>
                                                                 <li class="navi-item">
-																	<a href="#" class="navi-link editmember" i_index="<?php echo $userid; ?>">
-																		<span class="navi-icon">
-																			<i class="navi-icon flaticon-edit"></i>
-																		</span>
-																		<span class="navi-text">Edit Details</span>
-																		
-																	</a>
-																</li>
-                                                                <li class="navi-item">
 																	<a href="#" class="navi-link">
 																		<span class="navi-icon">
 																			<i class="navi-icon flaticon-eye"></i>
@@ -102,28 +130,32 @@ $query = $mysqli->query("select DISTINCT(boardid) as boardids from colourconfig"
 																		
 																	</a>
 																</li>
-																<li class="navi-item">
-																	<a href="#" class="navi-link">
+                                                                <li class="navi-item">
+																	<a href="#" class="navi-link editmember" i_index="<?php echo $userid; ?>">
 																		<span class="navi-icon">
-																			<i class="flaticon-cancel"></i>
+																			<i class="navi-icon flaticon-edit"></i>
 																		</span>
-																		<span class="navi-text">Remove</span>
+																		<span class="navi-text">Edit Details</span>
+																		
 																	</a>
 																</li>
+																
 																<li class="navi-item">
-																	<a href="#" class="navi-link">
+                                                                <a href="#" class="navi-link suspendmember"
+                                                                    i_index="<?php echo $previewid; ?>">
 																		<span class="navi-icon">
 																			<i class="flaticon-warning-sign"></i>
 																		</span>
 																		<span class="navi-text">Suspend</span>
 																	</a>
 																</li>
-																<li class="navi-item">
-																	<a href="#" class="navi-link">
+                                                                <li class="navi-item">
+																	<a href="#" class="navi-link deletemember"
+                                                                    i_index="<?php echo $previewid; ?>">
 																		<span class="navi-icon">
-																			<i class="navi-icon flaticon2-delete"></i>
+																			<i class="flaticon-cancel"></i>
 																		</span>
-																		<span class="navi-text">Delete Permanently</span>
+																		<span class="navi-text">Remove</span>
 																	</a>
 																</li>
 																
@@ -157,6 +189,8 @@ $query = $mysqli->query("select DISTINCT(boardid) as boardids from colourconfig"
                 </table>
             </td>
            
+                
+           
         </tr>
         <?php
     }
@@ -182,11 +216,11 @@ $query = $mysqli->query("select DISTINCT(boardid) as boardids from colourconfig"
     
     });
 
-    $(document).off('click', '.delete_colour').on('click', '.delete_colour', function () {
+    $(document).off('click', '.deletemember').on('click', '.deletemember', function () {
         var theindex = $(this).attr('i_index');
         //alert(theindex)
         $.confirm({
-            title: 'Delete Colour!',
+            title: 'Remove Member!',
             content: 'Are you sure to continue?',
             buttons: {
                 no: {
@@ -204,7 +238,7 @@ $query = $mysqli->query("select DISTINCT(boardid) as boardids from colourconfig"
                     action: function () {
                         $.ajax({
                             type: "POST",
-                            url: "ajax/queries/delete_colour.php",
+                            url: "ajax/queries/delete_member.php",
                             data: {
                                 i_index: theindex
                             },
@@ -212,7 +246,7 @@ $query = $mysqli->query("select DISTINCT(boardid) as boardids from colourconfig"
                             success: function (text) {
                                 //alert(text);
                                 $.ajax({
-                                    url: "ajax/tables/colour_table.php",
+                                    url: "ajax/tables/member_table.php",
                                     beforeSend: function () {
                                         KTApp.blockPage({
                                             overlayColor: "#000000",
@@ -222,7 +256,70 @@ $query = $mysqli->query("select DISTINCT(boardid) as boardids from colourconfig"
                                         })
                                     },
                                     success: function (text) {
-                                        $('#colourtable_div').html(text);
+                                        $('#membertable_div').html(text);
+                                    },
+                                    error: function (xhr, ajaxOptions, thrownError) {
+                                        alert(xhr.status + " " + thrownError);
+                                    },
+                                    complete: function () {
+                                        KTApp.unblockPage();
+                                    },
+
+                                });
+                            },
+                            complete: function () {
+                            },
+                            error: function (xhr, ajaxOptions, thrownError) {
+                                alert(xhr.status + " " + thrownError);
+                            }
+                        });
+                    }
+                }
+            }
+        });
+    });
+
+    $(document).off('click', '.suspendmember').on('click', '.suspendmember', function () {
+        var theindex = $(this).attr('i_index');
+        //alert(theindex)
+        $.confirm({
+            title: 'Suspend Member!',
+            content: 'Are you sure to continue?',
+            buttons: {
+                no: {
+                    text: 'No',
+                    keys: ['enter', 'shift'],
+                    backdrop: 'static',
+                    keyboard: false,
+                    action: function () {
+                        $.alert('Data is safe');
+                    }
+                },
+                yes: {
+                    text: 'Yes, Delete it!',
+                    btnClass: 'btn-blue',
+                    action: function () {
+                        $.ajax({
+                            type: "POST",
+                            url: "ajax/queries/suspend_member.php",
+                            data: {
+                                i_index: theindex
+                            },
+                            dataType: "html",
+                            success: function (text) {
+                                //alert(text);
+                                $.ajax({
+                                    url: "ajax/tables/member_table.php",
+                                    beforeSend: function () {
+                                        KTApp.blockPage({
+                                            overlayColor: "#000000",
+                                            type: "v2",
+                                            state: "success",
+                                            message: "Please wait..."
+                                        })
+                                    },
+                                    success: function (text) {
+                                        $('#membertable_div').html(text);
                                     },
                                     error: function (xhr, ajaxOptions, thrownError) {
                                         alert(xhr.status + " " + thrownError);

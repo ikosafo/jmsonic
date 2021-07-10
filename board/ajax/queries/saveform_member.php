@@ -11,7 +11,7 @@ $resdetails = $getdetails->fetch_assoc();
 $actualnumber = $resdetails['numberassign'];
 
 $countnumber = mysqli_num_rows($mysqli->query("select * from previewboard where colourid = '$selectcolour' 
-                                         AND boardid = '$selectboard'"));
+                                         AND boardid = '$selectboard' AND status = '4'"));
 
 
 //Check if number of members exceeds expectec
