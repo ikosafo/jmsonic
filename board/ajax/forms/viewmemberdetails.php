@@ -151,15 +151,22 @@ $resuserdetails = $getuserdetails->fetch_assoc();
 													<h3 class="card-label text-danger">Important Notice</h3>
 												</div>
 												<div class="card-toolbar">
-													<span class="label font-weight-bold label label-inline label-light-danger">Now</span>
+													<span class="label font-weight-bold label label-inline label-light-danger">
+														<?php
+														$getannouncement = $mysqli->query("select * from announcements ORDER BY id DESC limit 1");
+														$resannoucement = $getannouncement->fetch_assoc();
+														echo time_elapsed_string($resannoucement['periodsent'])
+														?>
+													</span>
 												</div>
 											</div>
 											<div class="card-body pt-2">
-												<p class="text-dark-50">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
-												<div class="mt-5">
-													<a href="#" class="btn btn-success btn-sm font-weight-bold mr-2">Set up</a>
-													<a href="#" class="btn btn-clean btn-sm font-weight-bold">Dismiss</a>
-												</div>
+												<p class="text-dark-50">
+													<?php
+													echo $resannoucement['announcement'];
+													?>
+												</p>
+												
 											</div>
 										</div>
 										<!--end::Card-->
@@ -168,82 +175,20 @@ $resuserdetails = $getuserdetails->fetch_assoc();
 											<!--begin::Header-->
 											<div class="card-header h-auto py-4">
 												<div class="card-title">
-													<h3 class="card-label">Company
-													<span class="d-block text-muted pt-2 font-size-sm">company profile preview</span></h3>
+													<h3 class="card-label">
+														<?php
+														$getcurrentboard = $mysqli->query("select * from previewboard 
+														                                   where userid = '$userid' ORDER BY previd DESC LIMIT 1");										   
+														$rescurrentboard = $getcurrentboard->fetch_assoc();
+														$boardid = $rescurrentboard['boardid'];
+
+														$getboardname = $mysqli->query("select * from boards where boardid = '$boardid'");
+														$resboardname = $getboardname->fetch_assoc();
+														echo $resboardname['boardname'];
+														?>
+													<span class="d-block text-muted pt-2 font-size-sm">Current Board</span></h3>
 												</div>
-												<div class="card-toolbar">
-													<a href="#" class="btn btn-default btn-sm font-weight-bold" data-toggle="dropdown">
-													<i class="flaticon2-gear"></i>Export</a>
-													<div class="dropdown-menu dropdown-menu-right p-0 m-0 dropdown-menu-md">
-														<!--begin::Navigation-->
-														<ul class="navi navi-hover py-5">
-															<li class="navi-item">
-																<a href="#" class="navi-link">
-																	<span class="navi-icon">
-																		<i class="flaticon2-drop"></i>
-																	</span>
-																	<span class="navi-text">New Group</span>
-																</a>
-															</li>
-															<li class="navi-item">
-																<a href="#" class="navi-link">
-																	<span class="navi-icon">
-																		<i class="flaticon2-list-3"></i>
-																	</span>
-																	<span class="navi-text">Contacts</span>
-																</a>
-															</li>
-															<li class="navi-item">
-																<a href="#" class="navi-link">
-																	<span class="navi-icon">
-																		<i class="flaticon2-rocket-1"></i>
-																	</span>
-																	<span class="navi-text">Groups</span>
-																	<span class="navi-link-badge">
-																		<span class="label label-light-primary label-inline font-weight-bold">new</span>
-																	</span>
-																</a>
-															</li>
-															<li class="navi-item">
-																<a href="#" class="navi-link">
-																	<span class="navi-icon">
-																		<i class="flaticon2-bell-2"></i>
-																	</span>
-																	<span class="navi-text">Calls</span>
-																</a>
-															</li>
-															<li class="navi-item">
-																<a href="#" class="navi-link">
-																	<span class="navi-icon">
-																		<i class="flaticon2-gear"></i>
-																	</span>
-																	<span class="navi-text">Settings</span>
-																</a>
-															</li>
-															<li class="navi-separator my-3"></li>
-															<li class="navi-item">
-																<a href="#" class="navi-link">
-																	<span class="navi-icon">
-																		<i class="flaticon2-magnifier-tool"></i>
-																	</span>
-																	<span class="navi-text">Help</span>
-																</a>
-															</li>
-															<li class="navi-item">
-																<a href="#" class="navi-link">
-																	<span class="navi-icon">
-																		<i class="flaticon2-bell-2"></i>
-																	</span>
-																	<span class="navi-text">Privacy</span>
-																	<span class="navi-link-badge">
-																		<span class="label label-light-danger label-rounded font-weight-bold">5</span>
-																	</span>
-																</a>
-															</li>
-														</ul>
-														<!--end::Navigation-->
-													</div>
-												</div>
+												
 											</div>
 											<!--end::Header-->
 											<!--begin::Body-->
@@ -251,61 +196,103 @@ $resuserdetails = $getuserdetails->fetch_assoc();
 												<div class="form-group row my-2">
 													<label class="col-4 col-form-label">Name:</label>
 													<div class="col-8">
-														<span class="form-control-plaintext font-weight-bolder">Loop Inc.</span>
+														<span class="form-control-plaintext font-weight-bolder">
+															<?php echo $resuserdetails['fullname'] ?>
+														</span>
+													</div>
+												</div>
+												<div class="form-group row my-2">
+													<label class="col-4 col-form-label">Board Name:</label>
+													<div class="col-8">
+														<span class="form-control-plaintext font-weight-bolder">
+															<?php echo $resuserdetails['username'] ?>
+														</span>
+													</div>
+												</div>
+												<div class="form-group row my-2">
+													<label class="col-4 col-form-label">Telephone:</label>
+													<div class="col-8">
+														<span class="form-control-plaintext font-weight-bolder">
+															<?php echo $resuserdetails['telephone'] ?>
+														</span>
+													</div>
+												</div>
+												<div class="form-group row my-2">
+													<label class="col-4 col-form-label">Email Address:</label>
+													<div class="col-8">
+														<span class="form-control-plaintext font-weight-bolder">
+															<?php echo $resuserdetails['emailaddress'] ?>
+														</span>
 													</div>
 												</div>
 												<div class="form-group row my-2">
 													<label class="col-4 col-form-label">Location:</label>
 													<div class="col-8">
-														<span class="form-control-plaintext font-weight-bolder">London, UK.</span>
-													</div>
-												</div>
-												<div class="form-group row my-2">
-													<label class="col-4 col-form-label">Revenue:</label>
-													<div class="col-8">
-														<span class="form-control-plaintext">
-														<span class="font-weight-bolder">345,000M</span>&#160;
-														<span class="label label-inline label-danger label-bold">Q4, 2019</span></span>
-													</div>
-												</div>
-												<div class="form-group row my-2">
-													<label class="col-4 col-form-label">Phone:</label>
-													<div class="col-8">
-														<span class="form-control-plaintext font-weight-bolder">+456 7890456</span>
-													</div>
-												</div>
-												<div class="form-group row my-2">
-													<label class="col-4 col-form-label">Email:</label>
-													<div class="col-8">
 														<span class="form-control-plaintext font-weight-bolder">
-															<a href="#">info@loop.com</a>
+															<?php echo $resuserdetails['location'] ?>
 														</span>
 													</div>
 												</div>
 												<div class="form-group row my-2">
-													<label class="col-4 col-form-label">Website:</label>
+													<label class="col-4 col-form-label">Next of Kin:</label>
 													<div class="col-8">
 														<span class="form-control-plaintext font-weight-bolder">
-															<a href="#">www.loop.com</a>
+															<?php echo $resuserdetails['nextofkin'] ?>
 														</span>
 													</div>
 												</div>
 												<div class="form-group row my-2">
-													<label class="col-4 col-form-label">Contact Person:</label>
+													<label class="col-4 col-form-label">Next of Kin Telephone:</label>
 													<div class="col-8">
 														<span class="form-control-plaintext font-weight-bolder">
-															<a href="#">Nick Bold</a>
+															<?php echo $resuserdetails['nextofkintelephone'] ?>
+														</span>
+													</div>
+												</div>
+												<div class="form-group row my-2">
+													<label class="col-4 col-form-label">Country:</label>
+													<div class="col-8">
+														<span class="form-control-plaintext font-weight-bolder">
+															<?php echo $resuserdetails['country'] ?>
+														</span>
+													</div>
+												</div>
+												<div class="form-group row my-2">
+													<label class="col-4 col-form-label">Role:</label>
+													<div class="col-8">
+														<span class="form-control-plaintext font-weight-bolder">
+															<?php
+																if ($roleid == '1') {
+																	echo "Administrator";
+																}
+																else if ($roleid == '2') {
+																	echo "Superadmin";
+																}
+																else if ($roleid == '3') {
+																	echo "Normal";
+																}
+																else if ($roleid == '4') {
+																	echo "General";
+																}
+																else {
+																	echo "Pending Approval";
+																}
+															?>
+														</span>
+													</div>
+												</div>
+												
+												<div class="form-group row my-2">
+													<label class="col-4 col-form-label">Introducer:</label>
+													<div class="col-8">
+														<span class="form-control-plaintext font-weight-bolder">
+														<?php echo $resuserdetails['introusername'] ?>
 														</span>
 													</div>
 												</div>
 											</div>
 											<!--end::Body-->
-											<!--begin::Footer-->
-											<div class="card-footer">
-												<a href="#" class="btn btn-primary font-weight-bold mr-2">Manage company</a>
-												<a href="#" class="btn btn-light-primary font-weight-bold">Learn more</a>
-											</div>
-											<!--end::Footer-->
+											
 										</div>
 										<!--end::Card-->
 									</div>
@@ -398,308 +385,133 @@ $resuserdetails = $getuserdetails->fetch_assoc();
 													<!--begin::Tab Content-->
 													<div class="tab-pane active" id="kt_apps_contacts_view_tab_1" role="tabpanel">
 														<div class="container">
-															<form class="form">
-																<div class="form-group">
-																	<textarea class="form-control form-control-lg form-control-solid" id="exampleTextarea" rows="3" placeholder="Type notes"></textarea>
-																</div>
-																<div class="row">
-																	<div class="col">
-																		<a href="#" class="btn btn-light-primary font-weight-bold">Add notes</a>
-																		<a href="#" class="btn btn-clean font-weight-bold">Cancel</a>
-																	</div>
-																</div>
-															</form>
+															<?php 
+															$query = $mysqli->query("select DISTINCT(boardid) as boardids from previewboard where userid = '$userid' ORDER BY previd desc");
+															?>
+														
+														<!--begin: Datatable-->
+																<table class="table table-separate table-head-custom table-checkable" id="membertable">
+																	<thead>
+																	<tr>
+																		<th>Board Name</th>
+																		<th>Member Details</th>
+																	</tr>
+																	</thead>
+																	<tbody>
+																	<?php
+																	while ($result = $query->fetch_assoc()) {
+																		?>
+																		<tr>
+																			<td>
+																				<?php $boardid = $result['boardids'];
+																				$getname = $mysqli->query("select * from boards where boardid = '$boardid' ORDER BY boardname");
+																				$resname = $getname->fetch_assoc();
+																				echo $resname['boardname'];
+																				?>
+																			</td>
+																			<td>
+																				<table>
+																					
+																					<tbody>
+																					<?php
+																					$getcolourdetails = $mysqli->query("select * from colourconfig where boardid = '$boardid' and `status` = 'Active'");
+																					while ($rescolourdetails = $getcolourdetails->fetch_assoc()) { ?>
+
+																						<tr>
+																							<?php
+																							$colourid = $rescolourdetails['colourid'];
+																							$colourpriority = $rescolourdetails['colourpriority'];
+																							$colourcode = $rescolourdetails['colourcode'];
+																							?>
+																							<td style="background:<?php echo $colourcode ?>">
+																							<span style="text-transform:uppercase;;text-align:center;margin-left:10px">
+																							<?php 
+																								echo $rescolourdetails['colourname'] ?></span>
+																							</td>
+																							<td>
+																							<table>
+																							
+																								
+																								<tbody>
+																								<?php
+																								$getmemberdetails = $mysqli->query("select * from previewboard where boardid = '$boardid' 
+																																	and `status` != '2' and colourid = '$colourid'");
+																								if (mysqli_num_rows($getmemberdetails) == '0') {
+																									echo "<i><small>No member found</small></i>";
+																								}  
+																								else {
+																									while ($resmemberdetails = $getmemberdetails->fetch_assoc()) { ?>
+
+																										<tr>
+																											<td>
+																												<?php
+																												$userid = $resmemberdetails['userid'];
+																												$previewid = $resmemberdetails['previd'];
+																												$payment = $resmemberdetails['payment'];
+																												$status = $resmemberdetails['status'];
+																												$getmem = $mysqli->query("select * from users where userid = '$userid'");
+																												$resmem = $getmem->fetch_assoc();
+																												echo $resmem['fullname']
+																												?>
+																											</td>
+																											<td> <b><?php echo $resmem['username'] ?></b></td>
+																											<td>
+																												<?php
+																												if ($colourpriority == 'Lowest' && $payment == '1') {
+																													echo "<span class='label label-lg label-light-success label-inline'>Paid</span>";
+																												} else if ($colourpriority == 'Lowest' && $payment == '0') {
+																													echo "<span class='label label-lg label-light-danger label-inline'>Not paid</span>";
+																												}
+																												else {
+																													echo "<span class='label label-lg label-light-primary label-inline'>N/A</span>";
+																												}
+																												?>
+
+																												<?php
+																												if ($status == '1') {
+																													echo "<span class='label label-sm label-default label-inline'>Pending Approval</span>";
+																												}
+																												else if ($status == '2') {
+																													echo "<span class='label label-sm label-danger label-inline'>Removed</span>";
+																												}
+																												else if ($status == '3') {
+																													echo "<span class='label label-sm label-warning label-inline'>Suspended</span>";
+																												} 
+																												else if ($status == '4') {
+																													echo "<span class='label label-sm label-success label-inline'>Active</span>";
+																												}
+																												?> 
+																											
+																											</td>
+																										
+																										</tr>
+																									<?php }
+
+																										} 
+																									?>
+																									
+																								</tbody>
+
+																								</table>
+																							</td>                 
+																						</tr>
+																					<?php }
+																					?>                 
+																					</tbody>
+
+																				</table>
+																			</td>            
+																		
+																		</tr>
+																		<?php
+																	}
+																	?>
+																	</tbody>
+																</table>
+																<!--end: Datatable-->
+
 															<div class="separator separator-dashed my-10"></div>
-															<!--begin::Timeline-->
-															<div class="timeline timeline-3">
-																<div class="timeline-items">
-																	<div class="timeline-item">
-																		<div class="timeline-media">
-																			<img alt="Pic" src="../../../../theme/html/demo2/dist/assets/media/users/300_25.jpg" />
-																		</div>
-																		<div class="timeline-content">
-																			<div class="d-flex align-items-center justify-content-between mb-3">
-																				<div class="mr-2">
-																					<a href="#" class="text-dark-75 text-hover-primary font-weight-bold">New order has been placed</a>
-																					<span class="text-muted ml-2">Today</span>
-																					<span class="label label-light-success font-weight-bolder label-inline ml-2">new</span>
-																				</div>
-																				<div class="dropdown ml-2" data-toggle="tooltip" title="Quick actions" data-placement="left">
-																					<a href="#" class="btn btn-hover-light-primary btn-sm btn-icon" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-																						<i class="ki ki-more-hor icon-md"></i>
-																					</a>
-																					<div class="dropdown-menu p-0 m-0 dropdown-menu-md dropdown-menu-right">
-																						<!--begin::Navigation-->
-																						<ul class="navi navi-hover">
-																							<li class="navi-header font-weight-bold py-4">
-																								<span class="font-size-lg">Choose Label:</span>
-																								<i class="flaticon2-information icon-md text-muted" data-toggle="tooltip" data-placement="right" title="Click to learn more..."></i>
-																							</li>
-																							<li class="navi-separator mb-3 opacity-70"></li>
-																							<li class="navi-item">
-																								<a href="#" class="navi-link">
-																									<span class="navi-text">
-																										<span class="label label-xl label-inline label-light-success">Customer</span>
-																									</span>
-																								</a>
-																							</li>
-																							<li class="navi-item">
-																								<a href="#" class="navi-link">
-																									<span class="navi-text">
-																										<span class="label label-xl label-inline label-light-danger">Partner</span>
-																									</span>
-																								</a>
-																							</li>
-																							<li class="navi-item">
-																								<a href="#" class="navi-link">
-																									<span class="navi-text">
-																										<span class="label label-xl label-inline label-light-warning">Suplier</span>
-																									</span>
-																								</a>
-																							</li>
-																							<li class="navi-item">
-																								<a href="#" class="navi-link">
-																									<span class="navi-text">
-																										<span class="label label-xl label-inline label-light-primary">Member</span>
-																									</span>
-																								</a>
-																							</li>
-																							<li class="navi-item">
-																								<a href="#" class="navi-link">
-																									<span class="navi-text">
-																										<span class="label label-xl label-inline label-light-dark">Staff</span>
-																									</span>
-																								</a>
-																							</li>
-																							<li class="navi-separator mt-3 opacity-70"></li>
-																							<li class="navi-footer py-4">
-																								<a class="btn btn-clean font-weight-bold btn-sm" href="#">
-																								<i class="ki ki-plus icon-sm"></i>Add new</a>
-																							</li>
-																						</ul>
-																						<!--end::Navigation-->
-																					</div>
-																				</div>
-																			</div>
-																			<p class="p-0">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto.</p>
-																		</div>
-																	</div>
-																	<div class="timeline-item">
-																		<div class="timeline-media">
-																			<i class="flaticon2-shield text-danger"></i>
-																		</div>
-																		<div class="timeline-content">
-																			<div class="d-flex align-items-center justify-content-between mb-3">
-																				<div class="mr-2">
-																					<a href="#" class="text-dark-75 text-hover-primary font-weight-bold">Member has sent a request.</a>
-																					<span class="text-muted ml-2">8:30PM 20 June</span>
-																					<span class="label label-light-danger font-weight-bolder label-inline ml-2">pending</span>
-																				</div>
-																				<div class="dropdown ml-2" data-toggle="tooltip" title="Quick actions" data-placement="left">
-																					<a href="#" class="btn btn-hover-light-primary btn-sm btn-icon" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-																						<i class="ki ki-more-hor icon-md"></i>
-																					</a>
-																					<div class="dropdown-menu p-0 m-0 dropdown-menu-md dropdown-menu-right">
-																						<!--begin::Navigation-->
-																						<ul class="navi navi-hover">
-																							<li class="navi-header font-weight-bold py-4">
-																								<span class="font-size-lg">Choose Label:</span>
-																								<i class="flaticon2-information icon-md text-muted" data-toggle="tooltip" data-placement="right" title="Click to learn more..."></i>
-																							</li>
-																							<li class="navi-separator mb-3 opacity-70"></li>
-																							<li class="navi-item">
-																								<a href="#" class="navi-link">
-																									<span class="navi-text">
-																										<span class="label label-xl label-inline label-light-success">Customer</span>
-																									</span>
-																								</a>
-																							</li>
-																							<li class="navi-item">
-																								<a href="#" class="navi-link">
-																									<span class="navi-text">
-																										<span class="label label-xl label-inline label-light-danger">Partner</span>
-																									</span>
-																								</a>
-																							</li>
-																							<li class="navi-item">
-																								<a href="#" class="navi-link">
-																									<span class="navi-text">
-																										<span class="label label-xl label-inline label-light-warning">Suplier</span>
-																									</span>
-																								</a>
-																							</li>
-																							<li class="navi-item">
-																								<a href="#" class="navi-link">
-																									<span class="navi-text">
-																										<span class="label label-xl label-inline label-light-primary">Member</span>
-																									</span>
-																								</a>
-																							</li>
-																							<li class="navi-item">
-																								<a href="#" class="navi-link">
-																									<span class="navi-text">
-																										<span class="label label-xl label-inline label-light-dark">Staff</span>
-																									</span>
-																								</a>
-																							</li>
-																							<li class="navi-separator mt-3 opacity-70"></li>
-																							<li class="navi-footer py-4">
-																								<a class="btn btn-clean font-weight-bold btn-sm" href="#">
-																								<i class="ki ki-plus icon-sm"></i>Add new</a>
-																							</li>
-																						</ul>
-																						<!--end::Navigation-->
-																					</div>
-																				</div>
-																			</div>
-																			<p class="p-0">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto.</p>
-																		</div>
-																	</div>
-																	<div class="timeline-item">
-																		<div class="timeline-media">
-																			<i class="flaticon2-layers text-warning"></i>
-																		</div>
-																		<div class="timeline-content">
-																			<div class="d-flex align-items-center justify-content-between mb-3">
-																				<div class="mr-2">
-																					<a href="#" class="text-dark-75 text-hover-primary font-weight-bold">System deployment has been completed.</a>
-																					<span class="text-muted ml-2">11:00AM 30 June</span>
-																					<span class="label label-light-warning font-weight-bolder label-inline ml-2">done</span>
-																				</div>
-																				<div class="dropdown ml-2" data-toggle="tooltip" title="Quick actions" data-placement="left">
-																					<a href="#" class="btn btn-hover-light-primary btn-sm btn-icon" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-																						<i class="ki ki-more-hor icon-md"></i>
-																					</a>
-																					<div class="dropdown-menu p-0 m-0 dropdown-menu-md dropdown-menu-right">
-																						<!--begin::Navigation-->
-																						<ul class="navi navi-hover">
-																							<li class="navi-header font-weight-bold py-4">
-																								<span class="font-size-lg">Choose Label:</span>
-																								<i class="flaticon2-information icon-md text-muted" data-toggle="tooltip" data-placement="right" title="Click to learn more..."></i>
-																							</li>
-																							<li class="navi-separator mb-3 opacity-70"></li>
-																							<li class="navi-item">
-																								<a href="#" class="navi-link">
-																									<span class="navi-text">
-																										<span class="label label-xl label-inline label-light-success">Customer</span>
-																									</span>
-																								</a>
-																							</li>
-																							<li class="navi-item">
-																								<a href="#" class="navi-link">
-																									<span class="navi-text">
-																										<span class="label label-xl label-inline label-light-danger">Partner</span>
-																									</span>
-																								</a>
-																							</li>
-																							<li class="navi-item">
-																								<a href="#" class="navi-link">
-																									<span class="navi-text">
-																										<span class="label label-xl label-inline label-light-warning">Suplier</span>
-																									</span>
-																								</a>
-																							</li>
-																							<li class="navi-item">
-																								<a href="#" class="navi-link">
-																									<span class="navi-text">
-																										<span class="label label-xl label-inline label-light-primary">Member</span>
-																									</span>
-																								</a>
-																							</li>
-																							<li class="navi-item">
-																								<a href="#" class="navi-link">
-																									<span class="navi-text">
-																										<span class="label label-xl label-inline label-light-dark">Staff</span>
-																									</span>
-																								</a>
-																							</li>
-																							<li class="navi-separator mt-3 opacity-70"></li>
-																							<li class="navi-footer py-4">
-																								<a class="btn btn-clean font-weight-bold btn-sm" href="#">
-																								<i class="ki ki-plus icon-sm"></i>Add new</a>
-																							</li>
-																						</ul>
-																						<!--end::Navigation-->
-																					</div>
-																				</div>
-																			</div>
-																			<p class="p-0">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto.</p>
-																		</div>
-																	</div>
-																	<div class="timeline-item">
-																		<div class="timeline-media">
-																			<i class="flaticon2-notification fl text-primary"></i>
-																		</div>
-																		<div class="timeline-content">
-																			<div class="d-flex align-items-center justify-content-between mb-3">
-																				<div class="mr-2">
-																					<a href="#" class="text-dark-75 text-hover-primary font-weight-bold">Database backup has been completed.</a>
-																					<span class="text-muted ml-2">2 months ago</span>
-																					<span class="label label-light-primary font-weight-bolder label-inline ml-2">delivered</span>
-																				</div>
-																				<div class="dropdown ml-2" data-toggle="tooltip" title="Quick actions" data-placement="left">
-																					<a href="#" class="btn btn-hover-light-primary btn-sm btn-icon" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-																						<i class="ki ki-more-hor icon-md"></i>
-																					</a>
-																					<div class="dropdown-menu p-0 m-0 dropdown-menu-md dropdown-menu-right">
-																						<!--begin::Navigation-->
-																						<ul class="navi navi-hover">
-																							<li class="navi-header font-weight-bold py-4">
-																								<span class="font-size-lg">Choose Label:</span>
-																								<i class="flaticon2-information icon-md text-muted" data-toggle="tooltip" data-placement="right" title="Click to learn more..."></i>
-																							</li>
-																							<li class="navi-separator mb-3 opacity-70"></li>
-																							<li class="navi-item">
-																								<a href="#" class="navi-link">
-																									<span class="navi-text">
-																										<span class="label label-xl label-inline label-light-success">Customer</span>
-																									</span>
-																								</a>
-																							</li>
-																							<li class="navi-item">
-																								<a href="#" class="navi-link">
-																									<span class="navi-text">
-																										<span class="label label-xl label-inline label-light-danger">Partner</span>
-																									</span>
-																								</a>
-																							</li>
-																							<li class="navi-item">
-																								<a href="#" class="navi-link">
-																									<span class="navi-text">
-																										<span class="label label-xl label-inline label-light-warning">Suplier</span>
-																									</span>
-																								</a>
-																							</li>
-																							<li class="navi-item">
-																								<a href="#" class="navi-link">
-																									<span class="navi-text">
-																										<span class="label label-xl label-inline label-light-primary">Member</span>
-																									</span>
-																								</a>
-																							</li>
-																							<li class="navi-item">
-																								<a href="#" class="navi-link">
-																									<span class="navi-text">
-																										<span class="label label-xl label-inline label-light-dark">Staff</span>
-																									</span>
-																								</a>
-																							</li>
-																							<li class="navi-separator mt-3 opacity-70"></li>
-																							<li class="navi-footer py-4">
-																								<a class="btn btn-clean font-weight-bold btn-sm" href="#">
-																								<i class="ki ki-plus icon-sm"></i>Add new</a>
-																							</li>
-																						</ul>
-																						<!--end::Navigation-->
-																					</div>
-																				</div>
-																			</div>
-																			<p class="p-0">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto.</p>
-																		</div>
-																	</div>
-																</div>
-															</div>
-															<!--end::Timeline-->
+															
 														</div>
 													</div>
 													<!--end::Tab Content-->

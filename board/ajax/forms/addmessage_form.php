@@ -7,8 +7,8 @@
     <div class="card-body">
         <div id="errorloc"></div>
         <div class="form-group">
-            <label for="title">Announcement Title  <span class="text-danger">*</span></label>
-            <input type="text" class="form-control" id="title"
+            <label for="anntitle">Announcement Title  <span class="text-danger">*</span></label>
+            <input type="text" class="form-control" id="anntitle"
                    placeholder="Enter Title">
             <span class="form-text text-muted">Please enter title</span>
         </div>
@@ -31,14 +31,14 @@
 <script>
 
     $("#saveannouncement").click(function () {
-        alert('hi');
-        var title = $("#title").val();
+        //alert('hi');
+        var anntitle = $("#anntitle").val();
         var announcement = $("#announcement").val();
 
         var error = '';
-        if (title == "") {
+        if (anntitle == "") {
             error += 'Please enter title\n';
-            $("#title").focus();
+            $("#anntitle").focus();
         }
         if (announcement == "") {
             error += 'Please enter announcement\n';
@@ -58,11 +58,10 @@
                     })
                 },
                 data: {
-                    title: title,
+                    anntitle: anntitle,
                     announcement: announcement
                 },
                 success: function (text) {
-                   
                         $.ajax({
                             url: "ajax/forms/addmessage_form.php",
                             beforeSend: function () {
@@ -82,7 +81,6 @@
                             complete: function () {
                                 KTApp.unblockPage();
                             },
-
                         });
                         $.ajax({
                             url: "ajax/tables/announcement_table.php",
@@ -104,7 +102,6 @@
                                 KTApp.unblockPage();
                             },
                         });
-                    }
                    
                 },
                 error: function (xhr, ajaxOptions, thrownError) {

@@ -54,7 +54,7 @@
                                     <div class="card-header flex-wrap py-3">
                                         <div class="card-title">
                                             <h3 class="card-label">Announcements
-                                                <span class="d-block text-muted pt-2 font-size-sm">View, Edit &amp; Delete messages</span></h3>
+                                                <span class="d-block text-muted pt-2 font-size-sm">View &amp; Delete messages</span></h3>
                                         </div>
 
                                     </div>

@@ -11,7 +11,7 @@ $query = $mysqli->query("select * from announcements ORDER BY id DESC");
        placeholder="Search...">
 
 <!--begin: Datatable-->
-<table class="table table-separate table-head-custom table-checkable" id="boardtable">
+<table class="table table-separate table-head-custom table-checkable" id="anntable">
     <thead>
     <tr>
         <th>Title</th>
@@ -25,7 +25,7 @@ $query = $mysqli->query("select * from announcements ORDER BY id DESC");
     while ($result = $query->fetch_assoc()) {
         ?>
         <tr>
-            <td><?php echo $result['title'] ?></td>
+            <td><?php echo $result['anntitle'] ?></td>
             <td><?php echo $result['announcement'] ?></td>
             <td>
                 <?php echo $result['periodsent'].'<br/>('.time_elapsed_string($result['periodsent']).')' ?>
@@ -49,7 +49,7 @@ $query = $mysqli->query("select * from announcements ORDER BY id DESC");
 
 
 <script>
-    oTable = $('#boardtable').DataTable({
+    oTable = $('#anntable').DataTable({
         "bLengthChange": false
     });
 
@@ -61,7 +61,7 @@ $query = $mysqli->query("select * from announcements ORDER BY id DESC");
         var theindex = $(this).attr('i_index');
         //alert(theindex)
         $.confirm({
-            title: 'Delete Board!',
+            title: 'Delete Announcement!',
             content: 'Are you sure to continue?',
             buttons: {
                 no: {
@@ -79,14 +79,14 @@ $query = $mysqli->query("select * from announcements ORDER BY id DESC");
                     action: function () {
                         $.ajax({
                             type: "POST",
-                            url: "ajax/queries/delete_board.php",
+                            url: "ajax/queries/delete_announcement.php",
                             data: {
                                 i_index: theindex
                             },
                             dataType: "html",
                             success: function (text) {
                                 $.ajax({
-                                    url: "ajax/tables/message_table.php",
+                                    url: "ajax/tables/announcement_table.php",
                                     beforeSend: function () {
                                         KTApp.blockPage({
                                             overlayColor: "#000000",
@@ -96,7 +96,7 @@ $query = $mysqli->query("select * from announcements ORDER BY id DESC");
                                         })
                                     },
                                     success: function (text) {
-                                        $('#boardtable_div').html(text);
+                                        $('#messagetable_div').html(text);
                                     },
                                     error: function (xhr, ajaxOptions, thrownError) {
                                         alert(xhr.status + " " + thrownError);

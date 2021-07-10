@@ -12,7 +12,7 @@ $query = $mysqli->query("select DISTINCT(boardid) as boardids from colourconfig"
        placeholder="Search...">
 
 <!--begin: Datatable-->
-<table class="table table-separate table-head-custom table-checkable" id="colourtable">
+<table class="table table-separate table-head-custom table-checkable" id="membertable">
     <thead>
     <tr>
         <th>Board Name</th>
@@ -79,12 +79,12 @@ $query = $mysqli->query("select DISTINCT(boardid) as boardids from colourconfig"
                                             <td>
                                                 <?php
                                                 if ($colourpriority == 'Lowest' && $payment == '1') {
-                                                    echo "<span class='label label-lg label-light-success label-inline'>Paid</span><br/>";
+                                                    echo "<span class='label label-lg label-light-success label-inline'>Paid</span>";
                                                 } else if ($colourpriority == 'Lowest' && $payment == '0') {
-                                                    echo "<span class='label label-lg label-light-danger label-inline'>Not paid</span><br/>";
+                                                    echo "<span class='label label-lg label-light-danger label-inline'>Not paid</span>";
                                                 }
                                                 else {
-                                                    echo "<span class='label label-lg label-light-primary label-inline'>N/A</span><br/>";
+                                                    echo "<span class='label label-lg label-light-primary label-inline'>N/A</span>";
                                                 }
                                                 ?>
 
@@ -179,9 +179,7 @@ $query = $mysqli->query("select DISTINCT(boardid) as boardids from colourconfig"
                     </tbody>
 
                 </table>
-            </td>
-           
-                
+            </td>            
            
         </tr>
         <?php
@@ -194,7 +192,7 @@ $query = $mysqli->query("select DISTINCT(boardid) as boardids from colourconfig"
 
 <script>
 
-    oTable = $('#colourtable').DataTable({
+    oTable = $('#membertable').DataTable({
         "bLengthChange": false
     });
 
