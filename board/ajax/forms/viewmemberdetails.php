@@ -27,6 +27,8 @@ $resuserdetails = $getuserdetails->fetch_assoc();
 												<div class="d-flex align-items-center justify-content-between flex-wrap">
 													<!--begin::User-->
 													<div class="mr-3">
+														<h3>View Member Details</h3>
+														<div class="separator separator-dashed my-10"></div>
 														<div class="d-flex align-items-center mr-3">
 															<!--begin::Name-->
 															<a href="#" class="d-flex align-items-center text-dark text-hover-primary 
@@ -281,6 +283,8 @@ $resuserdetails = $getuserdetails->fetch_assoc();
 														</span>
 													</div>
 												</div>
+
+												<div class="separator separator-dashed my-10"></div>
 												
 												<div class="form-group row my-2">
 													<label class="col-4 col-form-label">Introducer:</label>
@@ -385,6 +389,7 @@ $resuserdetails = $getuserdetails->fetch_assoc();
 													<!--begin::Tab Content-->
 													<div class="tab-pane active" id="kt_apps_contacts_view_tab_1" role="tabpanel">
 														<div class="container">
+
 															<?php 
 															$query = $mysqli->query("select DISTINCT(boardid) as boardids from previewboard where userid = '$userid' ORDER BY previd desc");
 															?>
@@ -509,8 +514,6 @@ $resuserdetails = $getuserdetails->fetch_assoc();
 																	</tbody>
 																</table>
 																<!--end: Datatable-->
-
-															<div class="separator separator-dashed my-10"></div>
 															
 														</div>
 													</div>

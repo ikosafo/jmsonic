@@ -1,6 +1,6 @@
 <?php require('../config.php');
 $user_id = $_SESSION['userid'];
-echo $roleid = $_SESSION['roleid'];
+$roleid = $_SESSION['roleid'];
 
 if (!isset($_SESSION['username'])) {
     header("location:login");
@@ -12,6 +12,9 @@ else {
     header("location:login");
 }
 
+
+$getuserdetails = $mysqli->query("select * from users where userid = '$user_id'");
+$resuserdetails = $getuserdetails->fetch_assoc();
 
 
 ?>
