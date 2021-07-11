@@ -758,7 +758,7 @@
 																								?>
 																
 																								<!--begin: Datatable-->
-																									<table class="table table-separate table-head-custom table-checkable" id="membertable">
+																									<table class="table table-separate table-head-custom table-checkable" id="receivepaytable">
 																										<thead>
 																										<tr>
 																											<th>Board Name</th>
@@ -829,10 +829,9 @@
 																																<td>
 																																<button type="button"
 																																	data-type="confirm"
-																																	class="btn btn-danger btn-sm updatepayment"
+																																	class="btn btn-primary btn-sm updatepayment"
 																																	i_index="<?php echo $resreceipient['previd']; ?>"
-																																	title="Update Payment">
-																																<i class="flaticon2-trash ml-2" style="color:#fff !important;"></i>
+																																	title="Update Payment"> Update Payment
 																															</button>
 																																</td>	
 																															</tr>
@@ -986,12 +985,14 @@
 <?php include ('includes/footer.php'); ?>
 
 <script>
+
+	
 	 $(document).off('click', '.updatepayment').on('click', '.updatepayment', function () {
         var theindex = $(this).attr('i_index');
         //alert(theindex)
         $.confirm({
-            title: 'Delete Board!',
-            content: 'Are you sure to continue?',
+            title: 'Update Payment!',
+            content: 'Input cannot be reversed',
             buttons: {
                 no: {
                     text: 'No',
@@ -1003,38 +1004,19 @@
                     }
                 },
                 yes: {
-                    text: 'Yes, Delete it!',
+                    text: 'Yes, Update it!',
                     btnClass: 'btn-blue',
                     action: function () {
                         $.ajax({
                             type: "POST",
-                            url: "ajax/queries/delete_board.php",
+                            url: "ajax/queries/update_payment.php",
                             data: {
                                 i_index: theindex
                             },
                             dataType: "html",
                             success: function (text) {
-                                $.ajax({
-                                    url: "ajax/tables/board_table.php",
-                                    beforeSend: function () {
-                                        KTApp.blockPage({
-                                            overlayColor: "#000000",
-                                            type: "v2",
-                                            state: "success",
-                                            message: "Please wait..."
-                                        })
-                                    },
-                                    success: function (text) {
-                                        $('#boardtable_div').html(text);
-                                    },
-                                    error: function (xhr, ajaxOptions, thrownError) {
-                                        alert(xhr.status + " " + thrownError);
-                                    },
-                                    complete: function () {
-                                        KTApp.unblockPage();
-                                    },
-
-                                });
+								$("#term2").load(" #term2 > *");
+								$("#term1").load(" #term1 > *");
                             },
                             complete: function () {
                             },
