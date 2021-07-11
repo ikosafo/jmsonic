@@ -5,12 +5,7 @@ $roleid = $_SESSION['roleid'];
 if (!isset($_SESSION['username'])) {
     header("location:login");
 }
-if ($roleid == '3') {
-    echo "";
-}
-else {
-    header("location:login");
-}
+
 
 
 $getuserdetails = $mysqli->query("select * from users where userid = '$user_id'");

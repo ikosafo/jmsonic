@@ -171,7 +171,7 @@
 														<h3 class="card-label">
 															<?php
 															$getcurrentboard = $mysqli->query("select * from previewboard 
-																							where userid = '$user_id' ORDER BY previd DESC LIMIT 1");										   
+																							where userid = '$user_id' and `status` != '2' ORDER BY previd DESC LIMIT 1");										   
 															$rescurrentboard = $getcurrentboard->fetch_assoc();
 															$boardid = $rescurrentboard['boardid'];
 
@@ -381,128 +381,128 @@
 														<div class="tab-pane active" id="kt_apps_contacts_view_tab_1" role="tabpanel">
 															<div class="container">
 																<?php 
-																$query = $mysqli->query("select DISTINCT(boardid) as boardids from previewboard where userid = '$user_id' ORDER BY previd desc");
+																$query = $mysqli->query("select DISTINCT(boardid) as boardids from previewboard where `status` != '2' and userid = '$user_id' ORDER BY previd desc");
 																?>
 															
-															<!--begin: Datatable-->
-																	<table class="table table-separate table-head-custom table-checkable" id="membertable">
-																		<thead>
-																		<tr>
-																			<th>Board Name</th>
-																			<th>Member Details</th>
-																		</tr>
-																		</thead>
-																		<tbody>
-																		<?php
-																		while ($result = $query->fetch_assoc()) {
-																			?>
+																	<!--begin: Datatable-->
+																		<table class="table table-separate table-head-custom table-checkable" id="membertable">
+																			<thead>
 																			<tr>
-																				<td>
-																					<?php $boardid = $result['boardids'];
-																					$getname = $mysqli->query("select * from boards where boardid = '$boardid' ORDER BY boardname");
-																					$resname = $getname->fetch_assoc();
-																					echo $resname['boardname'];
-																					?>
-																				</td>
-																				<td>
-																					<table>
-																						
-																						<tbody>
-																						<?php
-																						$getcolourdetails = $mysqli->query("select * from colourconfig where boardid = '$boardid' and `status` = 'Active'");
-																						while ($rescolourdetails = $getcolourdetails->fetch_assoc()) { ?>
-
-																							<tr>
-																								<?php
-																								$colourid = $rescolourdetails['colourid'];
-																								$colourpriority = $rescolourdetails['colourpriority'];
-																								$colourcode = $rescolourdetails['colourcode'];
-																								?>
-																								<td style="background:<?php echo $colourcode ?>">
-																								<span style="text-transform:uppercase;;text-align:center;margin-left:10px">
-																								<?php 
-																									echo $rescolourdetails['colourname'] ?></span>
-																								</td>
-																								<td>
-																								<table>
-																								
-																									
-																									<tbody>
-																									<?php
-																									$getmemberdetails = $mysqli->query("select * from previewboard where boardid = '$boardid' 
-																																		and `status` != '2' and colourid = '$colourid'");
-																									if (mysqli_num_rows($getmemberdetails) == '0') {
-																										echo "<i><small>No member found</small></i>";
-																									}  
-																									else {
-																										while ($resmemberdetails = $getmemberdetails->fetch_assoc()) { ?>
-
-																											<tr>
-																												<td>
-																													<?php
-																													$userid = $resmemberdetails['userid'];
-																													$previewid = $resmemberdetails['previd'];
-																													$payment = $resmemberdetails['payment'];
-																													$status = $resmemberdetails['status'];
-																													$getmem = $mysqli->query("select * from users where userid = '$userid'");
-																													$resmem = $getmem->fetch_assoc();
-																													echo $resmem['fullname']
-																													?>
-																												</td>
-																												<td> <b><?php echo $resmem['username'] ?></b></td>
-																												<td>
-																													<?php
-																													if ($colourpriority == 'Lowest' && $payment == '1') {
-																														echo "<span class='label label-lg label-light-success label-inline'>Paid</span>";
-																													} else if ($colourpriority == 'Lowest' && $payment == '0') {
-																														echo "<span class='label label-lg label-light-danger label-inline'>Not paid</span>";
-																													}
-																													else {
-																														echo "<span class='label label-lg label-light-primary label-inline'>N/A</span>";
-																													}
-																													?>
-
-																													<?php
-																													if ($status == '1') {
-																														echo "<span class='label label-sm label-default label-inline'>Pending Approval</span>";
-																													}
-																													else if ($status == '2') {
-																														echo "<span class='label label-sm label-danger label-inline'>Removed</span>";
-																													}
-																													else if ($status == '3') {
-																														echo "<span class='label label-sm label-warning label-inline'>Suspended</span>";
-																													} 
-																													else if ($status == '4') {
-																														echo "<span class='label label-sm label-success label-inline'>Active</span>";
-																													}
-																													?> 
-																												
-																												</td>
-																											
-																											</tr>
-																										<?php }
-
-																											} 
-																										?>
-																										
-																									</tbody>
-
-																									</table>
-																								</td>                 
-																							</tr>
-																						<?php }
-																						?>                 
-																						</tbody>
-
-																					</table>
-																				</td>            
-																			
+																				<th>Board Name</th>
+																				<th>Member Details</th>
 																			</tr>
+																			</thead>
+																			<tbody>
 																			<?php
-																		}
-																		?>
-																		</tbody>
-																	</table>
+																			while ($result = $query->fetch_assoc()) {
+																				?>
+																				<tr>
+																					<td>
+																						<?php $boardid = $result['boardids'];
+																						$getname = $mysqli->query("select * from boards where boardid = '$boardid' ORDER BY boardname");
+																						$resname = $getname->fetch_assoc();
+																						echo $resname['boardname'];
+																						?>
+																					</td>
+																					<td>
+																						<table>
+																							
+																							<tbody>
+																							<?php
+																							$getcolourdetails = $mysqli->query("select * from colourconfig where boardid = '$boardid' and `status` = 'Active'");
+																							while ($rescolourdetails = $getcolourdetails->fetch_assoc()) { ?>
+
+																								<tr>
+																									<?php
+																									$colourid = $rescolourdetails['colourid'];
+																									$colourpriority = $rescolourdetails['colourpriority'];
+																									$colourcode = $rescolourdetails['colourcode'];
+																									?>
+																									<td style="background:<?php echo $colourcode ?>">
+																									<span style="text-transform:uppercase;;text-align:center;margin-left:10px">
+																									<?php 
+																										echo $rescolourdetails['colourname'] ?></span>
+																									</td>
+																									<td>
+																									<table>
+																									
+																										
+																										<tbody>
+																										<?php
+																										$getmemberdetails = $mysqli->query("select * from previewboard where boardid = '$boardid' 
+																																			and `status` != '2' and colourid = '$colourid'");
+																										if (mysqli_num_rows($getmemberdetails) == '0') {
+																											echo "<i><small>No member found</small></i>";
+																										}  
+																										else {
+																											while ($resmemberdetails = $getmemberdetails->fetch_assoc()) { ?>
+
+																												<tr>
+																													<td>
+																														<?php
+																														$userid = $resmemberdetails['userid'];
+																														$previewid = $resmemberdetails['previd'];
+																														$payment = $resmemberdetails['payment'];
+																														$status = $resmemberdetails['status'];
+																														$getmem = $mysqli->query("select * from users where userid = '$userid'");
+																														$resmem = $getmem->fetch_assoc();
+																														echo $resmem['fullname'];
+																														?>
+																													</td>
+																													<td> <b><?php echo $resmem['username'] ?></b></td>
+																													<td>
+																														<?php
+																														if ($colourpriority == 'Lowest' && $payment == '1') {
+																															echo "<span class='label label-lg label-light-success label-inline'>Paid</span>";
+																														} else if ($colourpriority == 'Lowest' && $payment == '0') {
+																															echo "<span class='label label-lg label-light-danger label-inline'>Not paid</span>";
+																														}
+																														else {
+																															echo "<span class='label label-lg label-light-primary label-inline'>N/A</span>";
+																														}
+																														?>
+
+																														<?php
+																														if ($status == '1') {
+																															echo "<span class='label label-sm label-default label-inline'>Pending Approval</span>";
+																														}
+																														else if ($status == '2') {
+																															echo "<span class='label label-sm label-danger label-inline'>Removed</span>";
+																														}
+																														else if ($status == '3') {
+																															echo "<span class='label label-sm label-warning label-inline'>Suspended</span>";
+																														} 
+																														else if ($status == '4') {
+																															echo "<span class='label label-sm label-success label-inline'>Active</span>";
+																														}
+																														?> 
+																													
+																													</td>
+																												
+																												</tr>
+																											<?php }
+
+																												} 
+																											?>
+																											
+																										</tbody>
+
+																										</table>
+																									</td>                 
+																								</tr>
+																							<?php }
+																							?>                 
+																							</tbody>
+
+																						</table>
+																					</td>            
+																				
+																				</tr>
+																				<?php
+																			}
+																			?>
+																			</tbody>
+																		</table>
 																	<!--end: Datatable-->
 																
 															</div>
@@ -586,313 +586,278 @@
 														<!--end::Tab Content-->
 														<!--begin::Tab Content-->
 														<div class="tab-pane" id="kt_apps_contacts_view_tab_3" role="tabpanel">
-															<form class="form">
-																<div class="row">
-																	<div class="col-lg-9 col-xl-6 offset-xl-3">
-																		<!--begin::Notice-->
-																		<div class="alert alert-custom alert-light-danger fade show mb-9" role="alert">
-																			<div class="alert-icon">
-																				<i class="flaticon-warning"></i>
-																			</div>
-																			<div class="alert-text">Configure user passwords to expire periodically.
-																			<br />Users will need warning that their passwords are going to expire, or they might inadvertently get locked out of the system!</div>
-																			<div class="alert-close">
-																				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-																					<span aria-hidden="true">
-																						<i class="ki ki-close"></i>
-																					</span>
-																				</button>
-																			</div>
-																		</div>
-																		<!--end::Notice-->
-																	</div>
-																</div>
-																<!--begin::Heading-->
-																<div class="row">
-																	<div class="col-lg-9 col-xl-6 offset-xl-3">
-																		<h3 class="font-size-h6 mb-5">Account:</h3>
-																	</div>
-																</div>
-																<!--end::Heading-->
-																<div class="form-group row">
-																	<label class="col-xl-3 col-lg-3 col-form-label text-right">Username</label>
-																	<div class="col-lg-9 col-xl-6">
-																		<div class="spinner spinner-sm spinner-success spinner-right">
-																			<input class="form-control form-control-lg form-control-solid" type="text" value="nick84" />
-																		</div>
-																	</div>
-																</div>
-																<div class="form-group row">
-																	<label class="col-xl-3 col-lg-3 col-form-label text-right">Email Address</label>
-																	<div class="col-lg-9 col-xl-6">
-																		<div class="input-group input-group-lg input-group-solid">
-																			<div class="input-group-prepend">
-																				<span class="input-group-text">
-																					<i class="la la-at"></i>
-																				</span>
-																			</div>
-																			<input type="text" class="form-control form-control-lg form-control-solid" value="nick.watson@loop.com" placeholder="Email" />
-																		</div>
-																		<span class="form-text text-muted">Email will not be publicly displayed.
-																		<a href="#">Learn more</a>.</span>
-																	</div>
-																</div>
-																<div class="form-group row">
-																	<label class="col-xl-3 col-lg-3 col-form-label text-right">Language</label>
-																	<div class="col-lg-9 col-xl-6">
-																		<select class="form-control form-control-lg form-control-solid">
-																			<option>Select Language...</option>
-																			<option value="id">Bahasa Indonesia - Indonesian</option>
-																			<option value="msa">Bahasa Melayu - Malay</option>
-																			<option value="ca">Catal� - Catalan</option>
-																			<option value="cs">?e�tina - Czech</option>
-																			<option value="da">Dansk - Danish</option>
-																			<option value="de">Deutsch - German</option>
-																			<option value="en" selected="selected">English</option>
-																			<option value="en-gb">English UK - British English</option>
-																			<option value="es">Espa�ol - Spanish</option>
-																			<option value="eu">Euskara - Basque (beta)</option>
-																			<option value="fil">Filipino</option>
-																			<option value="fr">Fran�ais - French</option>
-																			<option value="ga">Gaeilge - Irish (beta)</option>
-																			<option value="gl">Galego - Galician (beta)</option>
-																			<option value="hr">Hrvatski - Croatian</option>
-																			<option value="it">Italiano - Italian</option>
-																			<option value="hu">Magyar - Hungarian</option>
-																			<option value="nl">Nederlands - Dutch</option>
-																			<option value="no">Norsk - Norwegian</option>
-																			<option value="pl">Polski - Polish</option>
-																			<option value="pt">Portugu�s - Portuguese</option>
-																			<option value="ro">Rom�n? - Romanian</option>
-																			<option value="sk">Sloven?ina - Slovak</option>
-																			<option value="fi">Suomi - Finnish</option>
-																			<option value="sv">Svenska - Swedish</option>
-																			<option value="vi">Ti?ng Vi?t - Vietnamese</option>
-																			<option value="tr">T�rk�e - Turkish</option>
-																			<option value="el">???????? - Greek</option>
-																			<option value="bg">????????? ???? - Bulgarian</option>
-																			<option value="ru">??????? - Russian</option>
-																			<option value="sr">?????? - Serbian</option>
-																			<option value="uk">?????????? ???? - Ukrainian</option>
-																			<option value="he">???????? - Hebrew</option>
-																			<option value="ur">???? - Urdu (beta)</option>
-																			<option value="ar">??????? - Arabic</option>
-																			<option value="fa">????? - Persian</option>
-																			<option value="mr">????? - Marathi</option>
-																			<option value="hi">?????? - Hindi</option>
-																			<option value="bn">????? - Bangla</option>
-																			<option value="gu">??????? - Gujarati</option>
-																			<option value="ta">????? - Tamil</option>
-																			<option value="kn">????? - Kannada</option>
-																			<option value="th">??????? - Thai</option>
-																			<option value="ko">??? - Korean</option>
-																			<option value="ja">??? - Japanese</option>
-																			<option value="zh-cn">???? - Simplified Chinese</option>
-																			<option value="zh-tw">???? - Traditional Chinese</option>
-																		</select>
-																	</div>
-																</div>
-																<div class="form-group row">
-																	<label class="col-xl-3 col-lg-3 col-form-label text-right">Time Zone</label>
-																	<div class="col-lg-9 col-xl-6">
-																		<select class="form-control form-control-lg form-control-solid">
-																			<option data-offset="-39600" value="International Date Line West">(GMT-11:00) International Date Line West</option>
-																			<option data-offset="-39600" value="Midway Island">(GMT-11:00) Midway Island</option>
-																			<option data-offset="-39600" value="Samoa">(GMT-11:00) Samoa</option>
-																			<option data-offset="-36000" value="Hawaii">(GMT-10:00) Hawaii</option>
-																			<option data-offset="-28800" value="Alaska">(GMT-08:00) Alaska</option>
-																			<option data-offset="-25200" value="Pacific Time (US &amp; Canada)">(GMT-07:00) Pacific Time (US &amp; Canada)</option>
-																			<option data-offset="-25200" value="Tijuana">(GMT-07:00) Tijuana</option>
-																			<option data-offset="-25200" value="Arizona">(GMT-07:00) Arizona</option>
-																			<option data-offset="-21600" value="Mountain Time (US &amp; Canada)">(GMT-06:00) Mountain Time (US &amp; Canada)</option>
-																			<option data-offset="-21600" value="Chihuahua">(GMT-06:00) Chihuahua</option>
-																			<option data-offset="-21600" value="Mazatlan">(GMT-06:00) Mazatlan</option>
-																			<option data-offset="-21600" value="Saskatchewan">(GMT-06:00) Saskatchewan</option>
-																			<option data-offset="-21600" value="Central America">(GMT-06:00) Central America</option>
-																			<option data-offset="-18000" value="Central Time (US &amp; Canada)">(GMT-05:00) Central Time (US &amp; Canada)</option>
-																			<option data-offset="-18000" value="Guadalajara">(GMT-05:00) Guadalajara</option>
-																			<option data-offset="-18000" value="Mexico City">(GMT-05:00) Mexico City</option>
-																			<option data-offset="-18000" value="Monterrey">(GMT-05:00) Monterrey</option>
-																			<option data-offset="-18000" value="Bogota">(GMT-05:00) Bogota</option>
-																			<option data-offset="-18000" value="Lima">(GMT-05:00) Lima</option>
-																			<option data-offset="-18000" value="Quito">(GMT-05:00) Quito</option>
-																			<option data-offset="-14400" value="Eastern Time (US &amp; Canada)">(GMT-04:00) Eastern Time (US &amp; Canada)</option>
-																			<option data-offset="-14400" value="Indiana (East)">(GMT-04:00) Indiana (East)</option>
-																			<option data-offset="-14400" value="Caracas">(GMT-04:00) Caracas</option>
-																			<option data-offset="-14400" value="La Paz">(GMT-04:00) La Paz</option>
-																			<option data-offset="-14400" value="Georgetown">(GMT-04:00) Georgetown</option>
-																			<option data-offset="-10800" value="Atlantic Time (Canada)">(GMT-03:00) Atlantic Time (Canada)</option>
-																			<option data-offset="-10800" value="Santiago">(GMT-03:00) Santiago</option>
-																			<option data-offset="-10800" value="Brasilia">(GMT-03:00) Brasilia</option>
-																			<option data-offset="-10800" value="Buenos Aires">(GMT-03:00) Buenos Aires</option>
-																			<option data-offset="-9000" value="Newfoundland">(GMT-02:30) Newfoundland</option>
-																			<option data-offset="-7200" value="Greenland">(GMT-02:00) Greenland</option>
-																			<option data-offset="-7200" value="Mid-Atlantic">(GMT-02:00) Mid-Atlantic</option>
-																			<option data-offset="-3600" value="Cape Verde Is.">(GMT-01:00) Cape Verde Is.</option>
-																			<option data-offset="0" value="Azores">(GMT) Azores</option>
-																			<option data-offset="0" value="Monrovia">(GMT) Monrovia</option>
-																			<option data-offset="0" value="UTC">(GMT) UTC</option>
-																			<option data-offset="3600" value="Dublin">(GMT+01:00) Dublin</option>
-																			<option data-offset="3600" value="Edinburgh">(GMT+01:00) Edinburgh</option>
-																			<option data-offset="3600" value="Lisbon">(GMT+01:00) Lisbon</option>
-																			<option data-offset="3600" value="London">(GMT+01:00) London</option>
-																			<option data-offset="3600" value="Casablanca">(GMT+01:00) Casablanca</option>
-																			<option data-offset="3600" value="West Central Africa">(GMT+01:00) West Central Africa</option>
-																			<option data-offset="7200" value="Belgrade">(GMT+02:00) Belgrade</option>
-																			<option data-offset="7200" value="Bratislava">(GMT+02:00) Bratislava</option>
-																			<option data-offset="7200" value="Budapest">(GMT+02:00) Budapest</option>
-																			<option data-offset="7200" value="Ljubljana">(GMT+02:00) Ljubljana</option>
-																			<option data-offset="7200" value="Prague">(GMT+02:00) Prague</option>
-																			<option data-offset="7200" value="Sarajevo">(GMT+02:00) Sarajevo</option>
-																			<option data-offset="7200" value="Skopje">(GMT+02:00) Skopje</option>
-																			<option data-offset="7200" value="Warsaw">(GMT+02:00) Warsaw</option>
-																			<option data-offset="7200" value="Zagreb">(GMT+02:00) Zagreb</option>
-																			<option data-offset="7200" value="Brussels">(GMT+02:00) Brussels</option>
-																			<option data-offset="7200" value="Copenhagen">(GMT+02:00) Copenhagen</option>
-																			<option data-offset="7200" value="Madrid">(GMT+02:00) Madrid</option>
-																			<option data-offset="7200" value="Paris">(GMT+02:00) Paris</option>
-																			<option data-offset="7200" value="Amsterdam">(GMT+02:00) Amsterdam</option>
-																			<option data-offset="7200" value="Berlin">(GMT+02:00) Berlin</option>
-																			<option data-offset="7200" value="Bern">(GMT+02:00) Bern</option>
-																			<option data-offset="7200" value="Rome">(GMT+02:00) Rome</option>
-																			<option data-offset="7200" value="Stockholm">(GMT+02:00) Stockholm</option>
-																			<option data-offset="7200" value="Vienna">(GMT+02:00) Vienna</option>
-																			<option data-offset="7200" value="Cairo">(GMT+02:00) Cairo</option>
-																			<option data-offset="7200" value="Harare">(GMT+02:00) Harare</option>
-																			<option data-offset="7200" value="Pretoria">(GMT+02:00) Pretoria</option>
-																			<option data-offset="10800" value="Bucharest">(GMT+03:00) Bucharest</option>
-																			<option data-offset="10800" value="Helsinki">(GMT+03:00) Helsinki</option>
-																			<option data-offset="10800" value="Kiev">(GMT+03:00) Kiev</option>
-																			<option data-offset="10800" value="Kyiv">(GMT+03:00) Kyiv</option>
-																			<option data-offset="10800" value="Riga">(GMT+03:00) Riga</option>
-																			<option data-offset="10800" value="Sofia">(GMT+03:00) Sofia</option>
-																			<option data-offset="10800" value="Tallinn">(GMT+03:00) Tallinn</option>
-																			<option data-offset="10800" value="Vilnius">(GMT+03:00) Vilnius</option>
-																			<option data-offset="10800" value="Athens">(GMT+03:00) Athens</option>
-																			<option data-offset="10800" value="Istanbul">(GMT+03:00) Istanbul</option>
-																			<option data-offset="10800" value="Minsk">(GMT+03:00) Minsk</option>
-																			<option data-offset="10800" value="Jerusalem">(GMT+03:00) Jerusalem</option>
-																			<option data-offset="10800" value="Moscow">(GMT+03:00) Moscow</option>
-																			<option data-offset="10800" value="St. Petersburg">(GMT+03:00) St. Petersburg</option>
-																			<option data-offset="10800" value="Volgograd">(GMT+03:00) Volgograd</option>
-																			<option data-offset="10800" value="Kuwait">(GMT+03:00) Kuwait</option>
-																			<option data-offset="10800" value="Riyadh">(GMT+03:00) Riyadh</option>
-																			<option data-offset="10800" value="Nairobi">(GMT+03:00) Nairobi</option>
-																			<option data-offset="10800" value="Baghdad">(GMT+03:00) Baghdad</option>
-																			<option data-offset="14400" value="Abu Dhabi">(GMT+04:00) Abu Dhabi</option>
-																			<option data-offset="14400" value="Muscat">(GMT+04:00) Muscat</option>
-																			<option data-offset="14400" value="Baku">(GMT+04:00) Baku</option>
-																			<option data-offset="14400" value="Tbilisi">(GMT+04:00) Tbilisi</option>
-																			<option data-offset="14400" value="Yerevan">(GMT+04:00) Yerevan</option>
-																			<option data-offset="16200" value="Tehran">(GMT+04:30) Tehran</option>
-																			<option data-offset="16200" value="Kabul">(GMT+04:30) Kabul</option>
-																			<option data-offset="18000" value="Ekaterinburg">(GMT+05:00) Ekaterinburg</option>
-																			<option data-offset="18000" value="Islamabad">(GMT+05:00) Islamabad</option>
-																			<option data-offset="18000" value="Karachi">(GMT+05:00) Karachi</option>
-																			<option data-offset="18000" value="Tashkent">(GMT+05:00) Tashkent</option>
-																			<option data-offset="19800" value="Chennai">(GMT+05:30) Chennai</option>
-																			<option data-offset="19800" value="Kolkata">(GMT+05:30) Kolkata</option>
-																			<option data-offset="19800" value="Mumbai">(GMT+05:30) Mumbai</option>
-																			<option data-offset="19800" value="New Delhi">(GMT+05:30) New Delhi</option>
-																			<option data-offset="19800" value="Sri Jayawardenepura">(GMT+05:30) Sri Jayawardenepura</option>
-																			<option data-offset="20700" value="Kathmandu">(GMT+05:45) Kathmandu</option>
-																			<option data-offset="21600" value="Astana">(GMT+06:00) Astana</option>
-																			<option data-offset="21600" value="Dhaka">(GMT+06:00) Dhaka</option>
-																			<option data-offset="21600" value="Almaty">(GMT+06:00) Almaty</option>
-																			<option data-offset="21600" value="Urumqi">(GMT+06:00) Urumqi</option>
-																			<option data-offset="23400" value="Rangoon">(GMT+06:30) Rangoon</option>
-																			<option data-offset="25200" value="Novosibirsk">(GMT+07:00) Novosibirsk</option>
-																			<option data-offset="25200" value="Bangkok">(GMT+07:00) Bangkok</option>
-																			<option data-offset="25200" value="Hanoi">(GMT+07:00) Hanoi</option>
-																			<option data-offset="25200" value="Jakarta">(GMT+07:00) Jakarta</option>
-																			<option data-offset="25200" value="Krasnoyarsk">(GMT+07:00) Krasnoyarsk</option>
-																			<option data-offset="28800" value="Beijing">(GMT+08:00) Beijing</option>
-																			<option data-offset="28800" value="Chongqing">(GMT+08:00) Chongqing</option>
-																			<option data-offset="28800" value="Hong Kong">(GMT+08:00) Hong Kong</option>
-																			<option data-offset="28800" value="Kuala Lumpur">(GMT+08:00) Kuala Lumpur</option>
-																			<option data-offset="28800" value="Singapore">(GMT+08:00) Singapore</option>
-																			<option data-offset="28800" value="Taipei">(GMT+08:00) Taipei</option>
-																			<option data-offset="28800" value="Perth">(GMT+08:00) Perth</option>
-																			<option data-offset="28800" value="Irkutsk">(GMT+08:00) Irkutsk</option>
-																			<option data-offset="28800" value="Ulaan Bataar">(GMT+08:00) Ulaan Bataar</option>
-																			<option data-offset="32400" value="Seoul">(GMT+09:00) Seoul</option>
-																			<option data-offset="32400" value="Osaka">(GMT+09:00) Osaka</option>
-																			<option data-offset="32400" value="Sapporo">(GMT+09:00) Sapporo</option>
-																			<option data-offset="32400" value="Tokyo">(GMT+09:00) Tokyo</option>
-																			<option data-offset="32400" value="Yakutsk">(GMT+09:00) Yakutsk</option>
-																			<option data-offset="34200" value="Darwin">(GMT+09:30) Darwin</option>
-																			<option data-offset="34200" value="Adelaide">(GMT+09:30) Adelaide</option>
-																			<option data-offset="36000" value="Canberra">(GMT+10:00) Canberra</option>
-																			<option data-offset="36000" value="Melbourne">(GMT+10:00) Melbourne</option>
-																			<option data-offset="36000" value="Sydney">(GMT+10:00) Sydney</option>
-																			<option data-offset="36000" value="Brisbane">(GMT+10:00) Brisbane</option>
-																			<option data-offset="36000" value="Hobart">(GMT+10:00) Hobart</option>
-																			<option data-offset="36000" value="Vladivostok">(GMT+10:00) Vladivostok</option>
-																			<option data-offset="36000" value="Guam">(GMT+10:00) Guam</option>
-																			<option data-offset="36000" value="Port Moresby">(GMT+10:00) Port Moresby</option>
-																			<option data-offset="36000" value="Solomon Is.">(GMT+10:00) Solomon Is.</option>
-																			<option data-offset="39600" value="Magadan">(GMT+11:00) Magadan</option>
-																			<option data-offset="39600" value="New Caledonia">(GMT+11:00) New Caledonia</option>
-																			<option data-offset="43200" value="Fiji">(GMT+12:00) Fiji</option>
-																			<option data-offset="43200" value="Kamchatka">(GMT+12:00) Kamchatka</option>
-																			<option data-offset="43200" value="Marshall Is.">(GMT+12:00) Marshall Is.</option>
-																			<option data-offset="43200" value="Auckland">(GMT+12:00) Auckland</option>
-																			<option data-offset="43200" value="Wellington">(GMT+12:00) Wellington</option>
-																			<option data-offset="46800" value="Nuku'alofa">(GMT+13:00) Nuku'alofa</option>
-																		</select>
-																	</div>
-																</div>
-																<div class="form-group row align-items-center mb-0">
-																	<label class="col-xl-3 col-lg-3 col-form-label text-right">Communication</label>
-																	<div class="col-lg-9 col-xl-6">
-																		<div class="checkbox-inline">
-																			<label class="checkbox">
-																			<input type="checkbox" />
-																			<span></span>Email</label>
-																			<label class="checkbox">
-																			<input type="checkbox" />
-																			<span></span>SMS</label>
-																			<label class="checkbox">
-																			<input type="checkbox" />
-																			<span></span>Phone</label>
-																		</div>
-																	</div>
-																</div>
-																<div class="separator separator-dashed my-10"></div>
-																<!--begin::Heading-->
-																<div class="row">
-																	<div class="col-lg-9 col-xl-6 offset-xl-3">
-																		<h3 class="font-size-h6 mb-5">Security:</h3>
-																	</div>
-																</div>
-																<!--end::Heading-->
-																<div class="form-group row">
-																	<label class="col-xl-3 col-lg-3 col-form-label text-right">Login verification</label>
-																	<div class="col-lg-9 col-xl-6">
-																		<button type="button" class="btn btn-light-primary font-weight-bold btn-sm">Setup login verification</button>
-																		<span class="form-text text-muted">After you log in, you will be asked for additional information to confirm your identity and protect your account from being compromised.
-																		<a href="#">Learn more</a>.</span>
-																	</div>
-																</div>
-																<div class="form-group row">
-																	<label class="col-xl-3 col-lg-3 col-form-label text-right">Password reset verification</label>
-																	<div class="col-lg-9 col-xl-6">
-																		<div class="checkbox-inline">
-																			<label class="checkbox">
-																			<input type="checkbox" />Require personal information to reset your password.
-																			<span></span></label>
-																		</div>
-																		<span class="form-text text-muted">For extra security, this requires you to confirm your email or phone number when you reset your password.
-																		<a href="#">Learn more</a>.</span>
-																	</div>
-																</div>
-																<div class="form-group row">
-																	<label class="col-xl-3 col-lg-3 col-form-label text-right"></label>
-																	<div class="col-lg-9 col-xl-6">
-																		<button type="button" class="btn btn-light-danger font-weight-bold btn-sm">Deactivate your account ?</button>
-																	</div>
-																</div>
-															</form>
+															                       <!--begin::Accordion-->
+																				   <div
+                                                                                    class="accordion accordion-solid accordion-panel accordion-svg-toggle"
+                                                                                    id="accordionExample8">
+
+                                                                                    <div class="card">
+                                                                                        <div class="card-header"
+                                                                                             id="headingterm1">
+                                                                                            <div class="card-title"
+                                                                                                 data-toggle="collapse"
+                                                                                                 data-target="#term1">
+                                                                                                <div class="card-label">
+                                                                                                    PAYMENTS TO BE MADE
+                                                                                                </div>
+																								<span class="svg-icon">
+																									<!--begin::Svg Icon | path:/metronic/theme/html/demo2/dist/assets/media/svg/icons/Navigation/Angle-double-right.svg-->
+																									<svg xmlns="http://www.w3.org/2000/svg"
+																										xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
+																										height="24px" viewBox="0 0 24 24" version="1.1">
+																										<g stroke="none" stroke-width="1" fill="none"
+																										fill-rule="evenodd">
+																											<polygon points="0 0 24 0 24 24 0 24"/>
+																											<path
+																												d="M12.2928955,6.70710318 C11.9023712,6.31657888 11.9023712,5.68341391 12.2928955,5.29288961 C12.6834198,4.90236532 13.3165848,4.90236532 13.7071091,5.29288961 L19.7071091,11.2928896 C20.085688,11.6714686 20.0989336,12.281055 19.7371564,12.675721 L14.2371564,18.675721 C13.863964,19.08284 13.2313966,19.1103429 12.8242777,18.7371505 C12.4171587,18.3639581 12.3896557,17.7313908 12.7628481,17.3242718 L17.6158645,12.0300721 L12.2928955,6.70710318 Z"
+																												fill="#000000" fill-rule="nonzero"/>
+																											<path
+																												d="M3.70710678,15.7071068 C3.31658249,16.0976311 2.68341751,16.0976311 2.29289322,15.7071068 C1.90236893,15.3165825 1.90236893,14.6834175 2.29289322,14.2928932 L8.29289322,8.29289322 C8.67147216,7.91431428 9.28105859,7.90106866 9.67572463,8.26284586 L15.6757246,13.7628459 C16.0828436,14.1360383 16.1103465,14.7686056 15.7371541,15.1757246 C15.3639617,15.5828436 14.7313944,15.6103465 14.3242754,15.2371541 L9.03007575,10.3841378 L3.70710678,15.7071068 Z"
+																												fill="#000000" fill-rule="nonzero" opacity="0.3"
+																												transform="translate(9.000003, 11.999999) rotate(-270.000000) translate(-9.000003, -11.999999)"/>
+																										</g>
+																									</svg>
+																									<!--end::Svg Icon-->
+																								</span>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div id="term1"
+                                                                                             class="collapse show"
+                                                                                             data-parent="#accordionExample8">
+                                                                                            <div class="card-body">
+																								<?php 
+																								$query = $mysqli->query("select DISTINCT(boardid) as boardids from previewboard where `status` != '2' and userid = '$user_id' ORDER BY previd desc");
+																								?>
+																
+																								<!--begin: Datatable-->
+																									<table class="table table-separate table-head-custom table-checkable" id="membertable">
+																										<thead>
+																										<tr>
+																											<th>Board Name</th>
+																											<th>Pay</th>
+																										</tr>
+																										</thead>
+																										<tbody>
+																										<?php
+																										while ($result = $query->fetch_assoc()) {
+																											?>
+																											<tr>
+																												<td>
+																													<?php $boardid = $result['boardids'];
+																													$getname = $mysqli->query("select * from boards where boardid = '$boardid' ORDER BY boardname");
+																													$resname = $getname->fetch_assoc();
+																													echo $resname['boardname']."<br/>";
+																													
+																													$getcolour = $mysqli->query("select * from colourconfig c JOIN previewboard p ON p.colourid = c.colourid
+																													                              where c.colourpriority = 'Lowest' and p.userid = '$user_id' and p.`status` != '2'
+																																				  and p.boardid = '$boardid'");
+																													$rescolour = $getcolour->fetch_assoc();
+																													echo "(".$receivecolour =  $rescolour['colourname'].")";
+																													?>
+																												</td>
+																												<td>
+																																<?php
+																													if ($receivecolour == "") {
+																														echo "No payment expected";
+																													}
+																													else { ?>
+<table>
+																													<tbody>
+																													<?php
+																														//get sender
+																														$getsender = $mysqli->query("select * from previewboard p Join colourconfig c ON p.colourid = c.colourid where 
+																														p.boardid = '$boardid' and c.colourpriority = 'Lowest' and p.`status` != '2' and p.userid = '$user_id'");
+
+																														//get receipient
+																														$getreci = $mysqli->query("select * from previewboard p Join colourconfig c ON p.colourid = c.colourid where 
+																														p.boardid = '$boardid' and c.colourpriority = 'Highest' and p.`status` != '2'");
+																														$resreci = $getreci->fetch_assoc();
+																														$userid = $resreci['userid'];
+																														$getreciept = $mysqli->query("select * from users where userid = '$userid'");
+																														$resreciept = $getreciept->fetch_assoc();
+																														$rec = $resreciept['fullname'].' - <b>'.$resreciept['username'].'</b>';
+
+																														while ($ressender = $getsender->fetch_assoc()){ ?>
+                                                                                                                            <tr>
+																																<td>
+																																	<?php
+
+																														$getpaymentcon = $mysqli->query("select * from paymentconfig where boardid = '$boardid'");
+																														$respaymentcon = $getpaymentcon->fetch_assoc();
+																														$amounttopay = $respaymentcon['amounttopay']."<br/>";
+																														echo 'GHS <span class="label label-lg font-weight-bold label-light-default 
+																															label-inline mr-1">'.$amounttopay.'</span> to '.$rec;
+																															if ($ressender['payment'] == '0') {
+																																echo "<span class=' ml-3 label label-lg label-light-danger label-inline'>Not paid</span>";
+																															}
+																															else {
+																																echo "<span class='ml-3 label label-lg label-light-success label-inline'>Paid</span>";
+																															}
+																														
+																													?>
+
+																																</td>
+																																	
+																															</tr>
+																														<?php } ?>
+																														</tbody>
+																														</table>
+																											
+																													<?php }
+																													?>
+			
+																																</td>
+																					
+																											</tr>
+																											<?php
+																										}
+																										?>
+																										</tbody>
+																									</table>
+																								<!--end: Datatable-->
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                    <div class="card">
+                                                                                        <div class="card-header"
+                                                                                             id="headingTerm2">
+                                                                                            <div
+                                                                                                class="card-title collapsed"
+                                                                                                data-toggle="collapse"
+                                                                                                data-target="#term2">
+                                                                                                <div class="card-label">
+                                                                                                    PAYMENTS TO RECEIVE
+                                                                                                </div>
+																								<span class="svg-icon">
+																									<!--begin::Svg Icon | path:/metronic/theme/html/demo2/dist/assets/media/svg/icons/Navigation/Angle-double-right.svg-->
+																									<svg xmlns="http://www.w3.org/2000/svg"
+																										xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
+																										height="24px" viewBox="0 0 24 24" version="1.1">
+																										<g stroke="none" stroke-width="1" fill="none"
+																										fill-rule="evenodd">
+																											<polygon points="0 0 24 0 24 24 0 24"/>
+																											<path
+																												d="M12.2928955,6.70710318 C11.9023712,6.31657888 11.9023712,5.68341391 12.2928955,5.29288961 C12.6834198,4.90236532 13.3165848,4.90236532 13.7071091,5.29288961 L19.7071091,11.2928896 C20.085688,11.6714686 20.0989336,12.281055 19.7371564,12.675721 L14.2371564,18.675721 C13.863964,19.08284 13.2313966,19.1103429 12.8242777,18.7371505 C12.4171587,18.3639581 12.3896557,17.7313908 12.7628481,17.3242718 L17.6158645,12.0300721 L12.2928955,6.70710318 Z"
+																												fill="#000000" fill-rule="nonzero"/>
+																											<path
+																												d="M3.70710678,15.7071068 C3.31658249,16.0976311 2.68341751,16.0976311 2.29289322,15.7071068 C1.90236893,15.3165825 1.90236893,14.6834175 2.29289322,14.2928932 L8.29289322,8.29289322 C8.67147216,7.91431428 9.28105859,7.90106866 9.67572463,8.26284586 L15.6757246,13.7628459 C16.0828436,14.1360383 16.1103465,14.7686056 15.7371541,15.1757246 C15.3639617,15.5828436 14.7313944,15.6103465 14.3242754,15.2371541 L9.03007575,10.3841378 L3.70710678,15.7071068 Z"
+																												fill="#000000" fill-rule="nonzero" opacity="0.3"
+																												transform="translate(9.000003, 11.999999) rotate(-270.000000) translate(-9.000003, -11.999999)"/>
+																										</g>
+																									</svg>
+																									<!--end::Svg Icon-->
+																								</span>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div id="term2" class="collapse"
+                                                                                             data-parent="#accordionExample8">
+																							 <div class="card-body">
+																								<?php 
+																								$query = $mysqli->query("select DISTINCT(boardid) as boardids from previewboard where userid = '$user_id' and `status` != '2' ORDER BY previd desc");
+																								?>
+																
+																								<!--begin: Datatable-->
+																									<table class="table table-separate table-head-custom table-checkable" id="membertable">
+																										<thead>
+																										<tr>
+																											<th>Board Name</th>
+																											<th>Receive</th>
+																										</tr>
+																										</thead>
+																										<tbody>
+																										<?php
+																										while ($result = $query->fetch_assoc()) {
+																											?>
+																											<tr>
+																												<td>
+																													<?php $boardid = $result['boardids'];
+																													$getname = $mysqli->query("select * from boards where boardid = '$boardid' ORDER BY boardname");
+																													$resname = $getname->fetch_assoc();
+																													echo $resname['boardname']."<br/>";
+																													
+																													$getcolour = $mysqli->query("select * from colourconfig c JOIN previewboard p ON p.colourid = c.colourid
+																													                              where c.colourpriority = 'Highest' and p.userid = '$user_id' and p.`status` != '2'
+																																				  and p.boardid = '$boardid'");
+																													$rescolour = $getcolour->fetch_assoc();
+																													$receivecolour =  $rescolour['colourname'];
+																													if ($receivecolour == "") {
+																														echo "N/A";
+																													}
+																													else {
+																														echo "(".$receivecolour.")";
+																													}
+																													
+																													?>
+																												</td>
+																												
+																												<td> <?php
+																													if ($receivecolour == "") {
+																														echo "No payment expected";
+																													}
+																													else { ?>
+<table>
+																													<tbody>
+																													<?php
+																														//get receipient
+																														$getreceipient = $mysqli->query("select * from previewboard p Join colourconfig c ON p.colourid = c.colourid where 
+																														p.boardid = '$boardid' and c.colourpriority = 'Lowest' and p.`status` != '2'");
+																														while ($resreceipient = $getreceipient->fetch_assoc()){ ?>
+                                                                                                                            <tr>
+																																<td>
+																																	<?php $userid = $resreceipient['userid'];
+																														$getrec = $mysqli->query("select * from users where userid = '$userid'");
+																														$resrec = $getrec->fetch_assoc();
+																														$rec = $resrec['fullname'].' - <b>'.$resrec['username'].'</b>';
+
+																														$getpaymentcon = $mysqli->query("select * from paymentconfig where boardid = '$boardid'");
+																														$respaymentcon = $getpaymentcon->fetch_assoc();
+																														$amounttopay = $respaymentcon['amounttopay']."<br/>";
+																														echo 'GHS <span class="label label-lg font-weight-bold label-light-default 
+																															label-inline mr-1">'.$amounttopay.'</span>from <span class="label label-lg font-weight-bold label-light-default 
+																															label-inline mr-3">'.$rec.'</span>';
+																															if ($resreceipient['payment'] == '0') {
+																																echo "<span class='label label-lg label-light-danger label-inline'>Not paid</span>";
+																															}
+																															else {
+																																echo "<span class='label label-lg label-light-success label-inline'>Paid</span>";
+																															}
+																														
+																													?>
+
+																																</td>
+																																<td>
+																																<button type="button"
+																																	data-type="confirm"
+																																	class="btn btn-danger btn-sm updatepayment"
+																																	i_index="<?php echo $resreceipient['previd']; ?>"
+																																	title="Update Payment">
+																																<i class="flaticon2-trash ml-2" style="color:#fff !important;"></i>
+																															</button>
+																																</td>	
+																															</tr>
+																														<?php } ?>
+																														</tbody>
+																														</table>
+																											
+																													<?php }
+																													?>
+																												</td>
+																												
+																											</tr>
+																											<?php
+																										}
+																										?>
+																										</tbody>
+																									</table>
+																								<!--end: Datatable-->
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                   
+                                                                                </div>
+                                                                                <!--end::Accordion-->
+
 														</div>
 														<!--end::Tab Content-->
 														<!--begin::Tab Content-->
@@ -1019,3 +984,67 @@
 <!--end::Content-->
 
 <?php include ('includes/footer.php'); ?>
+
+<script>
+	 $(document).off('click', '.updatepayment').on('click', '.updatepayment', function () {
+        var theindex = $(this).attr('i_index');
+        //alert(theindex)
+        $.confirm({
+            title: 'Delete Board!',
+            content: 'Are you sure to continue?',
+            buttons: {
+                no: {
+                    text: 'No',
+                    keys: ['enter', 'shift'],
+                    backdrop: 'static',
+                    keyboard: false,
+                    action: function () {
+                        $.alert('Data is safe');
+                    }
+                },
+                yes: {
+                    text: 'Yes, Delete it!',
+                    btnClass: 'btn-blue',
+                    action: function () {
+                        $.ajax({
+                            type: "POST",
+                            url: "ajax/queries/delete_board.php",
+                            data: {
+                                i_index: theindex
+                            },
+                            dataType: "html",
+                            success: function (text) {
+                                $.ajax({
+                                    url: "ajax/tables/board_table.php",
+                                    beforeSend: function () {
+                                        KTApp.blockPage({
+                                            overlayColor: "#000000",
+                                            type: "v2",
+                                            state: "success",
+                                            message: "Please wait..."
+                                        })
+                                    },
+                                    success: function (text) {
+                                        $('#boardtable_div').html(text);
+                                    },
+                                    error: function (xhr, ajaxOptions, thrownError) {
+                                        alert(xhr.status + " " + thrownError);
+                                    },
+                                    complete: function () {
+                                        KTApp.unblockPage();
+                                    },
+
+                                });
+                            },
+                            complete: function () {
+                            },
+                            error: function (xhr, ajaxOptions, thrownError) {
+                                alert(xhr.status + " " + thrownError);
+                            }
+                        });
+                    }
+                }
+            }
+        });
+    });
+</script>
