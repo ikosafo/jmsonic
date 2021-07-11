@@ -119,12 +119,7 @@
 															<!--end::Contacts-->
 														</div>
 														<!--begin::User-->
-														<!--begin::Actions-->
-														<div class="mb-10">
-															<a href="#" id="gobackbtn" class="btn btn-sm btn-light-primary font-weight-bolder text-uppercase mr-2">Go Back</a>
-														
-														</div>
-														<!--end::Actions-->
+													
 													</div>
 													<!--end::Title-->
 													
