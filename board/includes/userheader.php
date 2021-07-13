@@ -7,7 +7,6 @@ if (!isset($_SESSION['username'])) {
 }
 
 
-
 $getuserdetails = $mysqli->query("select * from users where userid = '$user_id'");
 $resuserdetails = $getuserdetails->fetch_assoc();
 
@@ -34,7 +33,7 @@ $resuserdetails = $getuserdetails->fetch_assoc();
     <!--end::Global Theme Styles-->
     <!--begin::Layout Themes(used by all pages)-->
     <!--end::Layout Themes-->
-    <link rel="shortcut icon" href="assets/images/logo.png" />
+    <link rel="icon" href="assets/images/logo3.png" sizes="16x16" type="image/png">
 
     <style>
         ::-webkit-scrollbar {
@@ -102,9 +101,10 @@ $resuserdetails = $getuserdetails->fetch_assoc();
                     <div class="d-flex align-items-stretch mr-3">
                         <!--begin::Header Logo-->
                         <div class="header-logo">
-                            <a href="/board">
-                                <img alt="Logo" src="assets/images/logo_tr.png" class="logo-default max-h-130px" />
-                                <img alt="Logo" src="assets/images/logo.png" class="logo-sticky max-h-40px" />
+                        <a href="/board/user">
+                                <img alt="Logo" src="assets/images/jmsonic.png" 
+                                class="logo-default max-h-60px" style="border-radius:50%" />
+                                <img alt="Logo" src="assets/images/logo3.png" class="logo-sticky max-h-60px" />
                             </a>
                         </div>
                         <!--end::Header Logo-->

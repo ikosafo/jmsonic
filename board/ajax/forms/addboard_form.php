@@ -116,6 +116,9 @@ $random = rand(1,10000).date("Y");
                             },
                         });
                     }
+                    else if (text == 4){
+                        $("#errorloc").notify("Maximum number of free boards reached. Please contact developer","error");
+                    }
                     else {
                         $("#errorloc").notify("Board name already exists","error");
                     }

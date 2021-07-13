@@ -13,6 +13,7 @@ else {
 }
 
 
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -122,6 +123,15 @@ class="quick-panel-right demo-panel-right offcanvas-right header-fixed subheader
                                     ? "menu-item-here" : ""); ?>" data-menu-toggle="click" aria-haspopup="true">
                                         <a href="/board" class="menu-link">
                                             <span class="menu-text">Dashboard</span>
+                                            <i class="menu-arrow"></i>
+                                        </a>
+                                    </li>
+
+                                    <li class="menu-item menu-item-rel <?php echo(
+                                        $_SERVER['PHP_SELF'] == "/board/user.php"
+                                    ? "menu-item-here" : ""); ?>" data-menu-toggle="click" aria-haspopup="true">
+                                        <a href="/board/user" class="menu-link">
+                                            <span class="menu-text">User Dashboard</span>
                                             <i class="menu-arrow"></i>
                                         </a>
                                     </li>

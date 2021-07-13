@@ -70,15 +70,74 @@ if ($countgetuser == '0') {
         '$username',
         '$introid',
         '$password')") or die(mysqli_error($mysqli));
-    
+ 
+        $mysqli->query("INSERT INTO `logs`
+       (`activity`,
+        `periodofactivity`,
+        `ipaddress`,
+        `macaddress`,
+        `entrydate`,
+        `status`,
+        `username`
+        )
+        VALUES (
+        'sign up',
+        '$entrydate',
+        '$ip_add',
+        '$mac_address',
+        '$entrydate',
+        'Successful',
+        '$username'
+        )") or die(mysqli_error($mysqli));
+
         echo 1;
     } else {
+
+        $mysqli->query("INSERT INTO `logs`
+        (`activity`,
+         `periodofactivity`,
+         `ipaddress`,
+         `macaddress`,
+         `entrydate`,
+         `status`,
+         `username`
+         )
+         VALUES (
+         'Attempted sign up',
+         '$entrydate',
+         '$ip_add',
+         '$mac_address',
+         '$entrydate',
+         'Not Successful',
+         '$username'
+         )") or die(mysqli_error($mysqli));
+ 
         echo 2;
     }
     
 }
 
 else {
+
+    $mysqli->query("INSERT INTO `logs`
+    (`activity`,
+     `periodofactivity`,
+     `ipaddress`,
+     `macaddress`,
+     `entrydate`,
+     `status`,
+     `username`
+     )
+     VALUES (
+     'Attempted sign up',
+     '$entrydate',
+     '$ip_add',
+     '$mac_address',
+     '$entrydate',
+     'Not Successful',
+     '$username'
+     )") or die(mysqli_error($mysqli));
+     
     echo 3;
 }
 

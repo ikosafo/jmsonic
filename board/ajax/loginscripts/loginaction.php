@@ -9,32 +9,6 @@ $getdetails = $res->fetch_assoc();
 $rowcount = mysqli_num_rows($res);
 $today = date("Y-m-d H:i:s");
 
-ob_start();
-system('ipconfig /all');
-$mycom=ob_get_contents();
-ob_clean();
-$findme = 'physique';
-$pmac = strpos($mycom, $findme);
-$mac_address = substr($mycom,($pmac+33),17);
-
-function getRealIpAddr()
-{
-    if (!empty($_SERVER['HTTP_CLIENT_IP']))   //check ip from share internet
-    {
-        $ip_address=$_SERVER['HTTP_CLIENT_IP'];
-    }
-    elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR']))   //to check ip is pass from proxy
-    {
-        $ip_address=$_SERVER['HTTP_X_FORWARDED_FOR'];
-    }
-    else
-    {
-        $ip_address=$_SERVER['REMOTE_ADDR'];
-    }
-    return $ip_address;
-
-}
-$ip_add = getRealIpAddr();
 $userid = $getdetails['userid'];
 
 if ($rowcount == "0") {
@@ -47,7 +21,9 @@ if ($rowcount == "0") {
          `ipaddress`,
          `macaddress`,
          `entrydate`,
-         `status`)
+         `status`,
+         `username`
+         )
     VALUES (
         '$userid',
         'Attempted Login',
@@ -55,28 +31,12 @@ if ($rowcount == "0") {
         '$ip_add',
         '$mac_address',
         '$today',
-        'Not successful')") or die(mysqli_error($mysqli));
+        'Not successful',
+        '$username'
+        )") or die(mysqli_error($mysqli));
         echo 2;
 
 } else {
-
-        $mysqli->query("INSERT INTO `logs`
-        (
-         `userid`,
-         `activity`,
-         `periodofactivity`,
-         `ipaddress`,
-         `macaddress`,
-         `entrydate`,
-         `status`)
-    VALUES (
-        '$userid',
-        'Attempted Login',
-        '$today',
-        '$ip_add',
-        '$mac_address',
-        '$today',
-        'Successful')") or die(mysqli_error($mysqli));
 
         $fullname = $getdetails['fullname'];
         $password = $getdetails['password'];
@@ -89,9 +49,53 @@ if ($rowcount == "0") {
         $_SESSION['username'] = $username;
 
         if ($roleid == '1' || $roleid == '2') {
+                $mysqli->query("INSERT INTO `logs`
+               (`userid`,
+                `activity`,
+                `periodofactivity`,
+                `ipaddress`,
+                `macaddress`,
+                `entrydate`,
+                `status`,
+                `username`
+                )
+            VALUES (
+                '$userid',
+                'Admin Attempted Login',
+                '$today',
+                '$ip_add',
+                '$mac_address',
+                '$today',
+                'Successful',
+                '$username'
+                )") or die(mysqli_error($mysqli));
             echo 3;
         }
         else {
+
+            
+        $mysqli->query("INSERT INTO `logs`
+        (
+         `userid`,
+         `activity`,
+         `periodofactivity`,
+         `ipaddress`,
+         `macaddress`,
+         `entrydate`,
+         `status`,
+         `username`
+         )
+    VALUES (
+        '$userid',
+        'User Attempted Login',
+        '$today',
+        '$ip_add',
+        '$mac_address',
+        '$today',
+        'Successful',
+        '$username'
+        )") or die(mysqli_error($mysqli));
+
             echo 1;
         }
 
