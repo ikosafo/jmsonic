@@ -1,15 +1,11 @@
 <?php
 include('../../../config.php');
 
-$id_index = mysqli_real_escape_string($mysqli, $_POST['id_index']);
+$user_id = mysqli_real_escape_string($mysqli, $_POST['selectuser']);
 $userid = $_SESSION['userid'];
 $username = getusername($userid);
-$userapproved = getusername($id_index);
+$usermem = getusername($user_id);
 $datetime = date('Y-m-d H:i:s');
-
-$mysqli->query("UPDATE `users`
-SET `userstatus` = '5', `roleid` = '3'
-WHERE `userid` = '$id_index'") or die(mysqli_error($mysqli));
 
         $mysqli->query("INSERT INTO `logs`
         (
@@ -24,7 +20,7 @@ WHERE `userid` = '$id_index'") or die(mysqli_error($mysqli));
         )
         VALUES (
         '$userid',
-        'Sign up approved for $userapproved',
+        '$usermem made administrator',
         '$datetime',
         '$ip_add',
         '$mac_address',
@@ -32,6 +28,11 @@ WHERE `userid` = '$id_index'") or die(mysqli_error($mysqli));
         'Successful',
         '$username'
         )") or die(mysqli_error($mysqli));
-echo 1;
 
-?>
+        $mysqli->query("UPDATE `users`
+        SET `roleid` = '1'
+        WHERE `userid` = '$user_id'") or die(mysqli_error($mysqli));
+
+echo 1
+
+    ?>

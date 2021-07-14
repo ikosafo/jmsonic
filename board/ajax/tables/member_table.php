@@ -77,17 +77,7 @@ $query = $mysqli->query("select DISTINCT(boardid) as boardids from colourconfig"
                                             </td>
                                             <td> <b><?php echo $resmem['username'] ?></b></td>
                                             <td>
-                                                <?php
-                                                if ($colourpriority == 'Lowest' && $payment == '1') {
-                                                    echo "<span class='label label-lg label-light-success label-inline'>Paid</span>";
-                                                } else if ($colourpriority == 'Lowest' && $payment == '0') {
-                                                    echo "<span class='label label-lg label-light-danger label-inline'>Not paid</span>";
-                                                }
-                                                else {
-                                                    echo "<span class='label label-lg label-light-primary label-inline'>N/A</span>";
-                                                }
-                                                ?>
-
+                                               
                                                  <?php
                                                 if ($status == '1') {
                                                     echo "<span class='label label-sm label-default label-inline'>Pending Approval</span>";
@@ -102,6 +92,18 @@ $query = $mysqli->query("select DISTINCT(boardid) as boardids from colourconfig"
                                                     echo "<span class='label label-sm label-success label-inline'>Active</span>";
                                                 }
                                                 ?> 
+
+                                                <?php
+                                                if ($colourpriority == 'Lowest' && $payment == '1') {
+                                                    echo "<span class='label label-lg label-light-success label-inline'>Paid</span>";
+                                                } else if ($colourpriority == 'Lowest' && $payment == '0') {
+                                                    echo "<span class='label label-lg label-light-danger label-inline'>Not paid</span>";
+                                                }
+                                                else {
+                                                    echo "<span class='label label-lg label-light-primary label-inline'>N/A</span>";
+                                                }
+                                                ?>
+
                                                 
                                                 
                                                 

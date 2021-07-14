@@ -186,7 +186,9 @@ class="quick-panel-right demo-panel-right offcanvas-right header-fixed subheader
                                     </li>
 
 
-                                    <li class="menu-item menu-item-submenu menu-item-rel" data-menu-toggle="click" aria-haspopup="true">
+                                    <li class="menu-item menu-item-submenu menu-item-rel  <?php echo(
+                                        $_SERVER['PHP_SELF'] == "/board/splitboard.php" 
+                                    ? "menu-item-here" : ""); ?>" data-menu-toggle="click" aria-haspopup="true">
                                         <a href="javascript:;" class="menu-link menu-toggle">
                                             <span class="menu-text">Boards</span>
                                             <span class="menu-desc"></span>
@@ -194,6 +196,17 @@ class="quick-panel-right demo-panel-right offcanvas-right header-fixed subheader
                                         </a>
                                         <div class="menu-submenu menu-submenu-classic menu-submenu-left">
                                             <ul class="menu-subnav">
+
+                                            <li class="menu-item <?php echo(
+                                                $_SERVER['PHP_SELF'] == "/board/splitboard.php"
+                                                ? "menu-item-active" : ""); ?>" aria-haspopup="true">
+                                                    <a href="splitboard" class="menu-link">
+                                                        <i class="menu-bullet menu-bullet-dot">
+                                                            <span></span>
+                                                        </i>
+                                                        <span class="menu-text">Split Board</span>
+                                                    </a>
+                                                </li>
 
                                                 <?php
                                                 $getdbboards = $mysqli->query("select * from boards where status = 'Active'");

@@ -10,6 +10,8 @@ $colourid = mysqli_real_escape_string($mysqli, $_POST['colourid']);
 $getboardid = $mysqli->query("select * from boards where boardname = '$boardname'");
 $resboardid = $getboardid->fetch_assoc();
 $selectboard = $resboardid['boardid'];
+$userid = $_SESSION['userid'];
+$username = getusername($userid);
 
 //print_r($_POST);
 $datetime = date("Y-m-d H:i:s");
@@ -68,6 +70,28 @@ SET
 
 WHERE `colourid` = '$colourid'") or die(mysqli_error($mysqli));
 
+        $mysqli->query("INSERT INTO `logs`
+        (
+        `userid`,
+        `activity`,
+        `periodofactivity`,
+        `ipaddress`,
+        `macaddress`,
+        `entrydate`,
+        `status`,
+        `username`
+        )
+        VALUES (
+        '$userid',
+        'Colour Updated',
+        '$datetime',
+        '$ip_add',
+        '$mac_address',
+        '$datetime',
+        'Successful',
+        '$username'
+        )") or die(mysqli_error($mysqli));
+
             echo 1;
         }
         else {
@@ -101,6 +125,28 @@ SET
 
 WHERE `colourid` = '$colourid'") or die(mysqli_error($mysqli));
 
+        $mysqli->query("INSERT INTO `logs`
+        (
+        `userid`,
+        `activity`,
+        `periodofactivity`,
+        `ipaddress`,
+        `macaddress`,
+        `entrydate`,
+        `status`,
+        `username`
+        )
+        VALUES (
+        '$userid',
+        'Colour Updated',
+        '$datetime',
+        '$ip_add',
+        '$mac_address',
+        '$datetime',
+        'Successful',
+        '$username'
+        )") or die(mysqli_error($mysqli));
+
             echo 1;
         }
         else {
@@ -131,6 +177,28 @@ SET
   `colourpriority` = '$colourpriority'
 
 WHERE `colourid` = '$colourid'") or die(mysqli_error($mysqli));
+
+    $mysqli->query("INSERT INTO `logs`
+        (
+        `userid`,
+        `activity`,
+        `periodofactivity`,
+        `ipaddress`,
+        `macaddress`,
+        `entrydate`,
+        `status`,
+        `username`
+        )
+        VALUES (
+        '$userid',
+        'Colour Updated',
+        '$datetime',
+        '$ip_add',
+        '$mac_address',
+        '$datetime',
+        'Successful',
+        '$username'
+        )") or die(mysqli_error($mysqli));
 
         echo 1;
     }

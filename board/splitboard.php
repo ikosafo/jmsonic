@@ -1,4 +1,7 @@
-<?php require('includes/header.php');?>
+<?php require('includes/header.php');
+
+?>
+
 
 <div class="d-flex flex-column flex-root">
     <!--begin::Page-->
@@ -16,7 +19,7 @@
                             <!--begin::Heading-->
                             <div class="d-flex flex-column">
                                 <!--begin::Title-->
-                                <h2 class="text-white font-weight-bold my-2 mr-5">Colours</h2>
+                                <h2 class="text-white font-weight-bold my-2 mr-5">Boards</h2>
                                 <!--end::Title-->
 
                             </div>
@@ -32,31 +35,20 @@
                     <!--begin::Container-->
                     <div class="container">
                         <div class="row">
-                            <div class="col-md-5">
-                                <!--begin::Card-->
-                                <div class="card card-custom gutter-b example example-compact">
-                                    <div class="card-header">
-                                        <h3 class="card-title">Add / Update Colour</h3>
-                                    </div>
-                                    <!--begin::Form-->
-                                    <div id="colourform_div"></div>
-                                    <!--end::Form-->
-                                </div>
-                                <!--end::Card-->
-                            </div>
-                            <div class="col-md-7">
+                           
+                            <div class="col-md-12">
 
                                 <!--begin::Card-->
                                 <div class="card card-custom gutter-b">
                                     <div class="card-header flex-wrap py-3">
                                         <div class="card-title">
-                                            <h3 class="card-label">Colours
-                                                <span class="d-block text-muted pt-2 font-size-sm">View, Edit &amp; Delete Colours</span></h3>
+                                            <h3 class="card-label">SPlit Boards
+                                                <span class="d-block text-muted pt-2 font-size-sm">Split Boards</span></h3>
                                         </div>
 
                                     </div>
                                     <div class="card-body">
-                                        <div id="colourtable_div"></div>
+                                       <div id="boardtable_div"></div>
                                     </div>
                                 </div>
                                 <!--end::Card-->
@@ -81,7 +73,7 @@
 
 <script>
     $.ajax({
-        url: "ajax/forms/addcolour_form.php",
+        url: "ajax/tables/split_table.php",
         beforeSend: function () {
             KTApp.blockPage({
                 overlayColor: "#000000",
@@ -91,29 +83,7 @@
             })
         },
         success: function (text) {
-            $('#colourform_div').html(text);
-        },
-        error: function (xhr, ajaxOptions, thrownError) {
-            alert(xhr.status + " " + thrownError);
-        },
-        complete: function () {
-            KTApp.unblockPage();
-        },
-
-    });
-
-    $.ajax({
-        url: "ajax/tables/colour_table.php",
-        beforeSend: function () {
-            KTApp.blockPage({
-                overlayColor: "#000000",
-                type: "v2",
-                state: "success",
-                message: "Please wait..."
-            })
-        },
-        success: function (text) {
-            $('#colourtable_div').html(text);
+            $('#boardtable_div').html(text);
         },
         error: function (xhr, ajaxOptions, thrownError) {
             alert(xhr.status + " " + thrownError);

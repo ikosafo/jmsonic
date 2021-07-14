@@ -4,7 +4,9 @@ include('../../../config.php');
 $selectboard = mysqli_real_escape_string($mysqli, $_POST['selectboard']);
 $selectcolour = mysqli_real_escape_string($mysqli, $_POST['selectcolour']);
 $countmember = mysqli_real_escape_string($mysqli, $_POST['countmember']);
-//print_r($_POST);
+$userid = $_SESSION['userid'];
+$username = getusername($userid);
+
 $datetime = date("Y-m-d H:i:s");
 $getdetails = $mysqli->query("select * from colourconfig where colourid = '$selectcolour'");
 $resdetails = $getdetails->fetch_assoc();
@@ -29,13 +31,36 @@ $countnumber = mysqli_num_rows($mysqli->query("select * from previewboard where 
                     (`boardid`,
                      `colourid`,
                      `userid`,
-                     `status`)
+                     `status`,
+                     `mainboardid`
+                     )
             VALUES 
                 ('$selectboard',
                 '$selectcolour',
                 '$selectmember',
-                '4')") or die(mysqli_error($mysqli));
+                '4',
+                '$selectboard')") or die(mysqli_error($mysqli));
             }
+
+            $mysqli->query("INSERT INTO `logs`
+            (
+            `activity`,
+            `periodofactivity`,
+            `ipaddress`,
+            `macaddress`,
+            `entrydate`,
+            `status`,
+            `username`
+            )
+            VALUES (
+            'User added',
+            '$datetime',
+            '$ip_add',
+            '$mac_address',
+            '$datetime',
+            'Successful',
+            '$username'
+            )") or die(mysqli_error($mysqli));
             
             echo 3;
             }
@@ -52,14 +77,37 @@ $countnumber = mysqli_num_rows($mysqli->query("select * from previewboard where 
                     (`boardid`,
                      `colourid`,
                      `userid`,
-                     `status`)
+                     `status`,
+                     `mainboardid`
+                     )
             VALUES 
                 ('$selectboard',
                 '$selectcolour',
                 '$selectmember',
-                '4')") or die(mysqli_error($mysqli));
+                '4',
+                '$selectboard')") or die(mysqli_error($mysqli));
               
             }
+
+            $mysqli->query("INSERT INTO `logs`
+            (
+            `activity`,
+            `periodofactivity`,
+            `ipaddress`,
+            `macaddress`,
+            `entrydate`,
+            `status`,
+            `username`
+            )
+            VALUES (
+            'Users added',
+            '$datetime',
+            '$ip_add',
+            '$mac_address',
+            '$datetime',
+            'Successful',
+            '$username'
+            )") or die(mysqli_error($mysqli));
             echo 1;
         }
        

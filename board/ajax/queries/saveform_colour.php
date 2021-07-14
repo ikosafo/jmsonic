@@ -6,7 +6,8 @@ $colourname = mysqli_real_escape_string($mysqli, $_POST['colourname']);
 $selectcolour = mysqli_real_escape_string($mysqli, $_POST['selectcolour']);
 $colournumber = mysqli_real_escape_string($mysqli, $_POST['colournumber']);
 $colourpriority = mysqli_real_escape_string($mysqli, $_POST['colourpriority']);
-//print_r($_POST);
+$userid = $_SESSION['userid'];
+$username = getusername($userid);
 $datetime = date("Y-m-d H:i:s");
 
 $getdetails = $mysqli->query("select * from colourconfig where (colourcode = '$selectcolour' OR colourname = '$colourname')
@@ -42,14 +43,81 @@ VALUES ('$selectboard',
         '$colourpriority'
         )") or die(mysqli_error($mysqli));
 
+        $mysqli->query("INSERT INTO `logs`
+        (
+        `userid`,
+        `activity`,
+        `periodofactivity`,
+        `ipaddress`,
+        `macaddress`,
+        `entrydate`,
+        `status`,
+        `username`
+        )
+        VALUES (
+        '$userid',
+        'Colour Added',
+        '$datetime',
+        '$ip_add',
+        '$mac_address',
+        '$datetime',
+        'Successful',
+        '$username'
+        )") or die(mysqli_error($mysqli));
+
         echo 1;
     }
     else {
+
+        $mysqli->query("INSERT INTO `logs`
+        (
+        `userid`,
+        `activity`,
+        `periodofactivity`,
+        `ipaddress`,
+        `macaddress`,
+        `entrydate`,
+        `status`,
+        `username`
+        )
+        VALUES (
+        '$userid',
+        'Colour Added failed (Maximum number exceeded)',
+        '$datetime',
+        '$ip_add',
+        '$mac_address',
+        '$datetime',
+        'Unsuccessful',
+        '$username'
+        )") or die(mysqli_error($mysqli));
+
         echo 3;
     }
 
 }
 else {
+
+    $mysqli->query("INSERT INTO `logs`
+    (
+    `userid`,
+    `activity`,
+    `periodofactivity`,
+    `ipaddress`,
+    `macaddress`,
+    `entrydate`,
+    `status`,
+    `username`
+    )
+    VALUES (
+    '$userid',
+    'Colour Added failed (Colour already exists)',
+    '$datetime',
+    '$ip_add',
+    '$mac_address',
+    '$datetime',
+    'Unsuccessful',
+    '$username'
+    )") or die(mysqli_error($mysqli));
     echo 2;
 }
 

@@ -111,7 +111,6 @@ function getusername ($userid) {
     return $resuserdetails['username'];
 }
 
-
 //User Status
 function getuserstatus ($userid) {
     global $mysqli;
@@ -166,5 +165,20 @@ function getuserroles ($userid) {
 
 }
 
+//Maximum Number for board
+function getmaxboardnumber($boardid) {
+    global $mysqli;
+    $countboard = $mysqli->query("select * from boards where boardid = '$boardid'");
+    $rescount = $countboard->fetch_assoc();
+    return $rescount['boardnumber'];
+} 
+
+//Maximum Number for paid
+function getmaxpaidnumber($boardid) {
+    global $mysqli;
+    $countboard = $mysqli->query("select * from colourconfig where boardid = '$boardid' and colourpriority = 'Lowest'");
+    $rescount = $countboard->fetch_assoc();
+    return $rescount['numberassign'];
+} 
 
 

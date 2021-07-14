@@ -80,25 +80,26 @@ $random = rand(1,10000).date("Y");
 
                         });
                         $.ajax({
-                            url: "ajax/tables/colour_table.php",
-                            beforeSend: function () {
-                                KTApp.blockPage({
-                                    overlayColor: "#000000",
-                                    type: "v2",
-                                    state: "success",
-                                    message: "Please wait..."
-                                })
-                            },
-                            success: function (text) {
-                                $('#colourtable_div').html(text);
-                            },
-                            error: function (xhr, ajaxOptions, thrownError) {
-                                alert(xhr.status + " " + thrownError);
-                            },
-                            complete: function () {
-                                KTApp.unblockPage();
-                            },
-                        });
+                        url: "ajax/tables/memberadmin_table.php",
+                        beforeSend: function () {
+                            KTApp.blockPage({
+                                overlayColor: "#000000",
+                                type: "v2",
+                                state: "success",
+                                message: "Please wait..."
+                            })
+                        },
+                        success: function (text) {
+                            $('#memberadmintable_div').html(text);
+                        },
+                        error: function (xhr, ajaxOptions, thrownError) {
+                            alert(xhr.status + " " + thrownError);
+                        },
+                        complete: function () {
+                            KTApp.unblockPage();
+                        },
+
+                    });
                     }
                     else  if (text == 2){
                         $("#errorloc").notify("Colour name already exists","error");
