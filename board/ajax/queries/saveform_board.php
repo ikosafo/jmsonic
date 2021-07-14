@@ -1,5 +1,4 @@
 <?php
-
 include('../../../config.php');
 
 $boardname = mysqli_real_escape_string($mysqli, $_POST['boardname']);

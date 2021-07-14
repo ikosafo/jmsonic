@@ -1,5 +1,5 @@
 <?php include('../../../config.php');
-$query = $mysqli->query("select DISTINCT(boardid) as boardids from previewboard");
+$query = $mysqli->query("select DISTINCT(boardid) as boardids from previewboard ORDER BY boardid DESC");
 
 ?>
 <style>
@@ -19,6 +19,7 @@ $query = $mysqli->query("select DISTINCT(boardid) as boardids from previewboard"
         <th>Number of Members</th>
         <th>Number Paid</th>
         <th>Board Status</th>
+        <th>Split Boards</th>
         <th>Action</th>
     </tr>
     </thead>
@@ -56,22 +57,53 @@ $query = $mysqli->query("select DISTINCT(boardid) as boardids from previewboard"
             </td>
             <td>
                 <?php
-                    if (($countdb == $countmax) && ($countpaid == $countmaxpaid)) { ?>
-                        <button type="button"
+                if (($countdb == $countmax) && ($countpaid == $countmaxpaid)) {
+                    $countnewboard = mysqli_num_rows($mysqli->query("select * from boards where newboards = '1' and boardid= '$boardid'"));
+                if ($countnewboard == '0') { ?>
+                     <button type="button"
                         data-type="confirm"
-                        class="btn btn-primary js-sweetalert edit_colour btn-sm"
+                        class="btn btn-secondary js-sweetalert splitforms btn-sm"
                         i_index="<?php echo $boardid; ?>"
                         title="Edit">
+                        Add Boards
+                    </button>
+                <?php }
+                else { 
+                    $getnewboards = $mysqli->query("select * from boards where parentboardid = '$boardid'");
+                    while ($resnewboards = $getnewboards->fetch_assoc()) {
+                        echo $resnewboards['boardname'].'<br/>';
+                    }
+                  }
+                }
+                else {
+                    echo "<span class='label label-lg label-light-danger label-inline'>Incomplete</span>";
+                }
+                
+                
+                ?>
+            </td>
+            <td>
+                <?php
+                    if (($countdb == $countmax) && ($countpaid == $countmaxpaid)) { 
+                        $countnewboard = mysqli_num_rows($mysqli->query("select * from boards where split = '0' and boardid= '$boardid'"));
+                        if ($countnewboard == '0') {
+                            echo "Board already splitted";
+                        } else { ?>
+                        <button type="button"
+                        data-type="confirm"
+                        class="btn btn-primary js-sweetalert splitboard btn-sm"
+                        i_index="<?php echo $boardid; ?>"
+                        title="Split Board">
                         Split Board
                     </button>
-                   <?php  }
+                        <?php }
+                          }
                     else {
                         echo "<span class='label label-lg label-light-danger label-inline'>Incomplete</span>";
                     }
                 ?>
             </td>
-                  
-           
+                         
         </tr>
         <?php
     }
@@ -92,11 +124,114 @@ $query = $mysqli->query("select DISTINCT(boardid) as boardids from previewboard"
     });
 
 
-    $(document).off('click', '.deletemember').on('click', '.deletemember', function () {
+    $(document).off('click', '.splitforms').on('click', '.splitforms', function () {
         var theindex = $(this).attr('i_index');
         //alert(theindex)
         $.confirm({
-            title: 'Remove Member!',
+            title: 'Add Boards!',
+            content: '' +
+            '<form action="" class="formName">' +
+            '<div class="form-group">' +
+            '<label>First Board</label>' +
+            '<input type="text" placeholder="First Board" id="firstboard" class="name form-control" required />' +
+            '</div>' +
+            '<div class="form-group">' +
+            '<label>Second Board</label>' +
+            '<input type="text" placeholder="Second Board" id="secondboard" class="name form-control" required />' +
+            '</div>' +
+            '</form>',
+            buttons: {
+                formSubmit: {
+                    text: 'Submit',
+                    btnClass: 'btn-blue',
+                    action: function () {
+                        var firstboard = this.$content.find('#firstboard').val();
+                        var secondboard = this.$content.find('#secondboard').val();
+                        if(!firstboard){
+                            $.alert('Provide a board name');
+                            return false;
+                        }
+                        else if(!secondboard){
+                            $.alert('Provide a board name');
+                            return false;
+                        }
+                        $.ajax({
+                            type: "POST",
+                            url: "ajax/queries/saveform_splitdata.php",
+                            beforeSend: function () {
+                                KTApp.blockPage({
+                                    overlayColor: "#000000",
+                                    type: "v2",
+                                    state: "success",
+                                    message: "Please wait..."
+                                })
+                            },
+                            data: {
+                                firstboard: firstboard,
+                                secondboard: secondboard,
+                                theindex:theindex
+                            },
+                            success: function (text) {
+                                //alert(text);
+                                if (text == 1) {
+                                        $.ajax({
+                                            url: "ajax/tables/split_table.php",
+                                            beforeSend: function () {
+                                                KTApp.blockPage({
+                                                    overlayColor: "#000000",
+                                                    type: "v2",
+                                                    state: "success",
+                                                    message: "Please wait..."
+                                                })
+                                            },
+                                            success: function (text) {
+                                                $('#boardtable_div').html(text);
+                                            },
+                                            error: function (xhr, ajaxOptions, thrownError) {
+                                                alert(xhr.status + " " + thrownError);
+                                            },
+                                            complete: function () {
+                                                KTApp.unblockPage();
+                                            },
+
+                                        });
+                                }
+                               
+                                else {
+                                    $("#errorloc").notify("Board name already exists","error");
+                                }
+
+                            },
+                            error: function (xhr, ajaxOptions, thrownError) {
+                                alert(xhr.status + " " + thrownError);
+                            },
+                            complete: function () {
+                                KTApp.unblockPage();
+                            },
+                        });
+                    }
+                },
+                cancel: function () {
+                    //close
+                },
+            },
+            onContentReady: function () {
+                // bind to events
+                var jc = this;
+                this.$content.find('form').on('submit', function (e) {
+                    // if the user submits the form by pressing enter in the field.
+                    e.preventDefault();
+                    jc.$$formSubmit.trigger('click'); // reference the button and click it
+                });
+            }
+        });
+    });
+
+    $(document).off('click', '.splitboard').on('click', '.splitboard', function () {
+        var theindex = $(this).attr('i_index');
+        //alert(theindex)
+        $.confirm({
+            title: 'Split Board!',
             content: 'Are you sure to continue?',
             buttons: {
                 no: {
@@ -109,20 +244,20 @@ $query = $mysqli->query("select DISTINCT(boardid) as boardids from previewboard"
                     }
                 },
                 yes: {
-                    text: 'Yes, Delete it!',
+                    text: 'Yes, Split it!',
                     btnClass: 'btn-blue',
                     action: function () {
                         $.ajax({
                             type: "POST",
-                            url: "ajax/queries/delete_member.php",
+                            url: "ajax/queries/split_board.php",
                             data: {
                                 i_index: theindex
                             },
                             dataType: "html",
                             success: function (text) {
-                                //alert(text);
+                                alert(text);
                                 $.ajax({
-                                    url: "ajax/tables/member_table.php",
+                                    url: "ajax/tables/split_table.php",
                                     beforeSend: function () {
                                         KTApp.blockPage({
                                             overlayColor: "#000000",
@@ -132,7 +267,7 @@ $query = $mysqli->query("select DISTINCT(boardid) as boardids from previewboard"
                                         })
                                     },
                                     success: function (text) {
-                                        $('#membertable_div').html(text);
+                                        $('#boardtable_div').html(text);
                                     },
                                     error: function (xhr, ajaxOptions, thrownError) {
                                         alert(xhr.status + " " + thrownError);
@@ -153,99 +288,5 @@ $query = $mysqli->query("select DISTINCT(boardid) as boardids from previewboard"
                 }
             }
         });
-    });
-
-    $(document).off('click', '.suspendmember').on('click', '.suspendmember', function () {
-        var theindex = $(this).attr('i_index');
-        //alert(theindex)
-        $.confirm({
-            title: 'Suspend Member!',
-            content: 'Are you sure to continue?',
-            buttons: {
-                no: {
-                    text: 'No',
-                    keys: ['enter', 'shift'],
-                    backdrop: 'static',
-                    keyboard: false,
-                    action: function () {
-                        $.alert('Data is safe');
-                    }
-                },
-                yes: {
-                    text: 'Yes, Delete it!',
-                    btnClass: 'btn-blue',
-                    action: function () {
-                        $.ajax({
-                            type: "POST",
-                            url: "ajax/queries/suspend_member.php",
-                            data: {
-                                i_index: theindex
-                            },
-                            dataType: "html",
-                            success: function (text) {
-                                //alert(text);
-                                $.ajax({
-                                    url: "ajax/tables/member_table.php",
-                                    beforeSend: function () {
-                                        KTApp.blockPage({
-                                            overlayColor: "#000000",
-                                            type: "v2",
-                                            state: "success",
-                                            message: "Please wait..."
-                                        })
-                                    },
-                                    success: function (text) {
-                                        $('#membertable_div').html(text);
-                                    },
-                                    error: function (xhr, ajaxOptions, thrownError) {
-                                        alert(xhr.status + " " + thrownError);
-                                    },
-                                    complete: function () {
-                                        KTApp.unblockPage();
-                                    },
-
-                                });
-                            },
-                            complete: function () {
-                            },
-                            error: function (xhr, ajaxOptions, thrownError) {
-                                alert(xhr.status + " " + thrownError);
-                            }
-                        });
-                    }
-                }
-            }
-        });
-    });
-
-    $(document).off('click', '.viewmemberdetails').on('click', '.viewmemberdetails', function () {
-        var theindex = $(this).attr('i_index');
-        //alert(theindex);
-
-        $.ajax({
-                type: "POST",
-                url: "ajax/forms/viewmemberdetails.php",
-                beforeSend: function () {
-                    KTApp.blockPage({
-                        overlayColor: "#000000",
-                        type: "v2",
-                        state: "success",
-                        message: "Please wait..."
-                    })
-                },
-                data: {
-                    theindex: theindex
-                },
-                success: function (text) {
-                    $('#viewmemberdiv').html(text);
-                },
-                error: function (xhr, ajaxOptions, thrownError) {
-                    alert(xhr.status + " " + thrownError);
-                },
-                complete: function () {
-                    KTApp.unblockPage();
-                },
-            });
-
     });
 </script>

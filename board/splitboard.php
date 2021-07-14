@@ -42,7 +42,7 @@
                                 <div class="card card-custom gutter-b">
                                     <div class="card-header flex-wrap py-3">
                                         <div class="card-title">
-                                            <h3 class="card-label">SPlit Boards
+                                            <h3 class="card-label">Split Boards
                                                 <span class="d-block text-muted pt-2 font-size-sm">Split Boards</span></h3>
                                         </div>
 

@@ -208,24 +208,7 @@ class="quick-panel-right demo-panel-right offcanvas-right header-fixed subheader
                                                     </a>
                                                 </li>
 
-                                                <?php
-                                                $getdbboards = $mysqli->query("select * from boards where status = 'Active'");
-                                                while ($resdbboards = $getdbboards->fetch_assoc()) { ?>
-
-                                                <li class="menu-item
-                                                <?php echo(
-                                                $_SERVER['PHP_SELF'] == "/board/boardconfig.php"
-                                                    ? "menu-item-active" : ""); ?>"
-                                                    aria-haspopup="true">
-                                                    <a href="bd?i=<?php echo lock($resdbboards['boardid']) ?>" class="menu-link">
-                                                        <i class="menu-bullet menu-bullet-dot">
-                                                            <span></span>
-                                                        </i>
-                                                        <span class="menu-text"><?php echo $resdbboards['boardname']?></span>
-                                                    </a>
-                                                </li>
-
-                                                <?php } ?>
+                                                ]
 
                                             </ul>
                                         </div>
