@@ -108,6 +108,40 @@ $resuserdetails = $getuserdetails->fetch_assoc();
                             </a>
                         </div>
                         <!--end::Header Logo-->
+                        <!--begin::Header Menu Wrapper-->
+                        <div class="header-menu-wrapper header-menu-wrapper-left" id="kt_header_menu_wrapper">
+                            <!--begin::Header Menu-->
+                            <div id="kt_header_menu" class="header-menu header-menu-left header-menu-mobile header-menu-layout-default">
+                                <!--begin::Header Nav-->
+                                <ul class="menu-nav">
+                                
+                                <?php if ($roleid == '2' || $roleid == '1') { ?>
+                                    <li class="menu-item menu-item-rel <?php echo(
+                                        $_SERVER['PHP_SELF'] == "/board/index.php"
+                                    ? "menu-item-here" : ""); ?>" data-menu-toggle="click" aria-haspopup="true">
+                                        <a href="/board" class="menu-link">
+                                            <span class="menu-text">Exit to Dashboard</span>
+                                            <i class="menu-arrow"></i>
+                                        </a>
+                                    </li>
+                                <?php } ?>
+
+                                    <li class="menu-item menu-item-rel <?php echo(
+                                        $_SERVER['PHP_SELF'] == "/board/user.php"
+                                    ? "menu-item-here" : ""); ?>" data-menu-toggle="click" aria-haspopup="true">
+                                        <a href="/board/user" class="menu-link">
+                                            <span class="menu-text">User Dashboard</span>
+                                            <i class="menu-arrow"></i>
+                                        </a>
+                                    </li>
+
+
+                                </ul>
+                                <!--end::Header Nav-->
+                            </div>
+                            <!--end::Header Menu-->
+                        </div>
+                        <!--end::Header Menu Wrapper-->
                         
                     </div>
                     <!--end::Left-->

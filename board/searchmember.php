@@ -19,7 +19,7 @@
                             <!--begin::Heading-->
                             <div class="d-flex flex-column">
                                 <!--begin::Title-->
-                                <h2 class="text-white font-weight-bold my-2 mr-5">User / Login Accounts</h2>
+                                <h2 class="text-white font-weight-bold my-2 mr-5">Search Member</h2>
                                 <!--end::Title-->
 
                             </div>
@@ -42,8 +42,8 @@
                                 <div class="card card-custom gutter-b">
                                     <div class="card-header flex-wrap py-3">
                                         <div class="card-title">
-                                            <h3 class="card-label">User account details
-                                                <span class="d-block text-muted pt-2 font-size-sm">View, &amp; Approve Applications</span></h3>
+                                            <h3 class="card-label">Member Details
+                                                <span class="d-block text-muted pt-2 font-size-sm">View &amp; and Search Applications</span></h3>
                                         </div>
 
                                     </div>
@@ -53,8 +53,11 @@
                                             <div class=" col-lg-4 col-md-9 col-sm-12">
                                                 <select class="form-control kt-selectpicker" id="selectstatus" name="param">
                                                     <option value="All">All</option>
-                                                    <option value="Pending">Pending</option>
-                                                    <option value="Approved">Approved</option>
+                                                    <option value="1">Pending</option>
+                                                    <option value="2">Removed</option>
+                                                    <option value="3">Suspended</option>
+                                                    <option value="4">Active</option>
+                                                    <option value="5">Approved</option>
                                                 </select>
 
                                             </div>
@@ -90,7 +93,7 @@
 
     $.ajax({
         type: "POST",
-        url: "ajax/tables/loginacc_table.php",
+        url: "ajax/tables/memberdetails_table.php",
         beforeSend: function () {
             KTApp.blockPage({
                 overlayColor: "#000000",
@@ -117,7 +120,7 @@
         //alert(selectstatus);
         $.ajax({
             type: "POST",
-            url: "ajax/tables/loginacc_table.php",
+            url: "ajax/tables/memberdetails_table.php",
             beforeSend: function () {
                 KTApp.blockPage({
                     overlayColor: "#000000",
@@ -140,47 +143,5 @@
         });
     });
 
-    $(document).on('click', '.approvesignupbtn', function() {
-        var id_index = $(this).attr('i_index');
-        //alert(id_index);
-
-        $.confirm({
-            title: 'Do you want to approve?',
-            content: 'This action is not reversible',
-            buttons: {
-                no: {
-                    text: 'No',
-                    keys: ['enter', 'shift'],
-                    backdrop: 'static',
-                    keyboard: false,
-                    action: function () {
-                        $.alert('Member was not approved');
-                    }
-                },
-                yes: {
-                    text: 'Yes, Approve!',
-                    btnClass: 'btn-blue',
-                    action: function () {
-                        $.ajax({
-                            type: "POST",
-                            url: "ajax/queries/approve_signup.php",
-                            data: {
-                                id_index: id_index
-                            },
-                            dataType: "html",
-                            success: function (text) {
-                                $("#accounttable").DataTable().ajax.reload(null, false );
-                            },
-                            complete: function () {
-                            },
-                            error: function (xhr, ajaxOptions, thrownError) {
-                                alert(xhr.status + " " + thrownError);
-                            }
-                        });
-                    }
-                }
-            }
-        });
-    });
-
+ 
 </script>

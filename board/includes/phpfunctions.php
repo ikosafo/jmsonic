@@ -100,8 +100,6 @@ function approvesignup($userid,$userstatus) {
     else {
         return '<span>Application already approved</span>';
     }
-
-
 }
 
 
@@ -110,4 +108,11 @@ function removeadmin($userid) {
         return '<a href="#" class="btn btn-sm btn-outline-danger removeadminbtn" i_index='.$userid.'>
     <i class="flaticon2-cancel"></i>Remove Admin</a>';
 
+}
+
+
+//View Member details 
+function viewmemberdetails($userid) {
+    return '<a href="#" class="btn btn-sm btn-outline-primary viewmemberbtn" i_index='.$userid.'>
+    View Details</a>';
 }
