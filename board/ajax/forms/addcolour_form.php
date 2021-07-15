@@ -22,7 +22,8 @@ $random = rand(1,10000).date("Y");
             <select id="selectboard" style="width: 100%">
                 <option value="">Select Board</option>
                 <?php
-                $selectboard = $mysqli->query("select * from boards where status = 'Active' ORDER BY boardname");
+                $selectboard = $mysqli->query("select * from boards where status = 'Active'
+                                                and type = 'Main' ORDER BY boardname");
                 while ($resboard = $selectboard->fetch_assoc()) { ?>
                     <option value="<?php echo $resboard['boardid'] ?>"><?php echo $resboard['boardname'] ?></option>
                 <?php }

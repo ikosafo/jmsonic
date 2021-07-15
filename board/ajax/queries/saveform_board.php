@@ -12,7 +12,7 @@ $countdetails = mysqli_num_rows($getdetails);
 if ($countdetails == '0') {
 
     //Count number of boards
-    $countboard = mysqli_num_rows($mysqli->query("select * from boards"));
+    $countboard = mysqli_num_rows($mysqli->query("select * from boards where type = 'Main'"));
     if ($countboard < 3) {
                 $mysqli->query("INSERT INTO `boards`
                 (`boardname`,

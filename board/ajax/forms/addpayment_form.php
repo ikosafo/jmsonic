@@ -22,7 +22,8 @@ $random = rand(1,10000).date("Y");
             <select id="selectboard" style="width: 100%">
                 <option value="">Select Board</option>
                 <?php
-                $selectboard = $mysqli->query("select * from boards where status = 'Active' ORDER BY boardname");
+                $selectboard = $mysqli->query("select * from boards where status = 'Active'
+                                               and type = 'Main' ORDER BY boardname");
                 while ($resboard = $selectboard->fetch_assoc()) { ?>
                     <option value="<?php echo $resboard['boardid'] ?>"><?php echo $resboard['boardname'] ?></option>
                 <?php }
@@ -43,7 +44,7 @@ $random = rand(1,10000).date("Y");
             <label for="amounttoreceive">Amount to Receive</label>
             <input type="text" class="form-control" id="amounttoreceive"
                    placeholder="Enter Amount" onkeypress="return isNumber(event)">
-            <span class="form-text text-muted">Please select colour code</span>
+            <span class="form-text text-muted">Please enter amount to receive</span>
         </div>
         <div class="form-group">
             <label for="sendcolour">Sender's Colour</label>

@@ -139,7 +139,8 @@ class="quick-panel-right demo-panel-right offcanvas-right header-fixed subheader
                                     <li class="menu-item menu-item-submenu menu-item-rel  <?php echo(
                                         $_SERVER['PHP_SELF'] == "/board/boardconfig.php" ||
                                         $_SERVER['PHP_SELF'] == "/board/colourconfig.php" ||
-                                        $_SERVER['PHP_SELF'] == "/board/paymentconfig.php"
+                                        $_SERVER['PHP_SELF'] == "/board/paymentconfig.php" ||
+                                        $_SERVER['PHP_SELF'] == "/board/exitfee.php"
                                     ? "menu-item-here" : ""); ?>" data-menu-toggle="click" aria-haspopup="true">
                                         <a href="javascript:;" class="menu-link menu-toggle">
                                             <span class="menu-text">Configurations</span>
@@ -180,6 +181,16 @@ class="quick-panel-right demo-panel-right offcanvas-right header-fixed subheader
                                                         <span class="menu-text">Payment</span>
                                                     </a>
                                                 </li>
+                                                <li class="menu-item <?php echo(
+                                                $_SERVER['PHP_SELF'] == "/board/exitfee.php"
+                                                ? "menu-item-active" : ""); ?>" aria-haspopup="true">
+                                                    <a href="exitfee" class="menu-link">
+                                                        <i class="menu-bullet menu-bullet-dot">
+                                                            <span></span>
+                                                        </i>
+                                                        <span class="menu-text">Exit Fee</span>
+                                                    </a>
+                                                </li>
                                                
                                             </ul>
                                         </div>
@@ -187,7 +198,8 @@ class="quick-panel-right demo-panel-right offcanvas-right header-fixed subheader
 
 
                                     <li class="menu-item menu-item-submenu menu-item-rel  <?php echo(
-                                        $_SERVER['PHP_SELF'] == "/board/splitboard.php" 
+                                        $_SERVER['PHP_SELF'] == "/board/splitboard.php" ||
+                                        $_SERVER['PHP_SELF'] == "/board/searchboard.php" 
                                     ? "menu-item-here" : ""); ?>" data-menu-toggle="click" aria-haspopup="true">
                                         <a href="javascript:;" class="menu-link menu-toggle">
                                             <span class="menu-text">Boards</span>
@@ -197,19 +209,29 @@ class="quick-panel-right demo-panel-right offcanvas-right header-fixed subheader
                                         <div class="menu-submenu menu-submenu-classic menu-submenu-left">
                                             <ul class="menu-subnav">
 
-                                            <li class="menu-item <?php echo(
-                                                $_SERVER['PHP_SELF'] == "/board/splitboard.php"
-                                                ? "menu-item-active" : ""); ?>" aria-haspopup="true">
-                                                    <a href="splitboard" class="menu-link">
-                                                        <i class="menu-bullet menu-bullet-dot">
-                                                            <span></span>
-                                                        </i>
-                                                        <span class="menu-text">Split Board</span>
-                                                    </a>
+                                                <li class="menu-item <?php echo(
+                                                    $_SERVER['PHP_SELF'] == "/board/splitboard.php"
+                                                    ? "menu-item-active" : ""); ?>" aria-haspopup="true">
+                                                        <a href="splitboard" class="menu-link">
+                                                            <i class="menu-bullet menu-bullet-dot">
+                                                                <span></span>
+                                                            </i>
+                                                            <span class="menu-text">Split Board</span>
+                                                        </a>
                                                 </li>
 
-                                                ]
+                                                <li class="menu-item <?php echo(
+                                                    $_SERVER['PHP_SELF'] == "/board/searchboard.php"
+                                                    ? "menu-item-active" : ""); ?>" aria-haspopup="true">
+                                                        <a href="searchboard" class="menu-link">
+                                                            <i class="menu-bullet menu-bullet-dot">
+                                                                <span></span>
+                                                            </i>
+                                                            <span class="menu-text">Search Board</span>
+                                                        </a>
+                                                </li>
 
+                                                
                                             </ul>
                                         </div>
                                     </li>

@@ -36,12 +36,12 @@ $query = $mysqli->query("select DISTINCT(boardid) as boardids from previewboard 
                 ?>
             </td>
             <td>
-                <b><?php echo $countdb = mysqli_num_rows($mysqli->query("select * from previewboard where boardid = '$boardid'"));
+                <b><?php echo $countdb = mysqli_num_rows($mysqli->query("select * from previewboard where boardid = '$boardid' and status != '2'"));
                 ?></b>
                 Out of <?php echo $countmax = getmaxboardnumber($boardid); ?>
             </td>
             <td>
-                <b><?php echo $countpaid = mysqli_num_rows($mysqli->query("select * from previewboard where boardid = '$boardid' and payment = '1'"));
+                <b><?php echo $countpaid = mysqli_num_rows($mysqli->query("select * from previewboard where boardid = '$boardid' and status != '2' and payment = '1'"));
                 ?></b>
                 Out of <?php echo $countmaxpaid = getmaxpaidnumber($boardid); ?>
             </td>
@@ -87,7 +87,7 @@ $query = $mysqli->query("select DISTINCT(boardid) as boardids from previewboard 
                     if (($countdb == $countmax) && ($countpaid == $countmaxpaid)) { 
                         $countnewboard = mysqli_num_rows($mysqli->query("select * from boards where split = '0' and boardid= '$boardid'"));
                         if ($countnewboard == '0') {
-                            echo "Board already splitted";
+                            echo "<span class='label label-lg label-light-success label-inline'>Splitted</span>";
                         } else { ?>
                         <button type="button"
                         data-type="confirm"

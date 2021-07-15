@@ -1,5 +1,5 @@
 <?php include('../../../config.php');
-$query = $mysqli->query("select * from boards where status = 'Active'");
+$query = $mysqli->query("select * from boards where status = 'Active' and type = 'Main'");
 
 ?>
 <style>
@@ -16,7 +16,6 @@ $query = $mysqli->query("select * from boards where status = 'Active'");
     <tr>
         <th>Board Name</th>
         <th>Maximum Number</th>
-        <th>Board Type</th>
         <th>Date Created</th>
         <th>Action</th>
     </tr>
@@ -28,7 +27,6 @@ $query = $mysqli->query("select * from boards where status = 'Active'");
         <tr>
             <td><?php echo $result['boardname'] ?></td>
             <td><?php echo $result['boardnumber'] ?></td>
-            <td><?php echo $result['type'] ?></td>
             <td>
                 <?php echo $result['entrydate'].'<br/>('.time_elapsed_string($result['entrydate']).')' ?>
             </td>

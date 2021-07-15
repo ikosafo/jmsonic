@@ -22,8 +22,8 @@ $random = rand(1,10000).date("Y");
             <select id="selectboard" style="width: 100%">
                 <option value="">Select Board</option>
                 <?php
-                $selectboard = $mysqli->query("select * from boards where status = 'Active' and 
-                type = 'Main' ORDER BY boardname");
+                $selectboard = $mysqli->query("select * from boards where status = 'Active' 
+                                               and type = 'Main' ORDER BY boardname");
                 while ($resboard = $selectboard->fetch_assoc()) { ?>
                     <option value="<?php echo $resboard['boardid'] ?>"><?php echo $resboard['boardname'] ?></option>
                 <?php }
@@ -33,26 +33,24 @@ $random = rand(1,10000).date("Y");
             <span class="form-text text-muted">Please select board</span>
         </div>
         <div class="form-group">
-            <label for="selectcolour">Select Colour</label>
-            <select id="selectcolour" style="width: 100%">
+            <label for="selectcolour">Colour to Pay</label>
+            <select id="selectcolour" style="width: 100%" disabled>
                 <option value="">Select Colour</option>
                 <option></option>
             </select>
-            <span class="form-text text-muted">Please select colour</span>
+            <span class="form-text text-muted">Please select name of colour</span>
         </div>
         <div class="form-group">
-            <label for="selectmember">Select Member/User</label>
-            <select id="selectmember" style="width: 100%" multiple>
-                <option value="">Select Member</option>
-                <option></option>
-            </select>
-            <span class="form-text text-muted">Please select member</span>
+            <label for="amounttopay">Amount to Pay</label>
+            <input type="text" class="form-control" id="amounttopay"
+                   placeholder="Enter Amount" onkeypress="return isNumber(event)">
+            <span class="form-text text-muted">Please select amount to pay</span>
         </div>
-        
+       
 
     </div>
     <div class="card-footer">
-        <button type="button" class="btn btn-primary mr-2" id="savemember">Submit</button>
+        <button type="button" class="btn btn-primary mr-2" id="savepayment">Submit</button>
         <button type="reset" class="btn btn-secondary">Cancel</button>
     </div>
 </form>
@@ -60,11 +58,11 @@ $random = rand(1,10000).date("Y");
 
 
 <script>
-        $("#selectboard").change(function () {
+     $("#selectboard").change(function () {
             var getboard = $(this).val();
             if (getboard != "") {
                 $.ajax({
-                    url: "ajax/forms/getcolour.php",
+                    url: "ajax/forms/getreceivecolour.php",
                     data: {getboard: getboard},
                     type: 'POST',
                     beforeSend: function () {
@@ -86,63 +84,34 @@ $random = rand(1,10000).date("Y");
             }
         });
 
-
-        $("#selectboard").change(function () {
-            var getboard = $(this).val();
-            if (getboard != "") {
-                $.ajax({
-                    url: "ajax/forms/getaddmember.php",
-                    data: {getboard: getboard},
-                    type: 'POST',
-                    beforeSend: function () {
-                        $.blockUI({message: '<h3> Please Wait...</h3>'});
-                    },
-                    success: function (response) {
-                        var resp = $.trim(response);
-                        $("#selectmember").html(resp);
-                    },
-                    error: function (xhr, ajaxOptions, thrownError) {
-                        alert(xhr.status + " " + thrownError);
-                    },
-                    complete: function () {
-                        $.unblockUI();
-                    },
-                });
-            } else {
-                $("#selectmember").html("<option value=''></option>");
-            }
-        });
-        
             
     $("#selectboard").select2({placeholder: "Select Board"});
     $("#selectcolour").select2({placeholder: "Select Colour"});
-    $("#selectmember").select2({placeholder: "Select Member"});
 
-    $("#savemember").click(function () {
+    $("#savepayment").click(function () {
         var selectboard = $("#selectboard").val();
-        var selectmember = $("#selectmember").val();
         var selectcolour = $("#selectcolour").val();
-        var countmember = $("#selectmember :selected").length;
-        //alert(count);
+        var amounttopay = $("#amounttopay").val();
 
         var error = '';
         if (selectboard == "") {
             error += 'Please select board \n';
             $("#selectboard").focus();
         }
-        if (selectboard != "" && selectmember == "") {
-            error += 'Please select member \n';
-            $("#selectmember").focus();
-        }
-        if (selectboard != "" && selectcolour == "") {
-            error += 'Please select colour \n';
+        if (selectcolour == "") {
+            error += 'Please select colour to pay \n';
             $("#selectcolour").focus();
         }
+        if (amounttopay == "") {
+            error += 'Please enter amount \n';
+            $("#amounttopay").focus();
+        }
+
 
         if (error == "") {
             $.ajax({
                 type: "POST",
-                url: "ajax/queries/saveform_member.php",
+                url: "ajax/queries/saveform_exitfee.php",
                 beforeSend: function () {
                     KTApp.blockPage({
                         overlayColor: "#000000",
@@ -153,15 +122,14 @@ $random = rand(1,10000).date("Y");
                 },
                 data: {
                     selectboard: selectboard,
-                    selectmember: selectmember,
                     selectcolour: selectcolour,
-                    countmember:countmember
+                    amounttopay: amounttopay
                 },
                 success: function (text) {
                     //alert(text)
-                    if (text == 1 || text == 3) {
+                    if (text == 1) {
                         $.ajax({
-                            url: "ajax/forms/addmember_form.php",
+                            url: "ajax/forms/addexitfee_form.php",
                             beforeSend: function () {
                                 KTApp.blockPage({
                                     overlayColor: "#000000",
@@ -171,7 +139,7 @@ $random = rand(1,10000).date("Y");
                                 })
                             },
                             success: function (text) {
-                                $('#memberform_div').html(text);
+                                $('#paymentform_div').html(text);
                             },
                             error: function (xhr, ajaxOptions, thrownError) {
                                 alert(xhr.status + " " + thrownError);
@@ -182,7 +150,7 @@ $random = rand(1,10000).date("Y");
 
                         });
                         $.ajax({
-                            url: "ajax/tables/member_table.php",
+                            url: "ajax/tables/exitfee_table.php",
                             beforeSend: function () {
                                 KTApp.blockPage({
                                     overlayColor: "#000000",
@@ -192,7 +160,7 @@ $random = rand(1,10000).date("Y");
                                 })
                             },
                             success: function (text) {
-                                $('#membertable_div').html(text);
+                                $('#paymenttable_div').html(text);
                             },
                             error: function (xhr, ajaxOptions, thrownError) {
                                 alert(xhr.status + " " + thrownError);
@@ -200,11 +168,10 @@ $random = rand(1,10000).date("Y");
                             complete: function () {
                                 KTApp.unblockPage();
                             },
-
                         });
                     }
                     else  if (text == 2){
-                        $("#errorloc").notify("Number of users exceeded","error");
+                        $("#errorloc").notify("Board already exist","error");
                     }
 
                 },

@@ -326,7 +326,7 @@
 																			<!--end::Svg Icon-->
 																		</span>
 																	</span>
-																	<span class="nav-text">History</span>
+																	<span class="nav-text">Add Member</span>
 																</a>
 															</li>
 															<li class="nav-item mr-3">
@@ -505,78 +505,15 @@
 														<!--end::Tab Content-->
 														<!--begin::Tab Content-->
 														<div class="tab-pane" id="kt_apps_contacts_view_tab_2" role="tabpanel">
-															<form class="form">
-																<div class="row">
-																	<div class="col-lg-9 col-xl-6 offset-xl-3">
-																		<h3 class="font-size-h6 mb-5">Contact Info:</h3>
-																	</div>
+															<div class="row">
+																<div class="col-md-5">
+																	<div id="memberuserform_div"></div>
 																</div>
-																<div class="form-group row">
-																	<label class="col-xl-3 col-lg-3 col-form-label text-right">Contact Name</label>
-																	<div class="col-lg-9 col-xl-6">
-																		<input class="form-control form-control-lg form-control-solid" type="text" value="Nick" />
-																	</div>
+																<div class="col-md-7">
+																	<div id="memberusertable_div"></div>
 																</div>
-																<div class="form-group row">
-																	<label class="col-xl-3 col-lg-3 col-form-label text-right">Contact Owner</label>
-																	<div class="col-lg-9 col-xl-6">
-																		<input class="form-control form-control-lg form-control-solid" type="text" value="Bold" />
-																	</div>
-																</div>
-																<div class="form-group row">
-																	<label class="col-xl-3 col-lg-3 col-form-label text-right">Customer Name</label>
-																	<div class="col-lg-9 col-xl-6">
-																		<input class="form-control form-control-lg form-control-solid" type="text" value="Loop Inc." />
-																		<span class="form-text text-muted">If you want your invoices addressed to a company. Leave blank to use your full name.</span>
-																	</div>
-																</div>
-																<div class="separator separator-dashed my-10"></div>
-																<!--begin::Heading-->
-																<div class="row">
-																	<div class="col-lg-9 col-xl-6 offset-xl-3">
-																		<h3 class="font-size-h6 mb-5">Contact Info:</h3>
-																	</div>
-																</div>
-																<!--end::Heading-->
-																<div class="form-group row">
-																	<label class="col-xl-3 col-lg-3 col-form-label text-right">Contact Phone</label>
-																	<div class="col-lg-9 col-xl-6">
-																		<div class="input-group input-group-lg input-group-solid">
-																			<div class="input-group-prepend">
-																				<span class="input-group-text">
-																					<i class="la la-phone"></i>
-																				</span>
-																			</div>
-																			<input type="text" class="form-control form-control-lg form-control-solid" value="+35278953712" placeholder="Phone" />
-																		</div>
-																		<span class="form-text text-muted">We'll never share your email with anyone else.</span>
-																	</div>
-																</div>
-																<div class="form-group row">
-																	<label class="col-xl-3 col-lg-3 col-form-label text-right">Email Address</label>
-																	<div class="col-lg-9 col-xl-6">
-																		<div class="input-group input-group-lg input-group-solid">
-																			<div class="input-group-prepend">
-																				<span class="input-group-text">
-																					<i class="la la-at"></i>
-																				</span>
-																			</div>
-																			<input type="text" class="form-control form-control-lg form-control-solid" value="nick.bold@loop.com" placeholder="Email" />
-																		</div>
-																	</div>
-																</div>
-																<div class="form-group row">
-																	<label class="col-xl-3 col-lg-3 col-form-label text-right">Company Site</label>
-																	<div class="col-lg-9 col-xl-6">
-																		<div class="input-group input-group-lg input-group-solid">
-																			<input type="text" class="form-control form-control-lg form-control-solid" placeholder="Username" value="loop" />
-																			<div class="input-group-append">
-																				<span class="input-group-text">.com</span>
-																			</div>
-																		</div>
-																	</div>
-																</div>
-															</form>
+															</div>
+
 														</div>
 														<!--end::Tab Content-->
 														<!--begin::Tab Content-->
@@ -980,7 +917,49 @@
 <?php include ('includes/footer.php'); ?>
 
 <script>
+	$.ajax({	
+        url: "ajax/forms/addmemberuser_form.php",
+        beforeSend: function () {
+            KTApp.blockPage({
+                overlayColor: "#000000",
+                type: "v2",
+                state: "success",
+                message: "Please wait..."
+            })
+        },
+        success: function (text) {
+            $('#memberuserform_div').html(text);
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            alert(xhr.status + " " + thrownError);
+        },
+        complete: function () {
+            KTApp.unblockPage();
+        },
 
+    });
+
+    $.ajax({
+        url: "ajax/tables/memberuser_table.php",
+        beforeSend: function () {
+            KTApp.blockPage({
+                overlayColor: "#000000",
+                type: "v2",
+                state: "success",
+                message: "Please wait..."
+            })
+        },
+        success: function (text) {
+            $('#memberusertable_div').html(text);
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            alert(xhr.status + " " + thrownError);
+        },
+        complete: function () {
+            KTApp.unblockPage();
+        },
+
+    });
 	
 	 $(document).off('click', '.updatepayment').on('click', '.updatepayment', function () {
         var theindex = $(this).attr('i_index');

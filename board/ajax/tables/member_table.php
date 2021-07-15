@@ -46,7 +46,7 @@ $query = $mysqli->query("select DISTINCT(boardid) as boardids from colourconfig"
                             $colourcode = $rescolourdetails['colourcode'];
                              ?>
                             <td style="background:<?php echo $colourcode ?>">
-                            <span style="text-transform:uppercase;;text-align:center;margin-left:10px">
+                            <span style="text-transform:uppercase;text-align:center;margin-left:10px">
                             <?php 
                                 echo $rescolourdetails['colourname'] ?></span>
                             </td>
