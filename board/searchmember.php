@@ -65,12 +65,14 @@
                                         </div>
                                         <div id="membertable_div"></div>
                                     </div>
+                                    <div id="approval_div"></div>
                                 </div>
                                 <!--end::Card-->
 
 
                             </div>
                         </div>
+                       
                     </div>
                     <!--end::Container-->
                 </div>
@@ -141,6 +143,42 @@
             },
 
         });
+    });
+
+    $(document).on('click', '.viewmemberbtn', function() {
+        var id_index = $(this).attr('i_index');
+        //alert(id_index);
+
+        $('html, body').animate({
+            scrollTop: $("#approval_div").offset().top
+        }, 2000);
+
+        $.ajax({
+            type: "POST",
+            url: "viewmemberdetails.php",
+            data: {
+                id_index:id_index
+            },
+            beforeSend: function () {
+                KTApp.blockPage({
+                    overlayColor: "#000000",
+                    type: "v2",
+                    state: "success",
+                    message: "Please wait..."
+                })
+            },
+            success: function (text) {
+                $('#approval_div').html(text);
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                alert(xhr.status + " " + thrownError);
+            },
+            complete: function () {
+                KTApp.unblockPage();
+            },
+
+        });
+
     });
 
  
