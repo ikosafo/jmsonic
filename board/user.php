@@ -581,7 +581,7 @@
 																													echo $resname['boardname']."<br/>";
 																													
 																													$getcolour = $mysqli->query("select * from colourconfig c JOIN previewboard p ON p.colourid = c.colourid
-																													                              where c.colourpriority = 'Lowest' and p.userid = '$user_id' and p.`status` != '2'
+																													                              where c.colourpriority = 'Lowest' and p.`status` != '2'
 																																				  and p.boardid = '$boardid'");
 																													$rescolour = $getcolour->fetch_assoc();
 																													echo "(".$receivecolour =  $rescolour['colourname'].")";
@@ -731,7 +731,11 @@
 <table>
 																													<tbody>
 																													<?php
-																														//get receipient
+																													    //Check whether exit fee has been paid
+																														$getexitfee = mysqli_num_rows($mysqli->query("select * from boards where boardid = '$boardid' and exitfeepaid = '1'"));
+																														if ($getexitfee == '1') {
+
+																															//get receipient
 																														$getreceipient = $mysqli->query("select * from previewboard p Join colourconfig c ON p.colourid = c.colourid where 
 																														p.boardid = '$boardid' and c.colourpriority = 'Lowest' and p.`status` != '2'");
 																														while ($resreceipient = $getreceipient->fetch_assoc()){ ?>
@@ -755,19 +759,23 @@
 																																echo "<span class='label label-lg label-light-success label-inline'>Paid</span>";
 																															}
 																														
-																													?>
+																															?>
 
 																																</td>
 																																<td>
-																																<button type="button"
-																																	data-type="confirm"
-																																	class="btn btn-primary btn-sm updatepayment"
-																																	i_index="<?php echo $resreceipient['previd']; ?>"
-																																	title="Update Payment"> Update Payment
-																															</button>
+																																	<button type="button"
+																																		data-type="confirm"
+																																		class="btn btn-primary btn-sm updatepayment"
+																																		i_index="<?php echo $resreceipient['previd']; ?>"
+																																		title="Update Payment"> Update Payment
+																																	</button>
 																																</td>	
 																															</tr>
+
+																															<?php } } else { ?>
+																															Please pay your exit fee of <?php echo getamtexit($boardid);?>
 																														<?php } ?>
+																											            
 																														</tbody>
 																														</table>
 																											

@@ -38,7 +38,7 @@ $lowcolourid = $reslowcolourid['colourid'];
 $getlowestcolour = $mysqli->query("select * from previewboard p JOIN colourconfig c ON p.colourid = c.colourid 
                                  where c.colourpriority = 'Lowest' 
                                  and c.status = 'Active'
-                                 and p.boardid = '$i_index' LIMIT $lowestsep");
+                                 and p.boardid = '$i_index' ORDER BY introusername LIMIT $lowestsep");
                         while ($reslowestcolour = $getlowestcolour->fetch_assoc()) {
                             $userid = $reslowestcolour['userid'];
                             $mysqli->query("INSERT INTO `previewboard`
@@ -65,7 +65,7 @@ $getlowestcolour = $mysqli->query("select * from previewboard p JOIN colourconfi
 $getlowestcolour2 = $mysqli->query("select * from previewboard p JOIN colourconfig c ON p.colourid = c.colourid 
                                  where c.colourpriority = 'Lowest' 
                                  and c.status = 'Active'
-                                 and p.boardid = '$i_index' LIMIT $lowestsep,$numberassignlowest");
+                                 and p.boardid = '$i_index' ORDER BY introusername LIMIT $lowestsep,$numberassignlowest");
                                 while ($reslowestcolour2 = $getlowestcolour2->fetch_assoc()) {
                                     $userid = $reslowestcolour2['userid'];
                                     $mysqli->query("INSERT INTO `previewboard`
@@ -104,7 +104,7 @@ $highcolourid = $reshighcolourid['colourid'];
 //Insert first set of low
 $getlowcolour = $mysqli->query("select * from previewboard p JOIN colourconfig c ON p.colourid = c.colourid 
                                  where c.colourpriority = 'Low' and c.status = 'Active' 
-                                 and p.boardid = '$i_index' LIMIT $lowsep");
+                                 and p.boardid = '$i_index' ORDER BY introusername LIMIT $lowsep");
 while ($reslowcolour = $getlowcolour->fetch_assoc()) {
     $userid = $reslowcolour['userid'];
     $mysqli->query("INSERT INTO `previewboard`
@@ -130,7 +130,7 @@ while ($reslowcolour = $getlowcolour->fetch_assoc()) {
 $getlowcolour2 = $mysqli->query("select * from previewboard p JOIN colourconfig c ON p.colourid = c.colourid 
                                  where c.colourpriority = 'Low' 
                                  and c.status = 'Active'
-                                 and p.boardid = '$i_index' LIMIT $lowsep,$numberassignlow");
+                                 and p.boardid = '$i_index' ORDER BY introusername LIMIT $lowsep,$numberassignlow");
 while ($reslowcolour2 = $getlowcolour2->fetch_assoc()) {
     $userid = $reslowcolour2['userid'];
     $mysqli->query("INSERT INTO `previewboard`
@@ -169,7 +169,8 @@ $highestcolourid = $reshighestcolourid['colourid'];
 
 //Insert first set of high
 $gethighcolour = $mysqli->query("select * from previewboard p JOIN colourconfig c ON p.colourid = c.colourid 
-                                 where c.colourpriority = 'High' and c.status = 'Active' and p.boardid = '$i_index' LIMIT $highsep");
+                                 where c.colourpriority = 'High' and c.status = 'Active' 
+                                 and p.boardid = '$i_index' ORDER BY introusername LIMIT $highsep");
 while ($reshighcolour = $gethighcolour->fetch_assoc()) {
     $userid = $reshighcolour['userid'];
     $mysqli->query("INSERT INTO `previewboard`
@@ -193,7 +194,9 @@ while ($reshighcolour = $gethighcolour->fetch_assoc()) {
 
 //Insert second set of high
 $gethighcolour2 = $mysqli->query("select * from previewboard p JOIN colourconfig c ON p.colourid = c.colourid 
-                                 where c.colourpriority = 'High' and c.status = 'Active' and p.status != '2' and p.boardid = '$i_index' LIMIT $highsep,$numberassignhigh");
+                                 where c.colourpriority = 'High' and c.status = 'Active' and 
+                                 p.status != '2' and p.boardid = '$i_index' 
+                                 ORDER BY introusername LIMIT $highsep,$numberassignhigh");
 while ($reshighcolour2 = $gethighcolour2->fetch_assoc()) {
     $userid = $reshighcolour2['userid'];
     $mysqli->query("INSERT INTO `previewboard`

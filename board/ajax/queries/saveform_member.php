@@ -27,19 +27,23 @@ $countnumber = mysqli_num_rows($mysqli->query("select * from previewboard where 
                
                 foreach ($_POST['selectmember'] as $selectmember)
             {
+                $introusername = getintroducer($selectmember);
                     $mysqli->query("INSERT INTO `previewboard`
                     (`boardid`,
                      `colourid`,
                      `userid`,
                      `status`,
-                     `mainboardid`
+                     `mainboardid`,
+                     `introusername`
                      )
             VALUES 
                 ('$selectboard',
                 '$selectcolour',
                 '$selectmember',
                 '4',
-                '$selectboard')") or die(mysqli_error($mysqli));
+                '$selectboard',
+                '$introusername'
+                )") or die(mysqli_error($mysqli));
             }
 
             $mysqli->query("INSERT INTO `logs`
@@ -73,20 +77,23 @@ $countnumber = mysqli_num_rows($mysqli->query("select * from previewboard where 
         else {
             foreach ($_POST['selectmember'] as $selectmember)
             {
+                $introusername = getintroducer($selectmember);
                     $mysqli->query("INSERT INTO `previewboard`
                     (`boardid`,
                      `colourid`,
                      `userid`,
                      `status`,
-                     `mainboardid`
+                     `mainboardid`,
+                     `introusername`
                      )
             VALUES 
                 ('$selectboard',
                 '$selectcolour',
                 '$selectmember',
                 '4',
-                '$selectboard')") or die(mysqli_error($mysqli));
-              
+                '$selectboard',
+                '$introusername'
+                )") or die(mysqli_error($mysqli));
             }
 
             $mysqli->query("INSERT INTO `logs`

@@ -111,6 +111,14 @@ function getusername ($userid) {
     return $resuserdetails['username'];
 }
 
+//Get Introducer
+function getintroducer ($userid) {
+    global $mysqli;
+    $getuserdetails = $mysqli->query("select * from users where userid = '$userid'");
+    $resuserdetails = $getuserdetails->fetch_assoc();
+    return $resuserdetails['introusername'];
+}
+
 //User Status
 function getuserstatus ($userid) {
     global $mysqli;
@@ -176,9 +184,30 @@ function getmaxboardnumber($boardid) {
 //Maximum Number for paid
 function getmaxpaidnumber($boardid) {
     global $mysqli;
-    $countboard = $mysqli->query("select * from colourconfig where boardid = '$boardid' and colourpriority = 'Lowest'");
+    $countboard = $mysqli->query("select * from colourconfig where boardid = '$boardid' and 
+                                    colourpriority = 'Lowest'");
+    $rescount = $countboard->fetch_assoc();
+    return $rescount['numberassign'];
+} 
+
+//Maximum Number for paid
+function getmaxpaidnumbersplit($boardid) {
+    global $mysqli;
+    $countboard = $mysqli->query("SELECT * FROM boards where `boardid` = '$boardid'");
+    $rescount = $countboard->fetch_assoc();
+    $mainboardid = $rescount['mainboardid'];
+    $countboard = $mysqli->query("select * from colourconfig where boardid = '$mainboardid' and 
+    colourpriority = 'Lowest'");
     $rescount = $countboard->fetch_assoc();
     return $rescount['numberassign'];
 } 
 
 
+
+//Exit fee amount
+function getamtexit ($boardid) {
+    global $mysqli;
+    $countboard = $mysqli->query("select * from exitfee where boardid = '$boardid'");
+    $rescount = $countboard->fetch_assoc();
+    return $rescount['amounttopay'];
+}
