@@ -37,18 +37,20 @@ $query = $mysqli->query("select DISTINCT(boardid) as boardids from previewboard 
                 ?>
             </td>
             <td>
-                <b><?php echo $countdb = mysqli_num_rows($mysqli->query("select * from previewboard where boardid = '$boardid' and status != '2'"));
+                <b><?php 
+                echo $countdb = mysqli_num_rows($mysqli->query("select * from previewboard where boardid = '$boardid' and status != '2'"));
                 ?></b>
-                Out of <?php echo $countmax = getmaxboardnumber($boardid); ?>
+                Out of <?php 
+                $getmainboardid = getmainboardid($boardid);
+                echo $countmax = getmaxboardnumber($getmainboardid); ?>
             </td>
             <td>
                 <b><?php echo $countpaid = mysqli_num_rows($mysqli->query("select * from previewboard where boardid = '$boardid' and status != '2' and payment = '1'"));
                 ?></b>
-                Out of <?php $countmaxpaid = getmaxpaidnumber($boardid);
-                //echo $boardid;
-                    if ($countmaxpaid == "") {
-                        echo getmaxpaidnumbersplit($boardid);
-                    }
+                Out of <?php 
+                $getmainboardid = getmainboardid($boardid);
+                echo $countmaxpaid = getmaxpaidnumber($getmainboardid);
+                
                 ?>
             </td>
             <td>

@@ -146,18 +146,7 @@
                                         </div>
                                     </div>
                                      <!--end: Item-->
-                                    <!--begin: Item-->
-                                    <div class="d-flex align-items-center flex-lg-fill mr-5 my-1">
-										<div class="d-flex flex-column text-dark-75">
-                                                <span class="font-weight-bolder font-size-sm">Completed Boards</span>
-                                                        <span class="font-weight-bolder font-size-h5">
-                                                    <?php
-                                                    echo mysqli_num_rows($mysqli->query("select * from boards where completion = '1'"));
-                                                    ?>    
-                                                </span>
-                                        </div>
-                                    </div>
-                                     <!--end: Item-->
+                                   
                                     
                            
                                 </div>
