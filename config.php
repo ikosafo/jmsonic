@@ -211,3 +211,18 @@ function getamtexit ($boardid) {
     $rescount = $countboard->fetch_assoc();
     return $rescount['amounttopay'];
 }
+
+
+//Mainboard id
+function getmainboardid ($boardid) {
+    global $mysqli;
+    $getmainid = $mysqli->query("SELECT * FROM boards where `boardid` = '$boardid'");
+    $resmainid = $getmainid->fetch_assoc();
+    $mainboardid = $resmainid['mainboardid'];
+    if ($mainboardid == "") {
+        $mainboardid = $boardid;
+    }
+    return $mainboardid;
+   
+}
+                    

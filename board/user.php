@@ -404,7 +404,8 @@
 																							
 																							<tbody>
 																							<?php
-																							$getcolourdetails = $mysqli->query("select * from colourconfig where boardid = '$boardid' and `status` = 'Active'");
+																							$mainboardid = getmainboardid($boardid);
+																							$getcolourdetails = $mysqli->query("select * from colourconfig where boardid = '$mainboardid' and `status` = 'Active'");
 																							while ($rescolourdetails = $getcolourdetails->fetch_assoc()) { ?>
 
 																								<tr>
@@ -506,10 +507,10 @@
 														<!--begin::Tab Content-->
 														<div class="tab-pane" id="kt_apps_contacts_view_tab_2" role="tabpanel">
 															<div class="row">
-																<div class="col-md-5">
+																<div class="col-md-4">
 																	<div id="memberuserform_div"></div>
 																</div>
-																<div class="col-md-7">
+																<div class="col-md-8">
 																	<div id="memberusertable_div"></div>
 																</div>
 															</div>
@@ -579,10 +580,10 @@
 																													$getname = $mysqli->query("select * from boards where boardid = '$boardid' ORDER BY boardname");
 																													$resname = $getname->fetch_assoc();
 																													echo $resname['boardname']."<br/>";
-																													
+																													$mainboardid = getmainboardid($boardid);
 																													$getcolour = $mysqli->query("select * from colourconfig c JOIN previewboard p ON p.colourid = c.colourid
 																													                              where c.colourpriority = 'Lowest' and p.`status` != '2'
-																																				  and p.boardid = '$boardid'");
+																																				  and p.boardid = '$mainboardid'");
 																													$rescolour = $getcolour->fetch_assoc();
 																													echo "(".$receivecolour =  $rescolour['colourname'].")";
 																													?>
@@ -773,7 +774,9 @@
 																															</tr>
 
 																															<?php } } else { ?>
-																															Please pay your exit fee of <?php echo getamtexit($boardid);?>
+																															Please pay your exit fee of <?php
+																																$mainboardid = getmainboardid($boardid);
+																																echo getamtexit($mainboardid);?>
 																														<?php } ?>
 																											            
 																														</tbody>
@@ -801,107 +804,7 @@
 														<!--end::Tab Content-->
 														<!--begin::Tab Content-->
 														<div class="tab-pane" id="kt_apps_contacts_view_tab_4" role="tabpanel">
-															<form class="form">
-																<!--begin::Heading-->
-																<div class="row">
-																	<div class="col-lg-9 col-xl-6 offset-xl-3">
-																		<h3 class="font-size-h6 mb-5">Setup Email Notification:</h3>
-																	</div>
-																</div>
-																<!--end::Heading-->
-																<div class="form-group row">
-																	<label class="col-xl-3 col-lg-3 col-form-label text-right">Email Notification</label>
-																	<div class="col-lg-9 col-xl-6">
-																		<span class="switch">
-																			<label>
-																				<input type="checkbox" checked="checked" name="email_notification_1" />
-																				<span></span>
-																			</label>
-																		</span>
-																	</div>
-																</div>
-																<div class="form-group row mb-0">
-																	<label class="col-xl-3 col-lg-3 col-form-label text-right">Send Copy To Personal Email</label>
-																	<div class="col-lg-9 col-xl-6">
-																		<span class="switch">
-																			<label>
-																				<input type="checkbox" name="email_notification_2" />
-																				<span></span>
-																			</label>
-																		</span>
-																	</div>
-																</div>
-																<div class="separator separator-dashed my-10"></div>
-																<!--begin::Heading-->
-																<div class="row">
-																	<div class="col-lg-9 col-xl-6 offset-xl-3">
-																		<h3 class="font-size-h6 mb-5">Activity Related Emails:</h3>
-																	</div>
-																</div>
-																<!--end::Heading-->
-																<div class="form-group row">
-																	<label class="col-xl-3 col-lg-3 col-form-label text-right">When To Email</label>
-																	<div class="col-lg-9 col-xl-6">
-																		<div class="checkbox-list">
-																			<label class="checkbox">
-																			<input type="checkbox" />
-																			<span></span>You have new notifications.</label>
-																			<label class="checkbox">
-																			<input type="checkbox" />
-																			<span></span>You're sent a direct message</label>
-																			<label class="checkbox">
-																			<input type="checkbox" checked="checked" />
-																			<span></span>Someone adds you as a connection</label>
-																		</div>
-																	</div>
-																</div>
-																<div class="form-group row mb-0">
-																	<label class="col-xl-3 col-lg-3 col-form-label text-right">When To Escalate Emails</label>
-																	<div class="col-lg-9 col-xl-6">
-																		<div class="checkbox-list">
-																			<label class="checkbox">
-																			<input type="checkbox" />
-																			<span></span>Upon new order.</label>
-																			<label class="checkbox">
-																			<input type="checkbox" />
-																			<span></span>New membership approval</label>
-																			<label class="checkbox">
-																			<input type="checkbox" checked="checked" />
-																			<span></span>Member registration</label>
-																		</div>
-																	</div>
-																</div>
-																<div class="separator separator-dashed my-10"></div>
-																<!--begin::Heading-->
-																<div class="row">
-																	<div class="col-lg-9 col-xl-6 offset-xl-3">
-																		<h3 class="font-size-h6 mb-5">Updates From Keenthemes:</h3>
-																	</div>
-																</div>
-																<!--end::Heading-->
-																<div class="form-group row">
-																	<label class="col-xl-3 col-lg-3 col-form-label text-right">Email You With</label>
-																	<div class="col-lg-9 col-xl-6">
-																		<div class="checkbox-list">
-																			<label class="checkbox">
-																			<input type="checkbox" />
-																			<span></span>News about Metronic product and feature updates</label>
-																			<label class="checkbox">
-																			<input type="checkbox" />
-																			<span></span>Tips on getting more out of Keen</label>
-																			<label class="checkbox">
-																			<input type="checkbox" checked="checked" />
-																			<span></span>Things you missed since you last logged into Keen</label>
-																			<label class="checkbox">
-																			<input type="checkbox" checked="checked" />
-																			<span></span>News about Metronic on partner products and other services</label>
-																			<label class="checkbox">
-																			<input type="checkbox" checked="checked" />
-																			<span></span>Tips on Metronic business products</label>
-																		</div>
-																	</div>
-																</div>
-															</form>
+															
 														</div>
 														<!--end::Tab Content-->
 													</div>
