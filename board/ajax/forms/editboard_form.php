@@ -30,8 +30,16 @@ $resdetails = $getdetails->fetch_assoc();
         </div>
         <div class="form-group">
             <label for="boardnumber">Total Number board can take</label>
-            <input type="text" class="form-control" id="boardnumber" onkeypress="return isNumber(event)"
-                   placeholder="Enter Number" value="<?php echo $resdetails['boardnumber'] ?>">
+           <!--  <input type="text" class="form-control" id="boardnumber" onkeypress="return isNumber(event)"
+                   placeholder="Enter Number" value="<?php echo $resdetails['boardnumber'] ?>"> -->
+            <select id="boardnumber" style="width: 100%">
+                <option value="">Select Board</option>
+                <option <?php if (@$resdetails['boardnumber'] == "3") echo "Selected" ?>>3</option>
+                <option <?php if (@$resdetails['boardnumber'] == "7") echo "Selected" ?>>7</option>
+                <option <?php if (@$resdetails['boardnumber'] == "15") echo "Selected" ?>>15</option>
+                <option <?php if (@$resdetails['boardnumber'] == "31") echo "Selected" ?>>31</option>
+                <option <?php if (@$resdetails['boardnumber'] == "63") echo "Selected" ?>>63</option>
+            </select>
             <span class="form-text text-muted">Specify maximum number board can take</span>
         </div>
 
@@ -46,6 +54,7 @@ $resdetails = $getdetails->fetch_assoc();
 
 
 <script>
+    $("#boardnumber").select2({placeholder: "Select Number"});
     $("#editboard").click(function () {
         var boardname = $("#boardname").val();
         var boardnumber = $("#boardnumber").val();

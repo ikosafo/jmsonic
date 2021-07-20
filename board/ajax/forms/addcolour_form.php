@@ -45,22 +45,21 @@ $random = rand(1,10000).date("Y");
         </div>
         <div class="form-group">
             <label for="colournumber">Total Number colour can take</label>
-            <input type="text" class="form-control" id="colournumber" onkeypress="return isNumber(event)"
-                   placeholder="Enter Number">
+            <select id="colournumber" style="width: 100%">
+                <option value="">Select Number</option>
+                <option></option>
+            </select>
             <span class="form-text text-muted">Specify maximum number assigned to colour</span>
         </div>
         <div class="form-group">
             <label for="colourpriority">Select Colour Priority</label>
-            <select id="colourpriority" style="width: 100%">
-                <option value="">Select Board</option>
-                <option value="Highest">Highest</option>
-                <option value="High">High</option>
-                <option value="Low">Low</option>
-                <option value="Lowest">Lowest</option>
+            <select id="colourpriority" style="width: 100%" disabled>
+                <option value="">Select Priority</option>
+                <option></option>
             </select>
             <span class="form-text text-muted">Please select colour order on board</span>
         </div>
-
+       
 
     </div>
     <div class="card-footer">
@@ -70,6 +69,60 @@ $random = rand(1,10000).date("Y");
 </form>
 
 <script>
+
+    $("#colournumber").change(function () {
+        var getnumber = $(this).val();
+        if (getnumber != "") {
+            $.ajax({
+                url: "ajax/forms/getpriority.php",
+                data: {getnumber: getnumber},
+                type: 'POST',
+                beforeSend: function () {
+                    $.blockUI({message: '<h3> Please Wait...</h3>'});
+                },
+                success: function (response) {
+                    var resp = $.trim(response);
+                    $("#colourpriority").html(resp);
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    alert(xhr.status + " " + thrownError);
+                },
+                complete: function () {
+                    $.unblockUI();
+                },
+            });
+        } else {
+            $("#colourpriority").html("<option value=''></option>");
+        }
+    });
+
+    $("#selectboard").change(function () {
+        var getboard = $(this).val();
+        if (getboard != "") {
+            $.ajax({
+                url: "ajax/forms/getnumber.php",
+                data: {getboard: getboard},
+                type: 'POST',
+                beforeSend: function () {
+                    $.blockUI({message: '<h3> Please Wait...</h3>'});
+                },
+                success: function (response) {
+                    var resp = $.trim(response);
+                    $("#colournumber").html(resp);
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    alert(xhr.status + " " + thrownError);
+                },
+                complete: function () {
+                    $.unblockUI();
+                },
+            });
+        } else {
+            $("#colournumber").html("<option value=''></option>");
+        }
+    });
+
+    $("#colournumber").select2({placeholder: "Select Number"});
     $("#selectboard").select2({placeholder: "Select Board"});
     $("#colourpriority").select2({placeholder: "Select Priority"});
     $("#savecolour").click(function () {
@@ -94,13 +147,9 @@ $random = rand(1,10000).date("Y");
             $("#selectcolour").focus();
         }
         if (colournumber == "") {
-            error += 'Please enter colour number \n';
+            error += 'Please select colour number \n';
             $("#colournumber").focus();
-        }
-        if (colournumber != "" && (8 % colournumber) != 0) {
-            error += 'Number should be a factor of 8 \n';
-            $("#colournumber").focus();
-        }
+        }  
         if (colourpriority == "") {
             error += 'Please select priority \n';
             $("#colourpriority").focus();

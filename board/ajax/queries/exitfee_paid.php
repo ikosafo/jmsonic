@@ -8,6 +8,7 @@ include('../../../config.php');
                                 and c.colourpriority = 'Highest'");
     $reshigh = $gethigh->fetch_assoc();
     $userid = $reshigh['userid'];
+    $datetime = date("Y-m-d H:i:s");
 
     $mysqli->query("UPDATE `boards`
     SET `exitfeepaid` = '1'

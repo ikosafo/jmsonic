@@ -1,8 +1,9 @@
 /*
 SQLyog Ultimate v11.11 (64 bit)
-MySQL - 8.0.18 : Database - jmsonic
+MySQL - 8.0.18 : Database -  u349494272_jmsonic
 *********************************************************************
-*/
+*/
+
 
 /*!40101 SET NAMES utf8 */;
 
@@ -12,9 +13,9 @@ MySQL - 8.0.18 : Database - jmsonic
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-CREATE DATABASE /*!32312 IF NOT EXISTS*/`jmsonic` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+CREATE DATABASE /*!32312 IF NOT EXISTS*/`u349494272_jmsonic` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 
-USE `jmsonic`;
+USE `u349494272_jmsonic`;
 
 /*Table structure for table `announcements` */
 
@@ -125,7 +126,7 @@ CREATE TABLE `exitfee` (
   `amounttopay` decimal(20,2) DEFAULT NULL,
   `entrytime` datetime DEFAULT NULL,
   PRIMARY KEY (`exitfeeid`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 /*Data for the table `exitfee` */
 

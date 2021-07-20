@@ -4,8 +4,13 @@ include('../../../config.php');
 $selectboard = mysqli_real_escape_string($mysqli, $_POST['selectboard']);
 $colourname = mysqli_real_escape_string($mysqli, $_POST['colourname']);
 $selectcolour = mysqli_real_escape_string($mysqli, $_POST['selectcolour']);
-$colournumber = mysqli_real_escape_string($mysqli, $_POST['colournumber']);
+$colournum = mysqli_real_escape_string($mysqli, $_POST['colournumber']);
 $colourpriority = mysqli_real_escape_string($mysqli, $_POST['colourpriority']);
+
+$getcolournumber = $mysqli->query("select * from numberconfig where numberid = '$colournum'");
+$rescolournumber = $getcolournumber->fetch_assoc();
+$colournumber = $rescolournumber['subnumber'];
+
 $userid = $_SESSION['userid'];
 $username = getusername($userid);
 $datetime = date("Y-m-d H:i:s");

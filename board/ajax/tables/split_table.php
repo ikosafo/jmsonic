@@ -288,7 +288,7 @@ $query = $mysqli->query("select DISTINCT(boardid) as boardids from previewboard 
                             },
                             dataType: "html",
                             success: function (text) {
-                                alert(text);
+                                //alert(text);
                                 $.ajax({
                                     url: "ajax/tables/split_table.php",
                                     beforeSend: function () {

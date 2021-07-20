@@ -26,10 +26,19 @@ $random = rand(1,10000).date("Y");
         </div>
         <div class="form-group">
             <label for="boardnumber">Total Number board can take</label>
-            <input type="text" class="form-control" id="boardnumber" onkeypress="return isNumber(event)"
-                   placeholder="Enter Number">
+           <!--  <input type="text" class="form-control" id="boardnumber" onkeypress="return isNumber(event)"
+                   placeholder="Enter Number"> -->
+            <select id="boardnumber" style="width: 100%">
+                <option value="">Select Board</option>
+                <option value="3">3</option>
+                <option value="7">7</option>
+                <option value="15">15</option>
+                <option value="31">31</option>
+                <option value="63">63</option>
+            </select>
             <span class="form-text text-muted">Specify maximum number board can take</span>
         </div>
+        
 
 
     </div>
@@ -41,7 +50,7 @@ $random = rand(1,10000).date("Y");
 
 
 <script>
-
+    $("#boardnumber").select2({placeholder: "Select Number"});
     $("#saveboard").click(function () {
         var boardname = $("#boardname").val();
         var boardnumber = $("#boardnumber").val();

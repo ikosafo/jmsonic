@@ -55,13 +55,13 @@ $query = $mysqli->query("select DISTINCT(boardid) as boardids from colourconfig"
                             <td><?php echo $rescolourdetails['colourpriority'] ?></td>
                             <td><?php echo $rescolourdetails['numberassign'] ?></td>
                             <td>
-                                <button type="button"
+                                <!-- <button type="button"
                                         data-type="confirm"
                                         class="btn btn-primary js-sweetalert edit_colour btn-sm"
                                         i_index="<?php echo $rescolourdetails['colourid']; ?>"
                                         title="Edit">
                                     <i class="flaticon2-edit ml-2" style="color:#fff !important;"></i>
-                                </button>
+                                </button> -->
                                 <button type="button"
                                         data-type="confirm"
                                         class="btn btn-danger btn-sm delete_colour"
@@ -106,7 +106,7 @@ $query = $mysqli->query("select DISTINCT(boardid) as boardids from colourconfig"
         oTable.search($(this).val()).draw();
     });
 
-    $(document).off('click', '.edit_colour').on('click', '.edit_colour', function () {
+  /*   $(document).off('click', '.edit_colour').on('click', '.edit_colour', function () {
         var theindex = $(this).attr('i_index');
         //alert(theindex)
         $.ajax({
@@ -133,7 +133,7 @@ $query = $mysqli->query("select DISTINCT(boardid) as boardids from colourconfig"
                 KTApp.unblockPage();
             },
         });
-    });
+    }); */
 
     $(document).off('click', '.delete_colour').on('click', '.delete_colour', function () {
         var theindex = $(this).attr('i_index');

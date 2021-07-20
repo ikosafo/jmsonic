@@ -5,7 +5,11 @@ $i_index = mysqli_real_escape_string($mysqli, $_POST['i_index']);
 $userid = $_SESSION['userid'];
 $username = getusername($userid);
 $datetime = date("Y-m-d H:i:s");
+$getboardnumber = $mysqli->query("select * from boards where boardid = '$i_index'");
+$resboardnumber = $getboardnumber->fetch_assoc();
+$boardnumber = $resboardnumber['boardnumber'];
 
+if ($boardnumber == "15") {
 //Get the two boards
 $getfirstboard = $mysqli->query("select * from boards where parentboardid = '$i_index' LIMIT 1");
 $resfirstboard = $getfirstboard->fetch_assoc();
@@ -221,3 +225,251 @@ while ($reshighcolour2 = $gethighcolour2->fetch_assoc()) {
             WHERE boardid = '$i_index'") or die(mysqli_error($mysqli));
 
 echo 1;
+}
+
+
+
+
+//IF MAXIMUM NUMBER IS 7
+else if ($boardnumber == "7") {
+
+    //Get the two boards
+$getfirstboard = $mysqli->query("select * from boards where parentboardid = '$i_index' LIMIT 1");
+$resfirstboard = $getfirstboard->fetch_assoc();
+$firstboard = $resfirstboard['boardname'];
+$firstboardid = $resfirstboard['boardid'];
+$mainboardid = $resfirstboard['mainboardid'];
+$parentboardid = $resfirstboard['parentboardid'];
+
+$getsecondboard = $mysqli->query("select * from boards where parentboardid = '$i_index' LIMIT 1,2");
+$ressecondboard = $getsecondboard->fetch_assoc();
+$secondboard = $ressecondboard['boardname'];
+$secondboardid = $ressecondboard['boardid'];
+
+
+//Get the colour with the lowest priority
+$lowestpriority = $mysqli->query("select * from colourconfig where colourpriority = 'Lowest' 
+                                and status = 'Active' and
+                                boardid = '$i_index'");
+$resnumlowest = $lowestpriority->fetch_assoc();
+$numberassignlowest = $resnumlowest['numberassign']; 
+$lowestsep = $numberassignlowest/2;
+//Getcolourid for high priority
+$gethighcolourid = $mysqli->query("select * from colourconfig where colourpriority = 'High' 
+                                and status = 'Active'
+                                and boardid = '$i_index'");
+$reshighcolourid = $gethighcolourid->fetch_assoc();
+$highcolourid = $reshighcolourid['colourid'];
+
+//Insert first set of lowest
+$getlowestcolour = $mysqli->query("select * from previewboard p JOIN colourconfig c ON p.colourid = c.colourid 
+                                 where c.colourpriority = 'Lowest' 
+                                 and c.status = 'Active'
+                                 and p.boardid = '$i_index' ORDER BY introusername LIMIT $lowestsep");
+                        while ($reslowestcolour = $getlowestcolour->fetch_assoc()) {
+                            $userid = $reslowestcolour['userid'];
+                            $mysqli->query("INSERT INTO `previewboard`
+                                            (`boardid`,
+                                            `colourid`,
+                                            `userid`,
+                                            `status`,
+                                            `mainboardid`,
+                                            `parboardid`
+                                            )
+                                    VALUES 
+                                        ('$firstboardid',
+                                        '$highcolourid',
+                                        '$userid',
+                                        '4',
+                                        '$mainboardid',
+                                        '$parentboardid'
+                                        )") or die(mysqli_error($mysqli));
+
+                                }   
+
+
+//Insert second set of lowest
+$getlowestcolour2 = $mysqli->query("select * from previewboard p JOIN colourconfig c ON p.colourid = c.colourid 
+                                 where c.colourpriority = 'Lowest' 
+                                 and c.status = 'Active'
+                                 and p.boardid = '$i_index' ORDER BY introusername LIMIT $lowestsep,$numberassignlowest");
+                                while ($reslowestcolour2 = $getlowestcolour2->fetch_assoc()) {
+                                    $userid = $reslowestcolour2['userid'];
+                                    $mysqli->query("INSERT INTO `previewboard`
+                                                    (`boardid`,
+                                                    `colourid`,
+                                                    `userid`,
+                                                    `status`,
+                                                    `mainboardid`,
+                                                    `parboardid`
+                                                    )
+                                            VALUES 
+                                                ('$secondboardid',
+                                                '$highcolourid',
+                                                '$userid',
+                                                '4',
+                                                '$mainboardid',
+                                                '$parentboardid'
+                                                )") or die(mysqli_error($mysqli));
+}   
+
+
+//Get the colour with the high priority
+$highpriority = $mysqli->query("select * from colourconfig where colourpriority = 'High'
+                                and status = 'Active' 
+                                and boardid = '$i_index' and status = 'Active'");
+$resnumhigh = $highpriority->fetch_assoc();
+$numberassignhigh = $resnumhigh['numberassign']; 
+$highsep = $numberassignhigh/2;
+//Getcolourid for highest priority
+$gethighestcolourid = $mysqli->query("select * from colourconfig where colourpriority = 'Highest' and 
+                                boardid = '$i_index'");
+$reshighestcolourid = $gethighestcolourid->fetch_assoc();
+$highestcolourid = $reshighestcolourid['colourid'];
+
+
+//Insert first set of high
+$gethighcolour = $mysqli->query("select * from previewboard p JOIN colourconfig c ON p.colourid = c.colourid 
+                                 where c.colourpriority = 'High' and c.status = 'Active' 
+                                 and p.boardid = '$i_index' ORDER BY introusername LIMIT $highsep");
+while ($reshighcolour = $gethighcolour->fetch_assoc()) {
+    $userid = $reshighcolour['userid'];
+    $mysqli->query("INSERT INTO `previewboard`
+                    (`boardid`,
+                     `colourid`,
+                     `userid`,
+                     `status`,
+                     `mainboardid`,
+                     `parboardid`
+                     )
+            VALUES 
+                ('$firstboardid',
+                '$highestcolourid',
+                '$userid',
+                '4',
+                '$mainboardid',
+                '$parentboardid'
+                )") or die(mysqli_error($mysqli));
+}   
+
+
+//Insert second set of high
+$gethighcolour2 = $mysqli->query("select * from previewboard p JOIN colourconfig c ON p.colourid = c.colourid 
+                                 where c.colourpriority = 'High' 
+                                 and c.status = 'Active'
+                                 and p.boardid = '$i_index' ORDER BY introusername LIMIT $highsep,$numberassignhigh");
+while ($reshighcolour2 = $gethighcolour2->fetch_assoc()) {
+    $userid = $reshighcolour2['userid'];
+    $mysqli->query("INSERT INTO `previewboard`
+                    (`boardid`,
+                     `colourid`,
+                     `userid`,
+                     `status`,
+                     `mainboardid`,
+                     `parboardid`
+                     )
+            VALUES 
+                ('$secondboardid',
+                '$highestcolourid',
+                '$userid',
+                '4',
+                '$mainboardid',
+                '$parentboardid'
+                )") or die(mysqli_error($mysqli));
+}   
+
+
+}
+
+
+
+
+
+
+//IF MAXIMUM NUMBER IS 3
+else if ($boardnumber == "3") {
+
+    //Get the two boards
+$getfirstboard = $mysqli->query("select * from boards where parentboardid = '$i_index' LIMIT 1");
+$resfirstboard = $getfirstboard->fetch_assoc();
+$firstboard = $resfirstboard['boardname'];
+$firstboardid = $resfirstboard['boardid'];
+$mainboardid = $resfirstboard['mainboardid'];
+$parentboardid = $resfirstboard['parentboardid'];
+
+$getsecondboard = $mysqli->query("select * from boards where parentboardid = '$i_index' LIMIT 1,2");
+$ressecondboard = $getsecondboard->fetch_assoc();
+$secondboard = $ressecondboard['boardname'];
+$secondboardid = $ressecondboard['boardid'];
+
+
+//Get the colour with the lowest priority
+$lowestpriority = $mysqli->query("select * from colourconfig where colourpriority = 'Lowest' 
+                                and status = 'Active' and
+                                boardid = '$i_index'");
+$resnumlowest = $lowestpriority->fetch_assoc();
+$numberassignlowest = $resnumlowest['numberassign']; 
+$lowestsep = $numberassignlowest/2;
+//Getcolourid for highest priority
+$gethighestcolourid = $mysqli->query("select * from colourconfig where colourpriority = 'Highest' 
+                                and status = 'Active'
+                                and boardid = '$i_index'");
+$reshighestcolourid = $gethighestcolourid->fetch_assoc();
+$highestcolourid = $reshighestcolourid['colourid'];
+
+//Insert first set of lowest
+$getlowestcolour = $mysqli->query("select * from previewboard p JOIN colourconfig c ON p.colourid = c.colourid 
+                                 where c.colourpriority = 'Lowest' 
+                                 and c.status = 'Active'
+                                 and p.boardid = '$i_index' ORDER BY introusername LIMIT $lowestsep");
+                        while ($reslowestcolour = $getlowestcolour->fetch_assoc()) {
+                            $userid = $reslowestcolour['userid'];
+                            $mysqli->query("INSERT INTO `previewboard`
+                                            (`boardid`,
+                                            `colourid`,
+                                            `userid`,
+                                            `status`,
+                                            `mainboardid`,
+                                            `parboardid`
+                                            )
+                                    VALUES 
+                                        ('$firstboardid',
+                                        '$highestcolourid',
+                                        '$userid',
+                                        '4',
+                                        '$mainboardid',
+                                        '$parentboardid'
+                                        )") or die(mysqli_error($mysqli));
+
+                                }   
+
+
+//Insert second set of lowest
+$getlowestcolour2 = $mysqli->query("select * from previewboard p JOIN colourconfig c ON p.colourid = c.colourid 
+                                 where c.colourpriority = 'Lowest' 
+                                 and c.status = 'Active'
+                                 and p.boardid = '$i_index' ORDER BY introusername LIMIT $lowestsep,$numberassignlowest");
+                                while ($reslowestcolour2 = $getlowestcolour2->fetch_assoc()) {
+                                    $userid = $reslowestcolour2['userid'];
+                                    $mysqli->query("INSERT INTO `previewboard`
+                                                    (`boardid`,
+                                                    `colourid`,
+                                                    `userid`,
+                                                    `status`,
+                                                    `mainboardid`,
+                                                    `parboardid`
+                                                    )
+                                            VALUES 
+                                                ('$secondboardid',
+                                                '$highestcolourid',
+                                                '$userid',
+                                                '4',
+                                                '$mainboardid',
+                                                '$parentboardid'
+                                                )") or die(mysqli_error($mysqli));
+}   
+
+
+}
+
+
